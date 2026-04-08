@@ -127,24 +127,25 @@ Triggered when: Training Start Date not set + About You empty.
 
 ---
 
-## Before You Commit
+## Capture Patterns As They Emerge
 
-Ask yourself these questions before every commit that establishes something new:
+**Don't wait for a commit.** The user may commit from the command line without AI involvement — anything not written down during the conversation will be lost.
 
-1. **Will a future AI session know about this?**
-   If you established a new behavior, pattern, or convention this session → update `_meta/instructions/general.md` before committing
+The rule: **when something new is established in conversation, update the relevant file immediately.**
 
-2. **Did the repo structure change?**
-   New directory, new content type, renamed section → update the personal README section
+| What was established | Where to write it |
+|---|---|
+| New behavior or convention | `_meta/instructions/general.md` |
+| New preference or personal detail | `_config/context.md` |
+| Structural change (new dir, new type) | Personal README section + Training Log |
+| Purpose or scope shift | `_config/config.md` + README |
+| New instruction module behavior | The relevant `_meta/instructions/*.md` file |
 
-3. **Did the purpose or scope evolve?**
-   User's goals or use of the system shifted → update `_config/config.md` and README
+**The signal to act:** any time a conversation produces a rule, a preference, a "we decided to always...", or a "from now on..." — that's a pattern. Write it before moving on.
 
-4. **Was something useful figured out in conversation?**
-   If a pattern or rule emerged from discussion but wasn't explicitly written down, ask before committing:
-   *"We worked out [X] — should I add that to the instructions before we commit?"*
+If it's ambiguous whether something is worth capturing, ask: *"We worked out [X] — should I add that to the instructions?"* Then capture it in the same exchange, not at the end of the session.
 
-The last one matters most. The system degrades when useful patterns stay in chat history instead of in the instructions. When in doubt, ask.
+The pre-commit moment is a safety net, not the primary mechanism. By the time a commit happens, the pattern should already be written down.
 
 ---
 
