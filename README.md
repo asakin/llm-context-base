@@ -2,7 +2,7 @@
 
 **A bootstrap repo for building your own LLM-powered knowledge base.**
 
-Clone it, point your AI assistant to it, and start talking. Over time, it learns how you work and adapts its structure to your needs without you having to design anything upfront.
+Use the template, point your AI assistant at it, and start talking. Over time, it learns how you work and adapts its structure to your needs without you having to design anything upfront.
 
 ---
 
@@ -24,10 +24,12 @@ I've been building a more advanced version of this pattern over the past few mon
 
 ## Quick Start (5 minutes)
 
-### 1. Clone
+### 1. Create Your Copy
+
+Click **"Use this template"** → **"Create a new repository"** on GitHub. Make it private (this will be *your* knowledge base). Then clone your new repo:
 
 ```bash
-git clone https://github.com/asakin/llm-context-base.git my-wiki
+git clone https://github.com/YOUR-USERNAME/my-wiki.git
 cd my-wiki
 ```
 
@@ -69,7 +71,7 @@ The system will adapt to what you actually need.
 
 ## Walking the Pattern
 
-When you first clone this repo, the system doesn't know you. A recipe collector needs different structure than an engineering lead. So rather than asking you to design your wiki upfront, the system walks the pattern with you - an initial period of active collaboration where the AI learns how you think, what you need, and how to organize your knowledge. By the end, the system is transformed into something uniquely yours.
+When you first create your copy, the system doesn't know you. A recipe collector needs different structure than an engineering lead. So rather than asking you to design your wiki upfront, the system walks the pattern with you - an initial period of active collaboration where the AI learns how you think, what you need, and how to organize your knowledge. By the end, the system is transformed into something uniquely yours.
 
 **How it works:**
 
@@ -362,9 +364,9 @@ Start with one. The cross-domain connections are where the most value emerges - 
 
 ## Extending vs. Contributing
 
-This system is designed to be extended in your fork and contributed back to the community - but these are different things. Understanding the boundary helps you know when to customize locally vs. when to open a PR.
+This system is designed to be extended in your copy and contributed back to the community - but these are different things. Understanding the boundary helps you know when to customize locally vs. when to open a PR.
 
-**Extend in your fork** (your customizations, your domain):
+**Extend in your copy** (your customizations, your domain):
 - New directories for your content types (`5-Recipes/`, `5-Strategy/`, `5-Research/`)
 - Domain-specific templates (vendor evaluations, reading notes, patient records)
 - Custom tags and naming conventions that reflect your workflow
@@ -412,4 +414,4 @@ The goal is a system that grows from the collective experience of its users - a 
 
 ## License
 
-Apache 2.0 - fork it, customize it, make it yours. See [LICENSE](LICENSE).
+Apache 2.0 - use the template, customize it, make it yours. See [LICENSE](LICENSE).
