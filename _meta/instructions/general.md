@@ -11,6 +11,17 @@ At the start of every session, follow these steps in order:
 ### Step 1: Read Configuration
 Read `_config/config.md`. This contains the user's profile, system settings, and training log.
 
+### Step 1b: Check Init State
+
+After reading config, check whether this is a first session or README migration before doing anything else:
+
+- **Full init:** Training Start Date not set AND About You is empty
+  → Run the [Init Protocol](#init-protocol) before continuing
+- **README migration:** Training Start Date is set AND config is filled in, BUT README.md personal section is still the stub (`> This README will be personalized during your first session.`)
+  → Generate the personal README section from existing config (no questions needed), then continue
+- **Normal session:** Config filled in, README personalized
+  → Continue with Step 2
+
 ### Step 2: Calculate Phase
 Using the Training Start Date and Training Period Days from `_config/config.md`, determine the current phase:
 
@@ -55,6 +66,85 @@ Inbox:     [clear / ⚠ X files older than 7 days]
 ```
 
 If config is not filled in, add a note prompting the user to complete it before continuing. Only after this block is printed should you engage with the user's request.
+
+---
+
+## Init Protocol
+
+Triggered when: Training Start Date not set + About You empty.
+
+1. Greet the user and explain you'll set up the system before starting
+2. Ask these 4 questions in a single message:
+   - What's your name?
+   - What's your role?
+   - What are your goals for this system? (2–3 sentences is enough)
+   - Any additional context — domain, team, tools you use?
+3. Fill in `_config/config.md` → About You section, set Training Start Date to today
+4. Generate the personal README section (see README Protocol below)
+5. Commit: `meta: init project`
+6. Then output the session summary and continue normally
+
+---
+
+## README Protocol
+
+`README.md` has two sections divided by `<!-- llm-context-base:framework-readme -->`:
+
+- **Above the marker:** Personal README — AI-maintained, project-specific
+- **Below the marker:** Framework README — never modify this, it tracks upstream
+
+### Rules
+
+- **Never modify content below the marker**
+- **Update the personal section when:**
+  - Init runs (generate it for the first time from the user's answers)
+  - A new content type becomes established in the repo (3+ examples of the same pattern)
+  - A new directory is added to the structure
+  - The project's purpose or scope meaningfully shifts
+  - A new capability becomes active
+- **Do not update on every session** — only on meaningful structural change
+
+### Personal README structure
+
+```markdown
+# [Project Name]
+
+[One paragraph: what this wiki is, who it's for, what problem it solves for them]
+
+## What's in here
+
+[Active content types — updated as they emerge during training]
+- **Decisions** — [brief description if used]
+- **[Other types as they emerge]**
+
+## Structure
+
+[Directory list as it actually exists, not the template defaults]
+
+---
+*README maintained by AI — last updated [YYYY-MM-DD]*
+```
+
+---
+
+## Before You Commit
+
+Ask yourself these questions before every commit that establishes something new:
+
+1. **Will a future AI session know about this?**
+   If you established a new behavior, pattern, or convention this session → update `_meta/instructions/general.md` before committing
+
+2. **Did the repo structure change?**
+   New directory, new content type, renamed section → update the personal README section
+
+3. **Did the purpose or scope evolve?**
+   User's goals or use of the system shifted → update `_config/config.md` and README
+
+4. **Was something useful figured out in conversation?**
+   If a pattern or rule emerged from discussion but wasn't explicitly written down, ask before committing:
+   *"We worked out [X] — should I add that to the instructions before we commit?"*
+
+The last one matters most. The system degrades when useful patterns stay in chat history instead of in the instructions. When in doubt, ask.
 
 ---
 
