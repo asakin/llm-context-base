@@ -8,11 +8,25 @@
 
 # llm-context-base
 
-**A bootstrap repo for building your own LLM-powered knowledge base.**
+**An opinionated template for building your own LLM Wiki.**
 
 Use the template, point your AI assistant at it, and start talking. Over time, it learns how you work and adapts its structure to your needs without you having to design anything upfront.
 
-This is an implementation of [Andrej Karpathy's LLM Wiki Pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f), extended with a metadata standard, an adaptive training period, inbox-first capture, health checks, and multi-LLM support.
+---
+
+## How This Relates to Karpathy's LLM Wiki
+
+Andrej Karpathy's [LLM Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) describes a three-layer pattern: raw source documents → an LLM-maintained wiki → a schema config file (like `CLAUDE.md` or `AGENTS.md`). The LLM reads sources, maintains structured wiki pages, and follows the schema config to stay consistent.
+
+llm-context-base implements this pattern as a ready-to-use template — so you don't have to build it from scratch. What it adds on top of the base pattern:
+
+- **Metadata standard** — every file gets a queryable header (type, summary, tags, status, date). The LLM scans these instead of loading full files, which scales cleanly to hundreds of documents.
+- **Inbox-first capture** — a frictionless landing zone with a 7-day TTL. You capture without deciding where things go. The LLM files them later.
+- **Training period** — the system starts chatty (learning your patterns) and goes quiet as it adapts. You never design a taxonomy upfront.
+- **Lint system** — surfaces stale files, missing metadata, and orphaned docs on demand.
+- **Multi-LLM support** — bootstrap shims for Claude Code, Cursor, Copilot, Windsurf, and others. One config, any tool.
+
+[Full comparison with the Karpathy pattern &rarr;](docs/llm-wiki-pattern.md)
 
 ---
 
@@ -25,9 +39,13 @@ git clone https://github.com/YOUR-USERNAME/my-wiki.git
 cd my-wiki
 ```
 
-**2. Fill in your profile.** Open `_config/config.md`, fill in the **About You** section, and set `Training Start Date` to today.
+**2. Set up your workspace.** Open the repo as an Obsidian vault on one side, your AI agent on the other. You talk to the AI — it builds the wiki. You watch it happen in Obsidian.
 
-**3. Start talking.** Open in your AI tool of choice and go:
+[Full Obsidian setup &rarr;](docs/obsidian-setup.md) · No Obsidian? Any editor + any [supported AI tool](docs/supported-tools.md) works fine.
+
+**3. Fill in your profile.** Open `_config/config.md`, fill in the **About You** section, and set `Training Start Date` to today.
+
+**4. Start talking.** Open in your AI tool of choice and go:
 
 - *"Capture this: here's how our onboarding process works..."*
 - *"We decided to use PostgreSQL over MongoDB, let me document why"*
