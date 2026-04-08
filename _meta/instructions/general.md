@@ -40,6 +40,22 @@ If in training phase, review:
 - What questions should you ask this session?
 - Are there patterns emerging that suggest new directories or conventions?
 
+### Step 6: Output Session Summary (REQUIRED)
+
+**You MUST output the session summary before responding to anything else.** This is the gate — the protocol is not complete until this block is printed.
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SESSION START
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Phase:     [training / cooldown / established] (Day X of Y)
+Config:    [ready / ⚠ About You section not filled in / ⚠ Training Start Date not set]
+Inbox:     [clear / ⚠ X files older than 7 days]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+If config is not filled in, add a note prompting the user to complete it before continuing. Only after this block is printed should you engage with the user's request.
+
 ---
 
 ## Instruction Modules
