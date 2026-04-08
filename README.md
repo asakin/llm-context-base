@@ -1,3 +1,11 @@
+# [Project Name]
+
+> This README will be personalized during your first session.
+
+---
+
+<!-- llm-context-base:framework-readme -->
+
 # llm-context-base
 
 **A bootstrap repo for building your own LLM-powered knowledge base.**
