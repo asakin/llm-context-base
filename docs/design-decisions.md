@@ -53,3 +53,19 @@ The append-only `WIKI-LOG.md` works well with capable models (Claude, GPT-4, Gem
 ## Bold Fields Instead of YAML Frontmatter
 
 See [Metadata Standard](metadata-standard.md) for the full rationale.
+
+## The Repo Stays Dumb
+
+llm-context-base is a substrate. It's a pile of markdown files that AI tools read, write, and act on. It has no runtime. It runs no code. It requires no build step.
+
+This is a deliberate architectural choice, not a limitation. It means:
+
+**Any tool can use it.** Claude Code, Cursor, Copilot, Cowork, a future tool that doesn't exist yet — they all work because they all read files. The substrate doesn't care what reads it.
+
+**Sophisticated behaviors belong in the intelligence layer above.** A Cloudflare Worker that routes meeting transcripts into the inbox, a Cowork scheduled task that monitors social media and writes reports, an MCP server that exposes the wiki as a queryable API — these are all valid and useful. They just don't live in the repo. They live above it, acting on the substrate.
+
+**Extensions follow the same split.** A markdown extension spec (instructions, templates, routing entries) is substrate — it lives in the repo. A Cloudflare Worker that runs as part of an integration is intelligence layer — it lives on Tessl or deployed infrastructure. The spec tells your AI how to wire things in. The Worker does the actual work outside.
+
+**Scaffolding is the one acceptable use of tooling.** `npx create-llm-wiki` (or `npx create-adhd-focus` for a distro) is a one-time delivery mechanism — it clones the template and disappears. After that command, npm is out of the picture. This is different from a runtime dependency.
+
+When evaluating whether something belongs in the repo: if it requires code to run, it doesn't belong here. It belongs in the intelligence layer above.

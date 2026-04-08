@@ -49,7 +49,6 @@ venv/
 
 # Generated files
 *.log
-.last-optimization-review
 
 # OS files
 Thumbs.db

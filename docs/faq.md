@@ -21,3 +21,15 @@ Most LLM wiki implementations focus on ingestion and retrieval. This system adds
 **Should I use one vault for everything or split by domain?**
 
 Start with one. The cross-domain connections are where the most value emerges. A decision about tooling might reference a knowledge article about deployment which links to a project initiative. Splitting loses these connections. If it gets unwieldy, the training period will help you find the right boundaries.
+
+---
+
+**Which Claude model should I use with this?**
+
+Claude Sonnet 4.6 or Opus 4.6. Both support 1M token context windows natively. Avoid using the deprecated `context-1m-2025-08-07` beta header with older Sonnet models — it stops working April 30, 2026, and requests exceeding 200k tokens will error. If you're on an older model, upgrade to Sonnet 4.6.
+
+---
+
+**Can I load more context at session start with MCP?**
+
+Yes. Claude Code's MCP integration now supports tool results up to 500,000 characters (set via `_meta["anthropic/maxResultSizeChars"]`). If you're building an MCP server to feed wiki content to Claude Code, you can advertise this limit to inject significantly more context at session start than was previously possible.

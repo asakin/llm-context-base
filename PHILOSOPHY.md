@@ -55,6 +55,25 @@ Most people keep this in their head, scattered across chat threads, docs, and em
 
 ---
 
+## The Substrate Principle
+
+**The repo stays dumb. The intelligence lives outside it.**
+
+llm-context-base is a substrate — a pile of markdown files that any intelligent layer can read, write, and act on. Claude Code, Cursor, Cowork, an MCP server, a GitHub Action, a Cloudflare Worker — these are all intelligence layers. The repo is what they operate on, not what they run inside.
+
+This is a deliberate boundary. It means:
+
+- **No build step.** Clone it, open it, it works. No npm install. No configuration beyond filling in your profile.
+- **No lock-in.** Switch AI tools and the wiki still works. The markdown doesn't care what reads it.
+- **No runtime.** The repo doesn't run. It exists. Sophisticated behaviors — monitoring the web, creating PRs, integrating with external services — belong in the intelligence layer above.
+- **Drop and play, not install and configure.** The right mental model is a canvas, not an app.
+
+The corollary: things like hosted search, MCP servers, and automation pipelines are valid and useful — they just belong *above* the substrate, not in it. Build them as separate projects that wrap the repo. The repo stays simple so those layers can be anything.
+
+When in doubt: if it requires code to run, it's not substrate. It belongs in the intelligence layer.
+
+---
+
 ## The Evolution Principle
 
 **This system is designed to evolve.**
