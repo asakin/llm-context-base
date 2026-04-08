@@ -16,6 +16,10 @@ _output/*
 credentials.json
 secrets/
 
+# Claude Code local settings (machine-specific paths and permissions)
+.claude/settings.json
+.claude/settings.local.json
+
 # Editor and IDE files
 .vscode/
 .idea/

@@ -1,3 +1,11 @@
+# [Project Name]
+
+> This README will be personalized during your first session.
+
+---
+
+<!-- llm-context-base:framework-readme -->
+
 # llm-context-base
 
 **A bootstrap repo for building your own LLM-powered knowledge base.**
@@ -350,6 +358,9 @@ As your wiki grows, the instruction files your AI loads at startup tend to grow 
 ---
 
 ## FAQ
+
+**On my first Claude Code session I saw something about a missing MEMORY.md - is that an error?**
+No. Claude Code has a built-in memory system that stores notes about your project in a file outside the repo (`~/.claude/projects/.../memory/MEMORY.md`). On the very first session it tries to read that file, finds it doesn't exist yet, and creates it. You'll only see this once.
 
 **Does this work with local/smaller models (Ollama, etc.)?**
 Yes. All instructions are plain markdown - no special API calls or tool use required. Smaller models may need you to manually update the `Current Phase` field in `_config/config.md` rather than calculating it automatically, and may not follow the training behavior as precisely. The core value (metadata standard, directory structure, templates) works regardless of model capability.

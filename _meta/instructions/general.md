@@ -11,6 +11,17 @@ At the start of every session, follow these steps in order:
 ### Step 1: Read Configuration
 Read `_config/config.md`. This contains the user's profile, system settings, and training log.
 
+### Step 1b: Check Init State
+
+After reading config, check whether this is a first session or README migration before doing anything else:
+
+- **Full init:** Training Start Date not set AND About You is empty
+  → Run the [Init Protocol](#init-protocol) before continuing
+- **README migration:** Training Start Date is set AND config is filled in, BUT README.md personal section is still the stub (`> This README will be personalized during your first session.`)
+  → Generate the personal README section from existing config (no questions needed), then continue
+- **Normal session:** Config filled in, README personalized
+  → Continue with Step 2
+
 ### Step 2: Calculate Phase
 Using the Training Start Date and Training Period Days from `_config/config.md`, determine the current phase:
 
@@ -39,6 +50,102 @@ If in training phase, review:
 - What did you learn in the last session? (check Training Log)
 - What questions should you ask this session?
 - Are there patterns emerging that suggest new directories or conventions?
+
+### Step 6: Output Session Summary (REQUIRED)
+
+**You MUST output the session summary before responding to anything else.** This is the gate — the protocol is not complete until this block is printed.
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SESSION START
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Phase:     [training / cooldown / established] (Day X of Y)
+Config:    [ready / ⚠ About You section not filled in / ⚠ Training Start Date not set]
+Inbox:     [clear / ⚠ X files older than 7 days]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+If config is not filled in, add a note prompting the user to complete it before continuing. Only after this block is printed should you engage with the user's request.
+
+---
+
+## Init Protocol
+
+Triggered when: Training Start Date not set + About You empty.
+
+1. Greet the user and explain you'll set up the system before starting
+2. Ask these 4 questions in a single message:
+   - What's your name?
+   - What's your role?
+   - What are your goals for this system? (2–3 sentences is enough)
+   - Any additional context — domain, team, tools you use?
+3. Fill in `_config/config.md` → About You section, set Training Start Date to today
+4. Generate the personal README section (see README Protocol below)
+5. Commit: `meta: init project`
+6. Then output the session summary and continue normally
+
+---
+
+## README Protocol
+
+`README.md` has two sections divided by `<!-- llm-context-base:framework-readme -->`:
+
+- **Above the marker:** Personal README — AI-maintained, project-specific
+- **Below the marker:** Framework README — never modify this, it tracks upstream
+
+### Rules
+
+- **Never modify content below the marker**
+- **Update the personal section when:**
+  - Init runs (generate it for the first time from the user's answers)
+  - A new content type becomes established in the repo (3+ examples of the same pattern)
+  - A new directory is added to the structure
+  - The project's purpose or scope meaningfully shifts
+  - A new capability becomes active
+- **Do not update on every session** — only on meaningful structural change
+
+### Personal README structure
+
+```markdown
+# [Project Name]
+
+[One paragraph: what this wiki is, who it's for, what problem it solves for them]
+
+## What's in here
+
+[Active content types — updated as they emerge during training]
+- **Decisions** — [brief description if used]
+- **[Other types as they emerge]**
+
+## Structure
+
+[Directory list as it actually exists, not the template defaults]
+
+---
+*README maintained by AI — last updated [YYYY-MM-DD]*
+```
+
+---
+
+## Capture Patterns As They Emerge
+
+**Don't wait for a commit.** The user may commit from the command line without AI involvement — anything not written down during the conversation will be lost.
+
+The rule: **when something new is established in conversation, update the relevant file immediately.**
+
+| What was established | Where to write it |
+|---|---|
+| New behavior or convention | `_meta/instructions/general.md` |
+| New preference or personal detail | `_config/context.md` |
+| Structural change (new dir, new type) | Personal README section + Training Log |
+| Purpose or scope shift | `_config/config.md` + README |
+| New instruction module behavior | The relevant `_meta/instructions/*.md` file |
+
+**The signal to act:** any time a conversation produces a rule, a preference, a "we decided to always...", or a "from now on..." — that's a pattern. Write it before moving on.
+
+If it's ambiguous whether something is worth capturing, ask: *"We worked out [X] — should I add that to the instructions?"* Then capture it in the same exchange, not at the end of the session.
+
+The pre-commit moment is a safety net, not the primary mechanism. By the time a commit happens, the pattern should already be written down.
 
 ---
 
