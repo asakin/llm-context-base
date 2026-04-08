@@ -2,13 +2,13 @@
 
 ## The Vision
 
-Every fork of this project is a living experiment. As you walk the pattern and the system adapts to your needs, you'll discover structural patterns that could help others - new templates, instruction modules, directory conventions, or workflow ideas.
+Every copy of this project is a living experiment. As you walk the pattern and the system adapts to your needs, you'll discover structural patterns that could help others - new templates, instruction modules, directory conventions, or workflow ideas.
 
 This project is designed to grow from the collective experience of its users. Your `5-Recipes/` directory with a custom template might become a generic "content collection" pattern. Your decision learning loop refinement might improve the template for everyone. The wiki maintains itself - and so does this project.
 
 ## What Makes a Good Contribution
 
-**Contribute structure, not content.** Your personal knowledge stays in your fork. What's valuable to the community is the *patterns* you discovered.
+**Contribute structure, not content.** Your personal knowledge stays in your copy. What's valuable to the community is the *patterns* you discovered.
 
 Great contributions:
 - **New templates** - You created a template for something the bootstrap doesn't cover (retrospectives, reading notes, vendor evaluations, etc.)
@@ -41,7 +41,7 @@ Not contributions:
 
 ### What "Genericize" Means
 
-Your fork might have:
+Your copy might have:
 ```markdown
 # Recipe: {{title}}
 **Cuisine:** [Italian | Japanese | Mexican | ...]
