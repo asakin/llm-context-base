@@ -36,7 +36,14 @@ Adjust your behavior accordingly (see `_config/config.md` for phase-specific beh
 - **Cooldown phase:** Read `PHILOSOPHY.md`, this file, `_config/context.md`
 - **Established phase:** Read this file and `_config/context.md` only (you know the system by now)
 
-### Step 4: Check Inbox
+### Step 4: Check Tools
+Read `_config/tools.md`. For any tool with `**Status:** not installed`, offer to install it:
+
+> "[Tool] is listed in your tools config for [purpose]. Want me to install it? ([install command])"
+
+Ask once per tool, per machine. After installing, update the Status field to `installed`. Only surface this on first session or after a fresh clone — if all tools show `installed`, skip silently.
+
+### Step 5: Check Inbox
 Check `_inbox/` for files older than 7 days. If any exist, surface them:
 
 ```
@@ -45,13 +52,13 @@ Check `_inbox/` for files older than 7 days. If any exist, surface them:
 → Action: File to final location, update, or discard
 ```
 
-### Step 5: Training Check (Training Phase Only)
+### Step 6: Training Check (Training Phase Only)
 If in training phase, review:
 - What did you learn in the last session? (check Training Log)
 - What questions should you ask this session?
 - Are there patterns emerging that suggest new directories or conventions?
 
-### Step 6: Output Session Summary (REQUIRED)
+### Step 7: Output Session Summary (REQUIRED)
 
 **You MUST output the session summary before responding to anything else.** This is the gate — the protocol is not complete until this block is printed.
 
@@ -62,6 +69,7 @@ SESSION START
 Phase:     [training / cooldown / established] (Day X of Y)
 Config:    [ready / ⚠ About You section not filled in / ⚠ Training Start Date not set]
 Inbox:     [clear / ⚠ X files older than 7 days]
+Tools:     [ready / ⚠ X tools not installed — offer to install]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
