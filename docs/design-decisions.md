@@ -66,6 +66,8 @@ This is a deliberate architectural choice, not a limitation. It means:
 
 **Extensions follow the same split.** A markdown extension spec (instructions, templates, routing entries) is substrate — it lives in the repo. A Cloudflare Worker that runs as part of an integration is intelligence layer — it lives on Tessl or deployed infrastructure. The spec tells your AI how to wire things in. The Worker does the actual work outside.
 
-**Scaffolding is the one acceptable use of tooling.** `npx create-llm-wiki` (or `npx create-adhd-focus` for a distro) is a one-time delivery mechanism — it clones the template and disappears. After that command, npm is out of the picture. This is different from a runtime dependency.
+**Scaffolding is the one acceptable use of npm as delivery.** `npx create-llm-wiki` (or `npx create-adhd-focus` for a distro) clones the template and disappears. After that command, npm is out of the picture.
 
-When evaluating whether something belongs in the repo: if it requires code to run, it doesn't belong here. It belongs in the intelligence layer above.
+**Local tool installs don't violate the principle.** The substrate principle governs what goes in the repo, not what the AI does on your machine. The AI can install CLI tools (Marp, Pandoc, etc.) locally on demand. What's in the repo is `_config/tools.md` — a markdown manifest declaring what tools are needed and how to install them. Binaries go in `_tools/` (gitignored) or as global installs. The repo stays clean.
+
+When evaluating whether something belongs in the repo: if it's a binary or runtime dependency, it doesn't. If it's a markdown description of what to install, it does.

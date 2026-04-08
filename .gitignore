@@ -28,6 +28,9 @@ secrets/
 *~
 .DS_Store
 
+# Local tool installs (declared in _config/tools.md, installed on demand)
+_tools/
+
 # Node (if you add rendering later)
 node_modules/
 build/
