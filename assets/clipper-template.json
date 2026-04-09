@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "0.1.0",
+  "name": "llm-wiki inbox",
+  "behavior": "create",
+  "noteContentFormat": "**Type:** knowledge\n**Summary:** {{meta:name:description}}\n**Tags:** #clipped #read-later\n**Status:** draft\n**Updated:** {{date|date:\"YYYY-MM-DD\"}}\n**Source:** {{url}}\n\n---\n\n> Why I saved this: [fill in one sentence before closing the clipper]\n\n---\n\n{{content}}",
+  "properties": [],
+  "noteNameFormat": "{{date|date:\"YYYY-MM-DD\"}}-{{title}}",
+  "path": "_inbox"
+}

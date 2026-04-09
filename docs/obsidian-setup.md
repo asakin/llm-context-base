@@ -66,32 +66,21 @@ These make the viewing and navigation side better:
 
 ## Web Clipper Setup
 
-If you install [Obsidian Web Clipper](https://obsidian.md/clipper), configure it to drop clips straight into your inbox:
+If you install [Obsidian Web Clipper](https://obsidian.md/clipper), import the pre-built template to drop clips straight into your inbox with the right metadata:
 
-1. Open the Web Clipper extension, click the **gear icon**, then **Templates**
-2. Edit the **Default** template:
-   - **Note name:** `{{date|date:"YYYY-MM-DD"}}-{{title}}`
-   - **Note location:** `_inbox`
-   - **Properties:** set to **None** (the metadata block below handles this)
-   - **Note content:**
-     ```
-     **Type:** knowledge
-     **Summary:** {{meta:name:description}}
-     **Tags:** #clipped #read-later
-     **Status:** draft
-     **Updated:** {{date|date:"YYYY-MM-DD"}}
-     **Source:** {{url}}
+1. Open the Web Clipper extension → click the **gear icon** → **Templates**
+2. Click **Import** and select `assets/clipper-template.json` from this repo
+3. Set it as your default template
 
-     ---
+That's it. Every clip lands in `_inbox/` with the metadata standard applied.
 
-     > Why I saved this: [fill in one sentence before closing the clipper]
+**The template adds one important field:**
 
-     ---
+```
+> Why I saved this: [fill in one sentence before closing the clipper]
+```
 
-     {{content}}
-     ```
-
-The "Why I saved this" line is the most important part. Fill it in before you close the clipper — one sentence is enough. Your AI uses it at triage to decide what to do:
+Fill this in before you close the clipper — one sentence is enough. Your AI uses it at triage to decide what to do:
 
 | What you write | What the AI does |
 |----------------|-----------------|
