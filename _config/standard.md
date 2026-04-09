@@ -1,10 +1,10 @@
 # Document Standard
 
-**Type:** knowledge
-**Summary:** The canonical metadata standard for all files in this system — makes every document queryable by LLMs and writable by agents.
-**Tags:** #meta #standard
-**Status:** active
-**Updated:** 2026-04-07
+- **Type:** knowledge
+- **Summary:** The canonical metadata standard for all files in this system — makes every document queryable by LLMs and writable by agents.
+- **Tags:** #meta #standard
+- **Status:** active
+- **Updated:** 2026-04-09
 
 ---
 
@@ -26,13 +26,13 @@ Based on [Andrej Karpathy's LLM Wiki Pattern](https://gist.github.com/karpathy/4
 Every file gets a metadata block at the top, immediately after the `# Title` line.
 
 ```markdown
-**Type:** [see types below]
-**Summary:** [One sentence describing what this file contains or its current state]
-**Tags:** #[domain] #[type] #[topic]
-**Status:** [see statuses below]
-**Owner:** [Person or role responsible]
-**Updated:** YYYY-MM-DD
-**Related:** [file1.md], [file2.md]
+- **Type:** [see types below]
+- **Summary:** [One sentence describing what this file contains or its current state]
+- **Tags:** #[domain] #[type] #[topic]
+- **Status:** [see statuses below]
+- **Owner:** [Person or role responsible]
+- **Updated:** YYYY-MM-DD
+- **Related:** [file1](path/file1.md), [file2](path/file2.md)
 ```
 
 ### Required vs Optional by Type
@@ -129,13 +129,41 @@ When creating or modifying a file, the AI must:
 
 ---
 
-## Format: Bold Fields, Not YAML
+## House Style
 
-This system uses `**Field:** value` convention (not YAML `---` frontmatter) because:
-- Renders correctly in any markdown viewer without a parser
-- Human-readable in raw form
+All files in this system follow plain CommonMark-compatible markdown. The goal is consistent rendering across GitHub, Obsidian, VS Code, raw text, and AI parsing — with no renderer-specific hacks.
+
+**Structural elements to use:**
+- Headings (`#`, `##`, `###`)
+- Paragraphs (blank line between)
+- Bullet lists (`-`) — tight (no blank lines between items) unless items need internal spacing
+- Numbered lists for sequences where order matters
+- Fenced code blocks (` ``` `)
+- Mermaid blocks for diagrams
+- `---` horizontal rules to separate major sections
+- Markdown links `[text](path)` — never bare HTML
+
+**Avoid:**
+- Using HTML as a substitute for real markdown structure — if a heading, list, or code block can do it, use that
+- Soft line breaks as a formatting tool (they render as spaces in CommonMark)
+- Loose list formatting unless items genuinely need breathing room
+- Patterns that only render correctly in one tool
+
+HTML is acceptable when there is no markdown equivalent (e.g., `<sub>`, `<kbd>`, collapsible sections). The test: does this need HTML, or am I using HTML because I didn't think of the markdown alternative?
+
+**Metadata format:** Bullet list with bold labels (see below). This renders as a compact list in every CommonMark-compatible renderer, is readable in raw, and is AI-parseable without special handling.
+
+---
+
+## Format: Bullet List Metadata, Not YAML
+
+This system uses `- **Field:** value` bullet list convention (not YAML `---` frontmatter) because:
+- Renders as a clean compact list in any CommonMark renderer (GitHub, Obsidian, VS Code)
+- Human-readable in raw form with no parser required
 - Works with any LLM without special handling
 - Simpler migration path for existing files
+
+Note: bare `**Field:** value` lines (without `-`) are NOT used. Without bullet syntax, consecutive bold-field lines render as a single run-on paragraph in CommonMark. The `-` makes each field a distinct list item.
 
 ---
 

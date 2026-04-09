@@ -1,8 +1,8 @@
 # [Date] — [Optional Title or Theme]
 
-**Type:** journal
-**Summary:** [One sentence: what's on your mind today?]
-**Updated:** YYYY-MM-DD
+- **Type:** journal
+- **Summary:** [One sentence: what's on your mind today?]
+- **Updated:** YYYY-MM-DD
 
 ---
 
