@@ -41,3 +41,13 @@ When working on something that creates multiple related artifacts (docs, plans, 
     ...
   _SHIPPED/                    # Completed initiatives
 ```
+
+---
+
+## Project Index
+
+> AI-maintained. Updated whenever a project is created, modified, or archived.
+
+| Project | Status | Summary | Updated |
+|---------|--------|---------|---------|
+| *(no projects yet — add one to see this table in action)* | | | |

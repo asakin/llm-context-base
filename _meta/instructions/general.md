@@ -227,6 +227,16 @@ The `_output/` directory exists for the rare case when the user needs a **throwa
 
 Files in `_output/` use a date prefix: `_output/YYYY-MM-DD-description.md`
 
+### Project Index Maintenance
+`1-Projects/README.md` contains a Project Index table. **Update it whenever:**
+- A new project file is created in `1-Projects/`
+- A project's Status, Summary, or Updated fields change
+- A project is archived or deleted
+
+Each row: `| [filename-without-extension](filename.md) | status | one-line summary | YYYY-MM-DD |`
+
+Keep the table sorted by Updated descending (most recently touched first).
+
 ### Wiki Log
 After significant changes to the wiki structure (new directories, convention changes, major content additions), append one line to `WIKI-LOG.md`:
 
