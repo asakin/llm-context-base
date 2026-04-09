@@ -1,10 +1,10 @@
 # Personal Context
 
-**Type:** knowledge
-**Summary:** Machine-readable personal context for AI sessions - small facts, key people, and preferences that help your AI understand you beyond your role.
-**Tags:** #meta #config
-**Status:** active
-**Updated:** 2026-04-07
+- **Type:** knowledge
+- **Summary:** Machine-readable personal context for AI sessions - small facts, key people, and preferences that help your AI understand you beyond your role.
+- **Tags:** #meta #config
+- **Status:** active
+- **Updated:** 2026-04-09
 
 ---
 

@@ -1,10 +1,10 @@
 # Context Optimization Review
 
-**Type:** template
-**Summary:** Periodic review of instruction file sizes and context efficiency - keeps the system lean as your wiki grows.
-**Tags:** #meta #maintenance #optimization
-**Status:** active
-**Updated:** 2026-04-07
+- **Type:** template
+- **Summary:** Periodic review of instruction file sizes and context efficiency - keeps the system lean as your wiki grows.
+- **Tags:** #meta #maintenance #optimization
+- **Status:** active
+- **Updated:** 2026-04-09
 
 ---
 

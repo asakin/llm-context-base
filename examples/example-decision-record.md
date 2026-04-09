@@ -1,16 +1,16 @@
 # Choosing PostgreSQL Over MongoDB
 
-**Type:** decision
-**Summary:** We chose PostgreSQL over MongoDB for our primary database because our data is relational, we need ACID transactions, and the team has strong SQL experience.
-**Tags:** #decision #engineering #database
-**Status:** complete
-**Owner:** Tech Lead
-**Updated:** 2026-02-20
+- **Type:** decision
+- **Summary:** We chose PostgreSQL over MongoDB for our primary database because our data is relational, we need ACID transactions, and the team has strong SQL experience.
+- **Tags:** #decision #engineering #database
+- **Status:** complete
+- **Owner:** Tech Lead
+- **Updated:** 2026-02-20
 
 ---
 
-**Date:** 2026-02-20
-**Decision Status:** Implemented
+- **Date:** 2026-02-20
+- **Decision Status:** Implemented
 
 ---
 
@@ -91,8 +91,8 @@ The data model is relational. PostgreSQL is purpose-built for relational data. T
 
 ## Outcome
 
-**Outcome Status:** succeeded
-**Reviewed:** 2026-04-01
+- **Outcome Status:** succeeded
+- **Reviewed:** 2026-04-01
 
 ### What Actually Happened
 PostgreSQL has handled everything we've thrown at it. Complex reporting queries that would have required MapReduce in MongoDB run in milliseconds. Schema migrations have been painless with a proper migration tool. We're at 2M rows and query performance is excellent.

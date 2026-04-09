@@ -12,19 +12,19 @@ This file is the brain of your personal knowledge system. Your AI assistant read
 
 <!-- Fill this in. Be specific — the more context you give, the better your AI adapts. -->
 
-**Name:** [Your name]
-**Role:** [Your role — e.g., "Software engineer at a startup", "CIO at a mid-size company", "Freelance designer", "Home cook and recipe collector"]
-**Goals:** [What you want this system to help you with — 2-3 sentences]
-**Context:** [Any additional context about your work, team, tools, industry]
+- **Name:** [Your name]
+- **Role:** [Your role — e.g., "Software engineer at a startup", "CIO at a mid-size company", "Freelance designer", "Home cook and recipe collector"]
+- **Goals:** [What you want this system to help you with — 2-3 sentences]
+- **Context:** [Any additional context about your work, team, tools, industry]
 
 ---
 
 ## System Settings
 
-**Training Start Date:** [YYYY-MM-DD — set this to today when you first start using the system]
-**Training Period Days:** 30
-**Current Phase:** training
-**Preserve Important Sources:** no
+- **Training Start Date:** [YYYY-MM-DD — set this to today when you first start using the system]
+- **Training Period Days:** 30
+- **Current Phase:** training
+- **Preserve Important Sources:** no
 
 <!-- 
 Phases:
@@ -71,10 +71,10 @@ During training, it will ask once or twice to calibrate your preferences.
 <!-- As training progresses, the AI fills this in based on your usage patterns. -->
 <!-- Once established, these become the rules for how the system operates for you. -->
 
-**File Naming:** [discovered during training]
-**Tags You Use:** [discovered during training]
-**Content Types:** [discovered during training]
-**Preferred Structure:** [discovered during training]
+- **File Naming:** [discovered during training]
+- **Tags You Use:** [discovered during training]
+- **Content Types:** [discovered during training]
+- **Preferred Structure:** [discovered during training]
 
 ---
 

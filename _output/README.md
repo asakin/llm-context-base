@@ -1,10 +1,10 @@
 # _output/
 
-**Type:** knowledge
-**Summary:** Generated artifacts that aren't part of the knowledge base - presentations, exports, reports, and other one-off outputs.
-**Tags:** #meta
-**Status:** active
-**Updated:** 2026-04-07
+- **Type:** knowledge
+- **Summary:** Generated artifacts that aren't part of the knowledge base - presentations, exports, reports, and other one-off outputs.
+- **Tags:** #meta
+- **Status:** active
+- **Updated:** 2026-04-09
 
 ---
 

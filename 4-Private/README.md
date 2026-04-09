@@ -1,10 +1,10 @@
 # 4-Private/
 
-**Type:** knowledge
-**Summary:** Sensitive and personal content - gitignored, never committed.
-**Tags:** #meta
-**Status:** active
-**Updated:** 2026-04-07
+- **Type:** knowledge
+- **Summary:** Sensitive and personal content - gitignored, never committed.
+- **Tags:** #meta
+- **Status:** active
+- **Updated:** 2026-04-09
 
 ---
 

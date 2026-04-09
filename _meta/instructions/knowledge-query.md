@@ -1,10 +1,10 @@
 # Knowledge Query Module
 
-**Type:** template
-**Summary:** How to answer natural language queries by routing to the right files and synthesizing answers with citations.
-**Tags:** #meta #knowledge
-**Status:** active
-**Updated:** 2026-04-07
+- **Type:** template
+- **Summary:** How to answer natural language queries by routing to the right files and synthesizing answers with citations.
+- **Tags:** #meta #knowledge
+- **Status:** active
+- **Updated:** 2026-04-09
 
 ---
 

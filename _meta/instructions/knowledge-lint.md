@@ -1,10 +1,10 @@
 # Knowledge Lint
 
-**Type:** template
-**Summary:** Health-check pass for the wiki — surfaces stale metadata, missing standard blocks, orphaned files, and stale inbox items.
-**Tags:** #meta #maintenance
-**Status:** active
-**Updated:** 2026-04-07
+- **Type:** template
+- **Summary:** Health-check pass for the wiki — surfaces stale metadata, missing standard blocks, orphaned files, and stale inbox items.
+- **Tags:** #meta #maintenance
+- **Status:** active
+- **Updated:** 2026-04-09
 
 ---
 

@@ -35,11 +35,11 @@ Structured knowledge lives in `2-Knowledge/` (HowTo, Decisions, References), `1-
 Every file gets a metadata block:
 
 ```markdown
-**Type:** knowledge
-**Summary:** One sentence the LLM uses to decide relevance without reading the full file.
-**Tags:** #domain #type
-**Status:** active
-**Updated:** 2026-04-08
+- **Type:** knowledge
+- **Summary:** One sentence the LLM uses to decide relevance without reading the full file.
+- **Tags:** #domain #type
+- **Status:** active
+- **Updated:** 2026-04-08
 ```
 
 The Summary field is the critical addition. Instead of loading full documents to answer queries, the LLM scans summaries — which is fast and scales to hundreds of files without degrading session quality.

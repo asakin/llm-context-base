@@ -1,10 +1,10 @@
 # 1-Projects/
 
-**Type:** knowledge
-**Summary:** Active workspace for multi-artifact initiatives - keeps related work together until shipped.
-**Tags:** #meta
-**Status:** active
-**Updated:** 2026-04-07
+- **Type:** knowledge
+- **Summary:** Active workspace for multi-artifact initiatives - keeps related work together until shipped.
+- **Tags:** #meta
+- **Status:** active
+- **Updated:** 2026-04-09
 
 ---
 

@@ -1,10 +1,10 @@
 # _inbox/
 
-**Type:** knowledge
-**Summary:** Universal capture zone for anything that needs to be in the system but hasn't been filed yet.
-**Tags:** #meta
-**Status:** active
-**Updated:** 2026-04-07
+- **Type:** knowledge
+- **Summary:** Universal capture zone for anything that needs to be in the system but hasn't been filed yet.
+- **Tags:** #meta
+- **Status:** active
+- **Updated:** 2026-04-09
 
 ---
 
