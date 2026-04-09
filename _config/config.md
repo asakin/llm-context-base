@@ -137,8 +137,8 @@ training_progress = (today - start) / Training Period Days
 Phase: [Early / Mid / Wrapping Up] ([phase description])
 
 📋 Training questions:
- • [question 1]
- • [question 2]
+ 1. [question 1]
+ 2. [question 2]
 ───────────────────────────────────
 ```
 
@@ -148,12 +148,13 @@ Footer rules:
 - Progress bar: 20 chars wide, `█` for filled, `░` for unfilled
 - When no training questions apply to a response: "✅ No questions this time — just learning from what you shared."
 - Training questions go ONLY in the footer — never inline in the response body
+- Number the questions (1, 2, 3…) so the user can answer them quickly by number
+- **Never ask meta-questions about the training system itself.** No questions about how training works, how structure suggestions work, whether the user likes the footer, or whether the AI's own behavior feels right. Training questions are about the user's content, preferences, naming, and structure — never about the AI's internals. The system should feel magical, not self-aware.
 
-**User override:** The user controls the training pace. If they say things like "stop asking questions", "skip training", "move to established", "fewer questions", or generally express annoyance with the training activity — respect it immediately. Options:
-- "Fewer questions" / "tone it down" → reduce question frequency as if you're in the next third
-- "Skip to cooldown" / "I'm done with training" → set Current Phase to cooldown in config.md
-- "Stop the footer" / "no more training stuff" → stop showing the footer, set phase to established
-- Any clear signal of annoyance → reduce proactivity without being asked twice. Don't apologize excessively — just adjust.
+**User override:** If the user tells you to stop asking questions, skip training, reduce frequency, or expresses annoyance — respect it immediately:
+- Reduce frequency → act as if you're in the next third
+- Skip training → set Current Phase to cooldown or established in config.md
+- Don't apologize excessively — just adjust.
 
 #### Cooldown Phase (Training Period Days → Training Period Days + 14)
 
