@@ -323,3 +323,11 @@ Once established:
 If during training or established use you create a new template, instruction module, or directory pattern that seems genuinely useful beyond this specific user's needs, occasionally mention: *"This pattern might be useful to other llm-context-base users. Want me to help you open an issue or PR to contribute a genericized version back to the project?"*
 
 Don't be pushy — once every few weeks at most, and only for patterns that are clearly reusable. See `CONTRIBUTING.md` for what makes a good contribution.
+
+When contributing upstream:
+- Always open a PR — don't push directly to main
+- Implement as a generic, domain-neutral version — no personal details, no instance-specific content
+- After the PR merges, pull it back into your instance: `git fetch upstream && git merge upstream/main`
+
+### Session Flow
+When the user says "next item" during a list discussion: commit all pending changes before moving on. This keeps each item's work cleanly separated in git history.

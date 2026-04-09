@@ -132,14 +132,15 @@ training_progress = (today - start) / Training Period Days
 **Training Status Footer** — append this block at the END of every response during training:
 
 ```
-───────────────────────────────────
+───────────────────────────
 🧠 Training — Day [X] of [Y] [progress bar] [percent]%
 Phase: [Early / Mid / Wrapping Up] ([phase description])
 
 📋 Training questions:
- 1. [question 1]
- 2. [question 2]
-───────────────────────────────────
+1. [question 1]
+2. [question 2]
+
+───────────────────────────
 ```
 
 Footer rules:
