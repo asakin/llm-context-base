@@ -1,12 +1,12 @@
 # [Initiative Name]
 
-**Type:** initiative
-**Summary:** [One sentence: what is this initiative, what problem does it solve, what's its current status?]
-**Tags:** #initiative #[domain]
-**Status:** active
-**Owner:** [Name or role]
-**Updated:** YYYY-MM-DD
-**Related:** [linked decision], [linked knowledge article]
+- **Type:** initiative
+- **Summary:** [One sentence: what is this initiative, what problem does it solve, what's its current status?]
+- **Tags:** #initiative #[domain]
+- **Status:** active
+- **Owner:** [Name or role]
+- **Updated:** YYYY-MM-DD
+- **Related:** [linked decision](path), [linked knowledge article](path)
 
 ---
 
@@ -36,9 +36,9 @@
 
 ## Current Status
 
-**Phase:** [Planning | In Progress | Review | Complete]
-**Blockers:** [None | Description]
-**Next milestone:** [What's next and when?]
+- **Phase:** [Planning | In Progress | Review | Complete]
+- **Blockers:** [None | Description]
+- **Next milestone:** [What's next and when?]
 
 ---
 

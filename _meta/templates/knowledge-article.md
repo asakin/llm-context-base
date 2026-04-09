@@ -1,12 +1,12 @@
 # [Title — descriptive, searchable]
 
-**Type:** knowledge
-**Summary:** [One sentence: what does this document cover? Use terms someone would search for.]
-**Tags:** #[domain] #[how-to | reference | process]
-**Status:** active
-**Owner:** [Person or role]
-**Updated:** YYYY-MM-DD
-**Related:** [related-file.md]
+- **Type:** knowledge
+- **Summary:** [One sentence: what does this document cover? Use terms someone would search for.]
+- **Tags:** #[domain] #[how-to | reference | process]
+- **Status:** active
+- **Owner:** [Person or role]
+- **Updated:** YYYY-MM-DD
+- **Related:** [related-file](related-file.md)
 
 ---
 

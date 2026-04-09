@@ -1,10 +1,10 @@
 # [Short Description]
 
-**Type:** [knowledge | decision | initiative | meeting | journal | todo]
-**Summary:** [One sentence: what is this about?]
-**Tags:** #[domain] #[type]
-**Status:** draft
-**Updated:** YYYY-MM-DD
+- **Type:** [knowledge | decision | initiative | meeting | journal | todo]
+- **Summary:** [One sentence: what is this about?]
+- **Tags:** #[domain] #[type]
+- **Status:** draft
+- **Updated:** YYYY-MM-DD
 
 ---
 
