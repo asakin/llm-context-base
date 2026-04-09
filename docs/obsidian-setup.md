@@ -97,3 +97,46 @@ One-click web capture that lands in your inbox with the metadata standard applie
 **Use the graph view.** As your wiki grows, the graph view becomes a map of your thinking. Color-coded directories make it easy to spot clusters and gaps.
 
 **Let the AI handle organization.** Resist the urge to manually file things. Capture into `_inbox/`, then let your AI suggest where it goes. That's the whole point.
+
+---
+
+## Making It Look Good
+
+The vault ships with a CSS snippet (`llm-wiki.css`) and graph view settings pre-configured. But you need to install a theme to get the full effect.
+
+### Step 1: Install the Minimal theme (recommended)
+
+1. Open Obsidian → Settings → Appearance → Themes → Browse
+2. Search for **Minimal** and install it
+3. The vault's `appearance.json` already points to it — it activates automatically
+
+Minimal is the most popular Obsidian theme. It has clean typography, good dark/light mode support, and a companion plugin (Minimal Theme Settings) for further customization without touching CSS.
+
+**Adapt to system theme:** In Settings → Appearance → Base color scheme, set it to **Adapt to system**. Obsidian will follow your OS's light/dark schedule automatically.
+
+### Step 2: CSS snippet (already active)
+
+The vault ships with `llm-wiki.css` in `.obsidian/snippets/`. It's already enabled. It does:
+
+- **Metadata card** — the `**Type:**`, `**Summary:**`, etc. block at the top of every file renders as a subtle card with an accent border, not raw bold text
+- **Typography** — readable line length (760px max), better heading hierarchy, 1.75 line height
+- **Tables** — cleaner borders, hover highlight
+- **Blockquotes** — styled as pull quotes with an accent bar
+
+If you want to customize it: Settings → Appearance → CSS snippets → pencil icon next to `llm-wiki`.
+
+### Step 3: Graph view
+
+The graph is pre-configured with colors per directory:
+
+| Color | Directory |
+|-------|-----------|
+| Blue | 1-Projects |
+| Green | 2-Knowledge |
+| Purple | 3-Journal |
+| Red | 4-Private |
+| Orange | _inbox |
+| Gray | _meta, _config |
+| Teal | _output, _sources |
+
+If Obsidian resets your graph settings (it sometimes does when the vault reopens), you can restore them by running `git checkout .obsidian/graph.json` and restarting Obsidian.
