@@ -181,6 +181,19 @@ When the user wants to capture something:
 3. Ask the user: "Should I file this now or leave it in the inbox?"
 4. If filing now, route to the correct directory based on the `**Type:**` field
 
+### Web Clip Triage Protocol
+When an inbox item has `#clipped` in its tags, it came from Obsidian Web Clipper. Handle it differently from regular captures:
+
+1. **Read the "Why I saved this" line** — this is the most important signal. If missing, ask before doing anything else: "What did you want to do with this clip?"
+2. **Classify the intent** based on that line:
+   - *Read later* → leave in inbox, surface at next session triage as a reading item
+   - *Save the knowledge* → extract the key points, file as a knowledge article in `2-Knowledge/`, discard the full clip
+   - *Relates to a project* → file in or link from the relevant project in `1-Projects/`, add a note on why it's relevant
+   - *Source for a draft* → move to `_sources/` if Preserve Important Sources is on, or extract relevant quotes into the draft directly
+   - *(left blank)* → ask once: "What do you want to do with this clip?" before doing anything
+3. **Never file the full raw HTML content** as-is — extract what matters, discard the rest.
+4. **Update the Summary** to describe what you extracted, not just the original article title.
+
 ### Query Protocol
 When the user asks a question about their knowledge base:
 1. Load `_meta/instructions/knowledge-query.md`

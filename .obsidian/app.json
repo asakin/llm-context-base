@@ -1,7 +1,7 @@
 {
   "interfaceFontSize": 14,
   "showLineNumber": true,
-  "strictLineBreaks": true,
+  "strictLineBreaks": false,
   "readableLineLength": false,
   "defaultViewMode": "source",
   "showFrontmatter": false,

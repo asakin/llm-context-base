@@ -1,86 +1,51 @@
 {
   "collapse-filter": false,
   "search": "",
-  "showTags": false,
+  "showTags": true,
   "showAttachments": false,
-  "hideUnresolved": false,
-  "showOrphans": true,
-  "collapse-color-groups": true,
+  "hideUnresolved": true,
+  "showOrphans": false,
+  "collapse-color-groups": false,
   "colorGroups": [
     {
       "query": "path:1-Projects",
-      "color": {
-        "a": 1,
-        "rgb": 3381503
-      }
+      "color": { "a": 1, "rgb": 3381759 }
     },
     {
       "query": "path:2-Knowledge",
-      "color": {
-        "a": 1,
-        "rgb": 3394611
-      }
+      "color": { "a": 1, "rgb": 3394611 }
     },
     {
       "query": "path:3-Journal",
-      "color": {
-        "a": 1,
-        "rgb": 10044620
-      }
+      "color": { "a": 1, "rgb": 10044620 }
     },
     {
       "query": "path:4-Private",
-      "color": {
-        "a": 1,
-        "rgb": 16724787
-      }
+      "color": { "a": 1, "rgb": 16724787 }
     },
     {
       "query": "path:_inbox",
-      "color": {
-        "a": 1,
-        "rgb": 16750899
-      }
-    },
-    {
-      "query": "path:_sources",
-      "color": {
-        "a": 1,
-        "rgb": 11184810
-      }
-    },
-    {
-      "query": "path:_output",
-      "color": {
-        "a": 1,
-        "rgb": 52479
-      }
+      "color": { "a": 1, "rgb": 16750899 }
     },
     {
       "query": "path:_meta OR path:_config",
-      "color": {
-        "a": 1,
-        "rgb": 10066329
-      }
+      "color": { "a": 1, "rgb": 6710886 }
     },
     {
-      "query": "path:examples",
-      "color": {
-        "a": 1,
-        "rgb": 16776019
-      }
+      "query": "path:_output OR path:_sources",
+      "color": { "a": 1, "rgb": 52479 }
     }
   ],
   "collapse-display": false,
   "showArrow": false,
-  "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1,
-  "lineSizeMultiplier": 1,
+  "textFadeMultiplier": 1,
+  "nodeSizeMultiplier": 1.8,
+  "lineSizeMultiplier": 1.4,
   "collapse-forces": false,
-  "centerStrength": 0.518713248970312,
-  "repelStrength": 10,
-  "linkStrength": 1,
-  "linkDistance": 250,
+  "centerStrength": 0.4,
+  "repelStrength": 14,
+  "linkStrength": 0.8,
+  "linkDistance": 140,
   "scale": 1.9722086484415358,
   "close": true
 }
