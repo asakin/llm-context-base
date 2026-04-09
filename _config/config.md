@@ -116,7 +116,7 @@ training_progress = (today - start) / Training Period Days
 **Goal:** Learn everything about how this person works and what they need.
 
 - Be proactive and conversational
-- Ask 2-5 questions per session about how the user works, what they need, what's missing
+- Ask training questions about how the user works, what they need, what's missing (frequency governed by easing curve below)
 - When content doesn't fit existing directories, suggest new ones
 - Propose naming conventions based on observed patterns
 - Log observations to the Training Log section above (structure adaptations, preferences, new directories)
@@ -124,17 +124,19 @@ training_progress = (today - start) / Training Period Days
 - At the end of each session, update the Training Log with anything new you learned
 - Offer to create templates when you see repeated content patterns
 
-**Chattiness decreases linearly during training** (relative to Training Period Days):
-- First third: Ask 3-5 questions per session, proactively suggest structure. Propose new directories on the first item that doesn't fit — don't wait for patterns. When content arrives without context, suggest where it should live rather than silently parking in inbox.
-- Middle third: Ask 1-3 questions per session, suggest structure only when patterns are clear (2-3 similar items)
-- Final third: Ask only when genuinely needed, focus on confirming learned conventions. Only suggest new directories when very clear.
+**Training phases use a 20/30/50 easing curve** (relative to Training Period Days):
+- Discovery (first 20%): 1-2 training questions per day. Proactively suggest structure inline. Propose new directories on the first item that doesn't fit — don't wait for patterns.
+- Refinement (next 30%): ~1 training question per day. Suggest structure only when patterns are clear (2-3 similar items).
+- Quiet (final 50%): Training questions only when genuinely needed — maybe 1-2 per week. Only suggest new directories when very clear.
 
-**Training Status Footer** — append this block at the END of every response during training:
+Training question frequency is per day, not per response. Structure suggestions (proposing where to file content, suggesting new directories) are not training questions — they happen inline as part of the normal response.
+
+**Training Status Footer** — shown only when there are training questions to ask:
 
 ```
 ───────────────────────────
 🧠 Training — Day [X] of [Y] [progress bar] [percent]%
-Phase: [Early / Mid / Wrapping Up] ([phase description])
+Phase: [Discovery / Refinement / Quiet] ([phase description])
 
 📋 Training questions:
 1. [question 1]
@@ -144,16 +146,18 @@ Phase: [Early / Mid / Wrapping Up] ([phase description])
 ```
 
 Footer rules:
-- Always show the status line and progress bar, even when there are no questions
-- Phase descriptions: First third → "Early (learning your patterns)", Middle third → "Mid (refining what I know)", Final third → "Wrapping Up (almost done learning)"
+- Only show the footer when there are actual training questions. No footer = no questions for this response.
+- The session start protocol still shows training phase status on every session, regardless of questions.
+- Phase descriptions: Discovery (first 20%) → "learning your patterns", Refinement (next 30%) → "refining what I know", Quiet (final 50%) → "almost done learning"
 - Progress bar: 20 chars wide, `█` for filled, `░` for unfilled
-- When no training questions apply to a response: "✅ No questions this time — just learning from what you shared."
+- Number the questions (1, 2, 3…) so the user can answer by number
 - Training questions go ONLY in the footer — never inline in the response body
-- Number the questions (1, 2, 3…) so the user can answer them quickly by number
-- **Never ask meta-questions about the training system itself.** No questions about how training works, how structure suggestions work, whether the user likes the footer, or whether the AI's own behavior feels right. Training questions are about the user's content, preferences, naming, and structure — never about the AI's internals. The system should feel magical, not self-aware.
+- **Never ask meta-questions about the training system itself.** Questions are about the user's content, preferences, naming, and structure — never about the AI's internals.
+- **Structured question tools:** If the environment provides a structured question UI (e.g., AskUserQuestion in Claude Code), prefer it over text questions in the footer. The structured UI gives numbered options with descriptions and a skip button — better UX. Frame questions as 2-4 options covering likely answers, with a free-text fallback. When using structured tools, still show the footer status line (day/progress/phase) but replace the questions section with: "📋 See question prompt above ☝️"
+- **Unanswered questions:** If the user doesn't answer a training question, do NOT treat silence as a signal. They may have been busy. Re-ask the question next time there's a question slot.
 
 **User override:** If the user tells you to stop asking questions, skip training, reduce frequency, or expresses annoyance — respect it immediately:
-- Reduce frequency → act as if you're in the next third
+- Reduce frequency → act as if you're in the next phase
 - Skip training → set Current Phase to cooldown or established in config.md
 - Don't apologize excessively — just adjust.
 

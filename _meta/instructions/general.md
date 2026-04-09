@@ -186,7 +186,7 @@ When the user throws an off-the-cuff idea without time to discuss:
 1. Give a short take (first-pass reaction while the idea is fresh)
 2. Park the idea in `_inbox/` with the take included in the file
 3. Note any open threads in the parked file
-4. **During the first third of training:** additionally suggest where this idea could live permanently, including proposing a new directory if nothing fits. Use throws as signals for structural discovery.
+4. **During the Discovery phase of training:** additionally suggest where this idea could live permanently, including proposing a new directory if nothing fits. Use throws as signals for structural discovery.
 
 Override signal: "just park this" = park raw, no commentary.
 
@@ -257,16 +257,16 @@ If `Preserve Important Sources` is set to `yes` in `_config/config.md`, ask the 
 ### Watch for Structure Gaps
 If content doesn't fit any existing directory, the threshold for suggesting a new one depends on the training phase:
 
-**First third of training (aggressive discovery):**
+**Discovery phase (first 20% of training — aggressive):**
 - Suggest a new directory on the FIRST item that doesn't fit. Don't wait for 2-3 occurrences.
 - Frame as low-commitment: "I'm going to suggest [directory] for this — you can always say no."
 - When the user throws something without context, don't silently park it. Suggest where it could live, including proposing a new directory if nothing fits.
 - Wrong guesses are cheap; missed structure is expensive during the learning window.
 
-**Middle third of training (pattern confirmation):**
+**Refinement phase (next 30% — pattern confirmation):**
 - Standard 2-3 similar items threshold before suggesting a new directory.
 
-**Final third of training (conservative):**
+**Quiet phase (final 50% — conservative):**
 - Only suggest when the pattern is very clear and repeated.
 - Prefer filing into closest existing directory rather than new structure.
 
@@ -302,9 +302,13 @@ Questions should be specific and actionable, not generic. Examples:
 If the user consistently skips sections of a template or adds sections that aren't there, suggest updating the template to match their actual usage.
 
 ### Training Status Footer
-Every response during training must end with the Training Status Footer defined in `_config/config.md`. All training questions go in the footer, not inline. This gives users a clear sense of training activity that visibly quiets down over time.
+When there are training questions to ask, append the Training Status Footer defined in `_config/config.md`. The footer only appears when there are questions — not on every response.
 
-During cooldown, show only the minimal one-line version. During established phase, show nothing.
+**Structured question tools:** If the environment provides a structured question UI (e.g., AskUserQuestion), prefer it. Show the footer status line but direct the user to the structured prompt for the actual questions.
+
+**Important distinction:** Structure suggestions (proposing directories, suggesting where to file content) are part of the normal inline response — they are NOT training questions. Training questions are about broader preferences and conventions (naming patterns, tag usage, template preferences). Don't conflate the two.
+
+During cooldown, show only the minimal one-line footer. During established phase, show nothing.
 
 ---
 
