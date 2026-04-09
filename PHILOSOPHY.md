@@ -66,6 +66,7 @@ This is a deliberate boundary. It means:
 - **No build step.** Clone it, open it, it works. No npm install. No configuration beyond filling in your profile.
 - **No lock-in.** Switch AI tools and the wiki still works. The markdown doesn't care what reads it.
 - **No runtime.** The repo doesn't run. It exists. Sophisticated behaviors — monitoring the web, creating PRs, integrating with external services — belong in the intelligence layer above.
+- **No enterprise friction.** Zero runtime means zero network activity from the repo itself — no telemetry, no phone-home, no CDN, nothing for a corporate proxy or firewall to block or audit. The only network question is whether your company allows your AI tool; the framework adds no additional surface.
 - **Drop and play, not install and configure.** The right mental model is a canvas, not an app.
 
 The corollary: things like hosted search, MCP servers, and automation pipelines are valid and useful — they just belong *above* the substrate, not in it. Build them as separate projects that wrap the repo. The repo stays simple so those layers can be anything.

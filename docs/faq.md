@@ -40,6 +40,16 @@ Yes. All instructions are plain markdown, no special API calls or tool use requi
 
 ---
 
+**Will my company's proxy or firewall block this? Can I use it at work?**
+
+There is nothing for a proxy to block. llm-context-base has zero runtime and generates no network activity of its own. It is a git clone of markdown files. After clone, the repo never touches the network: no telemetry, no phone-home, no CDN dependencies, no background processes, no analytics.
+
+The only network-related question is whether your company allows the AI tool you use to read and write files (Claude Code, Cursor, Copilot, Windsurf, ChatGPT, etc.) — and that's the same question you'd face with or without this repo. If your AI tool works at work, llm-context-base works at work. The framework adds no additional surface a proxy could block.
+
+This is a direct consequence of the substrate principle: the repo stays dumb, intelligence lives above it. See [PHILOSOPHY.md → The Substrate Principle](../PHILOSOPHY.md#the-substrate-principle) for the design rationale.
+
+---
+
 **Why not just use [existing wiki tool]?**
 
 Most LLM wiki implementations focus on ingestion and retrieval. This system adds a training period that adapts the structure to your specific needs, templates battle-tested over months of daily use, an Obsidian-ready vault with graph visualization, and a lint system that keeps things healthy over time. It also works with any LLM, not locked to one provider.
