@@ -3,8 +3,9 @@
   "showLineNumber": true,
   "strictLineBreaks": false,
   "readableLineLength": false,
-  "defaultViewMode": "source",
+  "defaultViewMode": "preview",
   "showFrontmatter": false,
+  "showInlineTitle": false,
   "newFileLocation": "folder",
   "newFileFolderPath": "_inbox",
   "attachmentFolderPath": "assets"
