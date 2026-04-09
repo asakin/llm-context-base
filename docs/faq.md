@@ -1,5 +1,33 @@
 # FAQ
 
+**How do I get upstream updates?**
+
+Two paths:
+
+**Quick Start (template)** — what the README recommends. Clean start, no shared history. Fine if you set it up once and don't care about updates.
+
+**Framework Track** — for users who want to pull improvements as the system evolves. Three extra steps upfront:
+
+```bash
+# 1. Clone directly (instead of "Use this template")
+git clone https://github.com/asakin/llm-context-base.git my-wiki
+cd my-wiki
+
+# 2. Create an empty private repo on GitHub, then rewire remotes:
+git remote rename origin upstream
+git remote add origin https://github.com/YOU/my-wiki.git
+git push -u origin main
+
+# 3. Pull future updates:
+git fetch upstream
+git rebase upstream/main
+git push --force-with-lease origin main
+```
+
+Your repo is fully independent (not a GitHub fork, not publicly linked). You just share git history with upstream, which is what makes rebase work cleanly.
+
+---
+
 **On my first Claude Code session I saw something about a missing MEMORY.md. Is that an error?**
 
 No. Claude Code has a built-in memory system that stores notes about your project in a file outside the repo (`~/.claude/projects/.../memory/MEMORY.md`). On the very first session it tries to read that file, finds it doesn't exist yet, and creates it. You'll only see this once.

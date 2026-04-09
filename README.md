@@ -54,6 +54,8 @@ cd my-wiki
 
 That's it. The system adapts to what you actually need.
 
+**Want to stay updated as the framework improves?** The template approach gives you a clean start but disconnects you from upstream. If you want to pull future improvements (new protocols, better training behavior, bug fixes), use the [Framework Track setup](docs/faq.md#how-do-i-get-upstream-updates) instead.
+
 ---
 
 ## What Makes This Different
