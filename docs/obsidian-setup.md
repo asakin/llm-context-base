@@ -10,12 +10,9 @@ Obsidian is where you browse your wiki. You can talk to your AI directly inside 
 
 **1. Open the vault.** This repo ships as a ready-to-use Obsidian vault. Open the cloned directory as a vault in Obsidian — graph colors, core plugins, and display settings are pre-configured.
 
-**2. Pick your AI agent.** You have two options:
+**2. Open your AI tool next to it.** No plugin needed. Just open Claude Code, the Claude desktop app, Cursor, or ChatGPT alongside Obsidian. You talk to the AI in one window, the wiki updates in real time in the other.
 
-- **Inside Obsidian** — install an LLM plugin like [Claudian](https://github.com/YishenTu/claudian) or [claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian) to chat with your AI directly in the editor
-- **Side by side** — open a terminal or AI tool (Claude Code, Cursor, ChatGPT, etc.) next to Obsidian
-
-Either way works. The key is having both open at once — you talk on one side, the wiki updates on the other.
+That's the whole setup. Obsidian is the viewer. The AI is the writer. They don't need to be connected — they both just read and write the same folder of files.
 
 **3. Start talking.** See the [Quick Start](../README.md#quick-start) for what to say first.
 
@@ -36,29 +33,33 @@ Already set in the shipped vault, no action needed:
 
 ---
 
-## Recommended Plugins
+## Optional Plugins
 
-### LLM Integration
+All plugins here are optional. The system works without any of them.
 
-These give you an AI console inside Obsidian, so you don't need a separate terminal:
+To install community plugins: Obsidian Settings → Community plugins → Turn off restricted mode → Browse.
 
-| Plugin | What it does |
-|--------|-------------|
-| **[Claudian](https://github.com/YishenTu/claudian)** | Claude Code inside Obsidian — read/write wiki entries directly in the editor |
-| **[claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian)** | Claude Code plugin with hot cache for minimal context usage |
-| **[Copilot](https://www.obsidiancopilot.com/)** | AI chat over your vault — conversational Q&A across your entire knowledge base |
+### Want AI inside Obsidian instead of a separate window?
 
-### Enhanced Browsing
-
-These make the viewing and navigation side better:
+By default you use an AI tool (Claude Code, Claude app, Cursor, ChatGPT) in a separate window next to Obsidian. If you'd rather type to the AI inside Obsidian itself, these plugins add that:
 
 | Plugin | What it does |
 |--------|-------------|
-| **[Obsidian Web Clipper](https://obsidian.md/clipper)** | Save web pages as markdown directly into `_inbox/` |
-| **[Dataview](https://blacksmithgu.github.io/obsidian-dataview/)** | Query engine for markdown metadata — build dashboards and filtered views* |
-| **[Templater](https://github.com/SilentVoid13/Templater)** | Dynamic templates with variables — auto-populate metadata blocks |
+| **[Claudian](https://github.com/YishenTu/claudian)** | Claude Code panel inside Obsidian |
+| **[claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian)** | Claude Code with hot cache for faster context loading |
+| **[Copilot](https://www.obsidiancopilot.com/)** | AI chat sidebar — works with Claude, GPT-4, and others |
+
+### Want to save web pages directly to your inbox?
+
+Install the [Obsidian Web Clipper](https://obsidian.md/clipper) browser extension. See the Web Clipper Setup section below for the template.
+
+### Other useful plugins
+
+| Plugin | What it does |
+|--------|-------------|
+| **[Dataview](https://blacksmithgu.github.io/obsidian-dataview/)** | Query engine for metadata — build dashboards and filtered views* |
+| **[Kanban](https://github.com/mgmeyers/obsidian-kanban)** | Visual kanban boards backed by markdown |
 | **[Periodic Notes](https://github.com/liamcain/obsidian-periodic-notes)** | Daily/weekly/monthly notes mapped to `3-Journal/` |
-| **[Kanban](https://github.com/mgmeyers/obsidian-kanban)** | Markdown-backed kanban boards for visual project management |
 
 *\*Dataview note: Dataview inline fields require double-colon syntax (`**Type**:: knowledge`) while this system uses single-colon (`**Type:** knowledge`). If you want Dataview queries, either use double-colons in your files or use YAML frontmatter. The single-colon format is optimized for LLM readability.*
 

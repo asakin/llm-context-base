@@ -181,6 +181,14 @@ When the user wants to capture something:
 3. Ask the user: "Should I file this now or leave it in the inbox?"
 4. If filing now, route to the correct directory based on the `**Type:**` field
 
+### Idea Throw Protocol
+When the user throws an off-the-cuff idea without time to discuss:
+1. Give a short take (first-pass reaction while the idea is fresh)
+2. Park the idea in `_inbox/` with the take included in the file
+3. Note any open threads in the parked file
+
+Override signal: "just park this" = park raw, no commentary.
+
 ### Web Clip Triage Protocol
 When an inbox item has `#clipped` in its tags, it came from Obsidian Web Clipper. Handle it differently from regular captures:
 
