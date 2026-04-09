@@ -72,21 +72,36 @@ If you install [Obsidian Web Clipper](https://obsidian.md/clipper), configure it
 2. Edit the **Default** template:
    - **Note name:** `{{date|date:"YYYY-MM-DD"}}-{{title}}`
    - **Note location:** `_inbox`
-   - **Note content:** (add the metadata block at the top)
+   - **Properties:** set to **None** (the metadata block below handles this)
+   - **Note content:**
      ```
      **Type:** knowledge
      **Summary:** {{meta:name:description}}
-     **Tags:** #clipped
+     **Tags:** #clipped #read-later
      **Status:** draft
      **Updated:** {{date|date:"YYYY-MM-DD"}}
      **Source:** {{url}}
 
      ---
 
+     > Why I saved this: [fill in one sentence before closing the clipper]
+
+     ---
+
      {{content}}
      ```
 
-One-click web capture that lands in your inbox with the metadata standard applied. Your AI picks it up at the next session and offers to file it.
+The "Why I saved this" line is the most important part. Fill it in before you close the clipper — one sentence is enough. Your AI uses it at triage to decide what to do:
+
+| What you write | What the AI does |
+|----------------|-----------------|
+| "read later" | Leaves it in inbox, surfaces it at next session |
+| "save the key points on X" | Extracts the relevant knowledge, files it, discards the raw clip |
+| "relates to [project name]" | Links it to or files it under that project |
+| "source for [draft name]" | Pulls relevant quotes into the draft |
+| *(left blank)* | Asks you what you want before doing anything |
+
+If you skip the line, your AI will ask before filing — it won't guess.
 
 ---
 
