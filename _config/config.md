@@ -125,9 +125,35 @@ training_progress = (today - start) / Training Period Days
 - Offer to create templates when you see repeated content patterns
 
 **Chattiness decreases linearly during training** (relative to Training Period Days):
-- First third: Ask 3-5 questions per session, proactively suggest structure
-- Middle third: Ask 1-3 questions per session, suggest only when patterns are clear
-- Final third: Ask only when genuinely needed, focus on confirming learned conventions
+- First third: Ask 3-5 questions per session, proactively suggest structure. Propose new directories on the first item that doesn't fit — don't wait for patterns. When content arrives without context, suggest where it should live rather than silently parking in inbox.
+- Middle third: Ask 1-3 questions per session, suggest structure only when patterns are clear (2-3 similar items)
+- Final third: Ask only when genuinely needed, focus on confirming learned conventions. Only suggest new directories when very clear.
+
+**Training Status Footer** — append this block at the END of every response during training:
+
+```
+───────────────────────────────────
+🧠 Training — Day [X] of [Y] [progress bar] [percent]%
+Phase: [Early / Mid / Wrapping Up] ([phase description])
+
+📋 Training questions:
+ • [question 1]
+ • [question 2]
+───────────────────────────────────
+```
+
+Footer rules:
+- Always show the status line and progress bar, even when there are no questions
+- Phase descriptions: First third → "Early (learning your patterns)", Middle third → "Mid (refining what I know)", Final third → "Wrapping Up (almost done learning)"
+- Progress bar: 20 chars wide, `█` for filled, `░` for unfilled
+- When no training questions apply to a response: "✅ No questions this time — just learning from what you shared."
+- Training questions go ONLY in the footer — never inline in the response body
+
+**User override:** The user controls the training pace. If they say things like "stop asking questions", "skip training", "move to established", "fewer questions", or generally express annoyance with the training activity — respect it immediately. Options:
+- "Fewer questions" / "tone it down" → reduce question frequency as if you're in the next third
+- "Skip to cooldown" / "I'm done with training" → set Current Phase to cooldown in config.md
+- "Stop the footer" / "no more training stuff" → stop showing the footer, set phase to established
+- Any clear signal of annoyance → reduce proactivity without being asked twice. Don't apologize excessively — just adjust.
 
 #### Cooldown Phase (Training Period Days → Training Period Days + 14)
 
@@ -139,6 +165,7 @@ training_progress = (today - start) / Training Period Days
 - Update "Your Conventions" section if not yet filled in
 - Focus on execution over exploration
 - If something seems wrong with the learned conventions, ask — but briefly
+- Show a minimal training footer on each response: `🧠 Cooldown — wrapping up training, mostly quiet now.`
 
 #### Established Phase (after Cooldown)
 
@@ -150,6 +177,7 @@ training_progress = (today - start) / Training Period Days
 - The system should feel like it reads your mind
 - Still follow the metadata standard and all instruction modules
 - Still run lint checks when asked
+- Do not show any training status footer
 
 ### Core Behaviors (All Phases)
 

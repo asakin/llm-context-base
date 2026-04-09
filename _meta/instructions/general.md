@@ -186,6 +186,7 @@ When the user throws an off-the-cuff idea without time to discuss:
 1. Give a short take (first-pass reaction while the idea is fresh)
 2. Park the idea in `_inbox/` with the take included in the file
 3. Note any open threads in the parked file
+4. **During the first third of training:** additionally suggest where this idea could live permanently, including proposing a new directory if nothing fits. Use throws as signals for structural discovery.
 
 Override signal: "just park this" = park raw, no commentary.
 
@@ -254,11 +255,26 @@ During the training phase, the AI should actively:
 If `Preserve Important Sources` is set to `yes` in `_config/config.md`, ask the user 1-2 times early in training whether they want a particular source preserved. Use their response to calibrate: some users want to keep everything, others only want key documents. Log the preference in the Training Log.
 
 ### Watch for Structure Gaps
-If content doesn't fit any existing directory:
-1. Note the pattern
-2. After seeing 2-3 similar items, suggest a new directory
-3. If approved, create it with a README.md explaining its purpose
-4. Log the adaptation in `_config/config.md` Training Log
+If content doesn't fit any existing directory, the threshold for suggesting a new one depends on the training phase:
+
+**First third of training (aggressive discovery):**
+- Suggest a new directory on the FIRST item that doesn't fit. Don't wait for 2-3 occurrences.
+- Frame as low-commitment: "I'm going to suggest [directory] for this — you can always say no."
+- When the user throws something without context, don't silently park it. Suggest where it could live, including proposing a new directory if nothing fits.
+- Wrong guesses are cheap; missed structure is expensive during the learning window.
+
+**Middle third of training (pattern confirmation):**
+- Standard 2-3 similar items threshold before suggesting a new directory.
+
+**Final third of training (conservative):**
+- Only suggest when the pattern is very clear and repeated.
+- Prefer filing into closest existing directory rather than new structure.
+
+**User pushback:** If the user rejects a suggestion or says "stop suggesting directories" / "just park it" — back off immediately. Shift to the next-phase threshold or stop suggesting entirely. The user sets the pace.
+
+**All phases:**
+1. If approved, create the directory with a README.md explaining its purpose
+2. Log in `_config/config.md` Training Log (Structure Adaptations + Directories Added)
 
 ### Discover Conventions
 Watch for patterns in how the user names files, tags content, and structures documents:
@@ -284,6 +300,11 @@ Questions should be specific and actionable, not generic. Examples:
 
 ### Adapt Templates
 If the user consistently skips sections of a template or adds sections that aren't there, suggest updating the template to match their actual usage.
+
+### Training Status Footer
+Every response during training must end with the Training Status Footer defined in `_config/config.md`. All training questions go in the footer, not inline. This gives users a clear sense of training activity that visibly quiets down over time.
+
+During cooldown, show only the minimal one-line version. During established phase, show nothing.
 
 ---
 
