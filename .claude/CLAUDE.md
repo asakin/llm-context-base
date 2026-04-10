@@ -1,5 +1,20 @@
 # Claude Code Instructions
 
+## STEP 0: Framework source repo check (run this first)
+
+Run: `git remote get-url origin 2>/dev/null`
+
+If the URL contains `asakin/llm-context-base`, you are in the **framework source repo itself** — the upstream project where llm-context-base is developed, not a personal wiki instance built from the template. In that case:
+
+- **Skip the Session Start Protocol entirely.** Do not run init. Do not print a session summary. Do not treat this as a personal knowledge base.
+- **Never write personal information into any repo file.** `_config/config.md`, `_config/context.md`, `_inbox/`, the README, commit messages — all of it ships publicly to downstream users. Anything personal the user mentions stays in the conversation only.
+- **Behave as a normal engineering assistant for an open-source project.** Read `CONTRIBUTING.md` for conventions. Help with docs, instruction modules, templates, design decisions, releases, and tests.
+- Then proceed directly to the user's actual request.
+
+Otherwise → you are in a personal instance. Continue with the protocol below.
+
+---
+
 ## MANDATORY FIRST ACTION
 
 **Before responding to anything, you MUST complete the Session Start Protocol.**
