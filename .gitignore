@@ -20,6 +20,9 @@ secrets/
 .claude/settings.json
 .claude/settings.local.json
 
+# Framework mode flag — create this file locally to enter framework mode (see CONTRIBUTING.md)
+_config/.framework-mode
+
 # Editor and IDE files
 .vscode/
 .idea/
