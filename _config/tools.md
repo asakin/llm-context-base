@@ -1,12 +1,12 @@
-# Tools
-
-- **Type:** knowledge
-- **Summary:** Declares local tools the AI may install on your machine to enable output rendering and other capabilities. Not committed as binaries — just a manifest.
-- **Tags:** #meta #tools #config
-- **Status:** active
-- **Updated:** 2026-04-09
-
 ---
+type: knowledge
+summary: Declares local tools the AI may install on your machine to enable output rendering and other capabilities. Not committed as binaries — just a manifest.
+tags: [meta, tools, config]
+status: active
+updated: 2026-04-09
+---
+
+# Tools
 
 ## How This Works
 

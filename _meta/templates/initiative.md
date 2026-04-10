@@ -1,14 +1,14 @@
-# [Initiative Name]
-
-- **Type:** initiative
-- **Summary:** [One sentence: what is this initiative, what problem does it solve, what's its current status?]
-- **Tags:** #initiative #[domain]
-- **Status:** active
-- **Owner:** [Name or role]
-- **Updated:** YYYY-MM-DD
-- **Related:** [linked decision](path), [linked knowledge article](path)
-
 ---
+type: initiative
+summary: "[One sentence: what is this initiative, what problem does it solve, what's its current status?]"
+tags: [initiative, domain]  # replace domain with real tag
+status: active
+owner: "[Name or role]"
+updated: YYYY-MM-DD
+related: "[linked decision](path), [linked knowledge article](path)"
+---
+
+# [Initiative Name]
 
 ## Problem Statement
 

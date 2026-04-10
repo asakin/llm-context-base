@@ -1,13 +1,13 @@
-# Choosing PostgreSQL Over MongoDB
-
-- **Type:** decision
-- **Summary:** We chose PostgreSQL over MongoDB for our primary database because our data is relational, we need ACID transactions, and the team has strong SQL experience.
-- **Tags:** #decision #engineering #database
-- **Status:** complete
-- **Owner:** Tech Lead
-- **Updated:** 2026-02-20
-
 ---
+type: decision
+summary: We chose PostgreSQL over MongoDB for our primary database because our data is relational, we need ACID transactions, and the team has strong SQL experience.
+tags: [decision, engineering, database]
+status: complete
+owner: Tech Lead
+updated: 2026-02-20
+---
+
+# Choosing PostgreSQL Over MongoDB
 
 - **Date:** 2026-02-20
 - **Decision Status:** Implemented

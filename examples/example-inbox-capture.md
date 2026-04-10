@@ -1,13 +1,13 @@
-# Sourdough Starter Feeding Schedule
-
-- **Type:** knowledge
-- **Summary:** Figured out the right feeding schedule for my sourdough starter after weeks of trial and error.
-- **Tags:** #cooking #sourdough #how-to
-- **Status:** draft
-- **Updated:** 2026-04-02
-- **Source:** personal experience
-
 ---
+type: knowledge
+summary: Figured out the right feeding schedule for my sourdough starter after weeks of trial and error.
+tags: [cooking, sourdough, how-to]
+status: draft
+updated: 2026-04-02
+source: personal experience
+---
+
+# Sourdough Starter Feeding Schedule
 
 ## Content
 

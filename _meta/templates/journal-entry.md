@@ -1,10 +1,10 @@
-# [Date] — [Optional Title or Theme]
-
-- **Type:** journal
-- **Summary:** [One sentence: what's on your mind today?]
-- **Updated:** YYYY-MM-DD
-
 ---
+type: journal
+summary: "[One sentence: what's on your mind today?]"
+updated: YYYY-MM-DD
+---
+
+# [Date] — [Optional Title or Theme]
 
 ## Reflections
 

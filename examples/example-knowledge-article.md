@@ -1,14 +1,14 @@
-# How I Plan Weekly Meals
-
-- **Type:** knowledge
-- **Summary:** Weekly meal planning workflow that reduces grocery trips and food waste - covers planning, shopping, and prep.
-- **Tags:** #cooking #how-to #meal-planning
-- **Status:** active
-- **Owner:** Jane
-- **Updated:** 2026-03-15
-- **Related:** [example-decision-record.md](example-decision-record.md)
-
 ---
+type: knowledge
+summary: Weekly meal planning workflow that reduces grocery trips and food waste - covers planning, shopping, and prep.
+tags: [cooking, how-to, meal-planning]
+status: active
+owner: Jane
+updated: 2026-03-15
+related: "[example-decision-record.md](example-decision-record.md)"
+---
+
+# How I Plan Weekly Meals
 
 ## Overview
 

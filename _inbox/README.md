@@ -1,12 +1,12 @@
-# _inbox/
-
-- **Type:** knowledge
-- **Summary:** Universal capture zone for anything that needs to be in the system but hasn't been filed yet.
-- **Tags:** #meta
-- **Status:** active
-- **Updated:** 2026-04-09
-
 ---
+type: knowledge
+summary: Universal capture zone for anything that needs to be in the system but hasn't been filed yet.
+tags: [meta]
+status: active
+updated: 2026-04-09
+---
+
+# _inbox/
 
 ## Purpose
 
@@ -36,7 +36,7 @@ YYYY-MM-DD-[short-slug].md
 
 ## Filing Rule
 
-The `**Type:**` field determines where items get filed:
+The `type` frontmatter field determines where items get filed:
 
 | Type | Files to | Template |
 |------|----------|----------|

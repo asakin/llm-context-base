@@ -1,12 +1,12 @@
-# _output/
-
-- **Type:** knowledge
-- **Summary:** Generated artifacts that aren't part of the knowledge base - presentations, exports, reports, and other one-off outputs.
-- **Tags:** #meta
-- **Status:** active
-- **Updated:** 2026-04-09
-
 ---
+type: knowledge
+summary: Generated artifacts that aren't part of the knowledge base - presentations, exports, reports, and other one-off outputs.
+tags: [meta]
+status: active
+updated: 2026-04-09
+---
+
+# _output/
 
 ## Purpose
 

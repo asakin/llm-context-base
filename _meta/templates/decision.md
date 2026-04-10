@@ -1,14 +1,14 @@
-# [Decision Title]
-
-- **Type:** decision
-- **Summary:** [One sentence: what was decided and why]
-- **Tags:** #decision #[domain]
-- **Status:** [draft | active | complete]
-- **Owner:** [Name]
-- **Updated:** YYYY-MM-DD
-- **Related:** [related files](path)
-
 ---
+type: decision
+summary: "[One sentence: what was decided and why]"
+tags: [decision, domain]  # replace domain with real tag
+status: "[draft | active | complete]"
+owner: "[Name]"
+updated: YYYY-MM-DD
+related: "[related files](path)"
+---
+
+# [Decision Title]
 
 - **Date:** YYYY-MM-DD
 - **Decision Status:** [Draft | Under Review | Approved | Implemented]

@@ -1,12 +1,12 @@
-# Personal Context
-
-- **Type:** knowledge
-- **Summary:** Machine-readable personal context for AI sessions - small facts, key people, and preferences that help your AI understand you beyond your role.
-- **Tags:** #meta #config
-- **Status:** active
-- **Updated:** 2026-04-09
-
 ---
+type: knowledge
+summary: Machine-readable personal context for AI sessions - small facts, key people, and preferences that help your AI understand you beyond your role.
+tags: [meta, config]
+status: active
+updated: 2026-04-09
+---
+
+# Personal Context
 
 > **This file is populated by your AI during training.** As it learns about you, it logs personal details here so future sessions can reference them without asking again. You can also add things manually at any time.
 

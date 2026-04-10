@@ -1,12 +1,12 @@
-# 2-Knowledge/
-
-- **Type:** knowledge
-- **Summary:** Institutional memory - how-to guides, decision records, and reference material.
-- **Tags:** #meta
-- **Status:** active
-- **Updated:** 2026-04-09
-
 ---
+type: knowledge
+summary: Institutional memory - how-to guides, decision records, and reference material.
+tags: [meta]
+status: active
+updated: 2026-04-09
+---
+
+# 2-Knowledge/
 
 ## Purpose
 

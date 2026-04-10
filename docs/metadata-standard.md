@@ -6,30 +6,34 @@ Every file gets a metadata block at the top. This is what makes the system query
 
 ## Example: Personal Wiki
 
-```markdown
-# How I Organize My Weekly Meal Prep
+```yaml
+---
+type: knowledge
+summary: Weekly meal prep workflow including grocery list generation and batch cooking schedule.
+tags: [cooking, how-to, meal-prep]
+status: active
+owner: Jane
+updated: 2026-04-07
+related: "[favorite-recipes.md](2-Knowledge/References/favorite-recipes.md)"
+---
 
-- **Type:** knowledge
-- **Summary:** Weekly meal prep workflow including grocery list generation and batch cooking schedule.
-- **Tags:** #cooking #how-to #meal-prep
-- **Status:** active
-- **Owner:** Jane
-- **Updated:** 2026-04-07
-- **Related:** [favorite-recipes.md](2-Knowledge/References/favorite-recipes.md)
+# How I Organize My Weekly Meal Prep
 ```
 
 ## Example: Developer Wiki
 
-```markdown
-# How We Deploy to Production
+```yaml
+---
+type: knowledge
+summary: Step-by-step deployment process including rollback procedures and monitoring checks.
+tags: [engineering, how-to, deployment]
+status: active
+owner: Jane
+updated: 2026-04-07
+related: "[ci-pipeline-setup.md](2-Knowledge/HowTo/ci-pipeline-setup.md)"
+---
 
-- **Type:** knowledge
-- **Summary:** Step-by-step deployment process including rollback procedures and monitoring checks.
-- **Tags:** #engineering #how-to #deployment
-- **Status:** active
-- **Owner:** Jane
-- **Updated:** 2026-04-07
-- **Related:** [ci-pipeline-setup.md](2-Knowledge/HowTo/ci-pipeline-setup.md)
+# How We Deploy to Production
 ```
 
 ## What Each Field Does
@@ -42,17 +46,16 @@ Every file gets a metadata block at the top. This is what makes the system query
 | **Tags** | Secondary discovery. When summary-based routing doesn't surface what you need, tags provide cross-cutting categories. |
 | **Updated** | Powers the lint system. Active files not updated in 90+ days get flagged for review. |
 
-## Why Bullet List Fields Instead of YAML Frontmatter
+## Why YAML Frontmatter
 
-Karpathy's pattern recommends YAML frontmatter, which works natively with Obsidian's Dataview plugin. This system uses `- **Field:** value` bullet list syntax instead because:
+This system uses standard YAML frontmatter because:
 
-- Renders as a compact list in any CommonMark renderer (GitHub, Obsidian, VS Code) without a parser
-- Works with any LLM without special handling
-- Human-readable in raw form
+- Renders as Obsidian's **Properties panel** in reading view — clean labeled rows, no dots, collapsible
+- Renders as a **bordered table** on GitHub — labeled and scannable
+- Human-readable and widely understood in raw form
+- Native to the markdown ecosystem — every static site generator, documentation tool, and AI model handles it
 
-Note: bare `**Field:** value` lines (without `-`) are NOT used — consecutive bold fields without bullets collapse into a run-on paragraph in CommonMark renderers.
-
-The trade-off: Dataview compatibility requires switching to double-colon syntax (`**Type**:: value`). See the [Obsidian setup](obsidian-setup.md) for details.
+Tags use the YAML array format (`[engineering, how-to]`) with no `#` prefix — this is the correct format for frontmatter tags in Obsidian and most other tools.
 
 ## Full Specification
 

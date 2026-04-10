@@ -1,11 +1,11 @@
-# Meeting: [Topic / Attendees] — [Date]
-
-- **Type:** meeting
-- **Summary:** [One sentence: what was this meeting about and what was the key outcome?]
-- **Tags:** #meeting #[domain]
-- **Updated:** YYYY-MM-DD
-
 ---
+type: meeting
+summary: "[One sentence: what was this meeting about and what was the key outcome?]"
+tags: [meeting, domain]  # replace domain with real tag
+updated: YYYY-MM-DD
+---
+
+# Meeting: [Topic / Attendees] — [Date]
 
 - **Date:** YYYY-MM-DD
 - **Attendees:** [Names]
