@@ -1,12 +1,12 @@
-# [Short Description]
-
-- **Type:** [knowledge | decision | initiative | meeting | journal | todo]
-- **Summary:** [One sentence: what is this about?]
-- **Tags:** #[domain] #[type]
-- **Status:** draft
-- **Updated:** YYYY-MM-DD
-
 ---
+type: "[knowledge | decision | initiative | meeting | journal | todo]"
+summary: "[One sentence: what is this about?]"
+tags: [domain, type]  # replace with real tags, no # prefix
+status: draft
+updated: YYYY-MM-DD
+---
+
+# [Short Description]
 
 ## Content
 

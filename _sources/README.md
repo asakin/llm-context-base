@@ -1,12 +1,12 @@
-# _sources/
-
-**Type:** knowledge
-**Summary:** Optional archive of preserved source documents - originals kept when the AI judges them important enough to retain.
-**Tags:** #meta
-**Status:** active
-**Updated:** 2026-04-07
-
 ---
+type: knowledge
+summary: Optional archive of preserved source documents - originals kept when the AI judges them important enough to retain.
+tags: [meta]
+status: active
+updated: 2026-04-09
+---
+
+# _sources/
 
 ## Purpose
 

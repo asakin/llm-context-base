@@ -1,14 +1,14 @@
-# Onboarding Documentation Overhaul
-
-**Type:** initiative
-**Summary:** Rewriting all onboarding docs from scratch - current docs are outdated and new hires consistently report confusion in their first week.
-**Tags:** #initiative #onboarding #documentation
-**Status:** active
-**Owner:** Engineering Manager
-**Updated:** 2026-03-28
-**Related:** [example-knowledge-article.md](example-knowledge-article.md)
-
 ---
+type: initiative
+summary: Rewriting all onboarding docs from scratch - current docs are outdated and new hires consistently report confusion in their first week.
+tags: [initiative, onboarding, documentation]
+status: active
+owner: Engineering Manager
+updated: 2026-03-28
+related: "[example-knowledge-article.md](example-knowledge-article.md)"
+---
+
+# Onboarding Documentation Overhaul
 
 ## Problem Statement
 
@@ -41,9 +41,9 @@ New hires take 2-3 weeks to become productive. Exit surveys from the last 3 hire
 
 ## Current Status
 
-**Phase:** In Progress
-**Blockers:** None
-**Next milestone:** Complete dev environment guide by April 5
+- **Phase:** In Progress
+- **Blockers:** None
+- **Next milestone:** Complete dev environment guide by April 5
 
 ---
 

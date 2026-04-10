@@ -1,12 +1,12 @@
-# Document Standard
-
-- **Type:** knowledge
-- **Summary:** The canonical metadata standard for all files in this system — makes every document queryable by LLMs and writable by agents.
-- **Tags:** #meta #standard
-- **Status:** active
-- **Updated:** 2026-04-09
-
 ---
+type: knowledge
+summary: The canonical metadata standard for all files in this system — makes every document queryable by LLMs and writable by agents.
+tags: [meta, standard]
+status: active
+updated: 2026-04-09
+---
+
+# Document Standard
 
 ## Why This Standard Exists
 
@@ -23,16 +23,18 @@ Based on [Andrej Karpathy's LLM Wiki Pattern](https://gist.github.com/karpathy/4
 
 ## The Metadata Block
 
-Every file gets a metadata block at the top, immediately after the `# Title` line.
+Every file gets a YAML frontmatter block at the very top, before the `# Title` line.
 
-```markdown
-- **Type:** [see types below]
-- **Summary:** [One sentence describing what this file contains or its current state]
-- **Tags:** #[domain] #[type] #[topic]
-- **Status:** [see statuses below]
-- **Owner:** [Person or role responsible]
-- **Updated:** YYYY-MM-DD
-- **Related:** [file1](path/file1.md), [file2](path/file2.md)
+```yaml
+---
+type: [see types below]
+summary: One sentence describing what this file contains or its current state.
+tags: [domain, type, topic]
+status: [see statuses below]
+owner: Person or role responsible
+updated: YYYY-MM-DD
+related: "[file1](path/file1.md), [file2](path/file2.md)"
+---
 ```
 
 ### Required vs Optional by Type
@@ -54,7 +56,7 @@ Every file gets a metadata block at the top, immediately after the `# Title` lin
 
 **Summary** — One sentence, present tense, describing what the file contains OR its current state. This is the most important field — a future query will use it to decide relevance without reading the whole file.
 
-**Tags** — Space-separated, always prefixed with `#`. Start with tags that make sense for your domain. During the training period, your AI will help you build a consistent tag vocabulary.
+**Tags** — YAML array, no `#` prefix (e.g. `[engineering, how-to]`). Start with tags that make sense for your domain. During the training period, your AI will help you build a consistent tag vocabulary.
 
 **Status** — Lifecycle state:
 - `active` — in use, current, being maintained
@@ -91,13 +93,13 @@ Every file gets a metadata block at the top, immediately after the `# Title` lin
 Tags are free-form but should be consistent. During the training period, your AI will help you develop a vocabulary that fits your domain. Some starter categories:
 
 **Domain tags** — What area does this relate to?
-- Examples: `#engineering`, `#design`, `#operations`, `#personal`, `#finance`, `#health`, `#cooking`
+- Examples: `engineering`, `design`, `operations`, `personal`, `finance`, `health`, `cooking`
 
 **Type tags** — What kind of content is this?
-- Examples: `#how-to`, `#reference`, `#decision`, `#process`, `#architecture`
+- Examples: `how-to`, `reference`, `decision`, `process`, `architecture`
 
 **Status/priority tags** — Optional, for filtering:
-- Examples: `#urgent`, `#someday`, `#recurring`
+- Examples: `urgent`, `someday`, `recurring`
 
 **Rule:** Always use tags from your established vocabulary. If you need a new tag, add it intentionally — don't let tags proliferate randomly. Your AI will help manage this during training.
 
@@ -109,7 +111,7 @@ When answering a query, the AI should:
 
 1. **Classify the question** — what type and domain is this about?
 2. **Route to the right directory** using the query routing in `_meta/instructions/knowledge-query.md`
-3. **Scan summaries first** — read file names and `**Summary:**` lines before reading full content
+3. **Scan summaries first** — read file names and `summary:` frontmatter fields before reading full content
 4. **Read 1-3 most relevant files** — don't read everything, use tags to filter
 5. **Synthesize and cite** — always include source file path and `Updated` date in the response
 
@@ -119,7 +121,7 @@ When answering a query, the AI should:
 
 When creating or modifying a file, the AI must:
 
-1. **Add the metadata block** at the top, after the `# Title` line
+1. **Add YAML frontmatter** at the very top of the file, before the `# Title` line
 2. **Use the correct type** from the types table above
 3. **Write a useful Summary** — one sentence a future query can use to decide relevance
 4. **Pick 2-5 tags** from the established vocabulary
@@ -151,19 +153,7 @@ All files in this system follow plain CommonMark-compatible markdown. The goal i
 
 HTML is acceptable when there is no markdown equivalent (e.g., `<sub>`, `<kbd>`, collapsible sections). The test: does this need HTML, or am I using HTML because I didn't think of the markdown alternative?
 
-**Metadata format:** Bullet list with bold labels (see below). This renders as a compact list in every CommonMark-compatible renderer, is readable in raw, and is AI-parseable without special handling.
-
----
-
-## Format: Bullet List Metadata, Not YAML
-
-This system uses `- **Field:** value` bullet list convention (not YAML `---` frontmatter) because:
-- Renders as a clean compact list in any CommonMark renderer (GitHub, Obsidian, VS Code)
-- Human-readable in raw form with no parser required
-- Works with any LLM without special handling
-- Simpler migration path for existing files
-
-Note: bare `**Field:** value` lines (without `-`) are NOT used. Without bullet syntax, consecutive bold-field lines render as a single run-on paragraph in CommonMark. The `-` makes each field a distinct list item.
+**Metadata format:** YAML frontmatter. Renders as Obsidian's Properties panel (reading view), a bordered table on GitHub, and clean structured text in raw. No dots, no special syntax in the document body.
 
 ---
 

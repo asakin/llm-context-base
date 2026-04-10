@@ -50,7 +50,7 @@ The system handles this by periodically reviewing its own instruction efficiency
 
 The append-only `WIKI-LOG.md` works well with capable models (Claude, GPT-4, Gemini Pro) but may confuse smaller or local models. If you're using a simpler model, you can safely ignore or delete this file. It's useful for tracking evolution but not required.
 
-## Bold Fields Instead of YAML Frontmatter
+## YAML Frontmatter for Metadata
 
 See [Metadata Standard](metadata-standard.md) for the full rationale.
 

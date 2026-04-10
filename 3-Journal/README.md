@@ -1,12 +1,12 @@
-# 3-Journal/
-
-**Type:** knowledge
-**Summary:** Private reflections, meeting notes, and observations - your thinking space.
-**Tags:** #meta
-**Status:** active
-**Updated:** 2026-04-07
-
 ---
+type: knowledge
+summary: Private reflections, meeting notes, and observations - your thinking space.
+tags: [meta]
+status: active
+updated: 2026-04-09
+---
+
+# 3-Journal/
 
 ## Purpose
 

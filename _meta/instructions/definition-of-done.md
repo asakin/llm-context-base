@@ -1,12 +1,12 @@
-# Definition of Done
-
-**Type:** knowledge
-**Summary:** What "done" means for each content type — prevents draft accumulation by defining clear completion criteria.
-**Tags:** #meta #process
-**Status:** active
-**Updated:** 2026-04-07
-
 ---
+type: knowledge
+summary: "What \"done\" means for each content type — prevents draft accumulation by defining clear completion criteria."
+tags: [meta, process]
+status: active
+updated: 2026-04-09
+---
+
+# Definition of Done
 
 ## The Problem
 

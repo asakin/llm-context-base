@@ -1,12 +1,12 @@
-# Tools
-
-**Type:** knowledge
-**Summary:** Declares local tools the AI may install on your machine to enable output rendering and other capabilities. Not committed as binaries — just a manifest.
-**Tags:** #meta #tools #config
-**Status:** active
-**Updated:** 2026-04-08
-
 ---
+type: knowledge
+summary: Declares local tools the AI may install on your machine to enable output rendering and other capabilities. Not committed as binaries — just a manifest.
+tags: [meta, tools, config]
+status: active
+updated: 2026-04-09
+---
+
+# Tools
 
 ## How This Works
 
@@ -21,11 +21,11 @@ Local tool binaries go in `_tools/` (gitignored). Global installs stay wherever 
 ## Tools
 
 ### Marp
-**Purpose:** Renders markdown to slides (HTML, PDF, PPTX) and design docs to PDF
-**Install:** `npm install -g @marp-team/marp-cli`
-**Trigger:** User asks for slides, PDF output, presentations, or design docs
-**Status:** not installed
-**Docs:** https://marp.app
+- **Purpose:** Renders markdown to slides (HTML, PDF, PPTX) and design docs to PDF
+- **Install:** `npm install -g @marp-team/marp-cli`
+- **Trigger:** User asks for slides, PDF output, presentations, or design docs
+- **Status:** not installed
+- **Docs:** https://marp.app
 
 ---
 
@@ -35,11 +35,11 @@ To add a tool, append an entry in this format:
 
 ```markdown
 ### [Tool Name]
-**Purpose:** [What it does, when the AI uses it]
-**Install:** [exact command to install]
-**Trigger:** [what the user says that should invoke this tool]
-**Status:** not installed
-**Docs:** [link]
+- **Purpose:** [What it does, when the AI uses it]
+- **Install:** [exact command to install]
+- **Trigger:** [what the user says that should invoke this tool]
+- **Status:** not installed
+- **Docs:** [link]
 ```
 
 Your AI will check this file when it needs to render output and offer to install missing tools.
