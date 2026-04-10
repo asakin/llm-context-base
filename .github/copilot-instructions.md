@@ -1,8 +1,8 @@
-## STEP 0: Framework source repo check (run this first)
+## STEP 0: Framework mode check (run this first)
 
-Run: `git remote get-url origin 2>/dev/null`
+Check whether `_config/.framework-mode` exists.
 
-If the URL contains `asakin/llm-context-base`, you are in the **framework source repo itself** — the upstream project where llm-context-base is developed, not a personal wiki instance built from the template. In that case:
+If it does, you are in **framework mode** — this repo is being used to develop or maintain the llm-context-base framework itself, not as a personal knowledge base. In that case:
 
 - **Skip the Session Start Protocol entirely.** Do not run init. Do not print a session summary. Do not treat this as a personal knowledge base.
 - **Never write personal information into any repo file.** `_config/config.md`, `_config/context.md`, `_inbox/`, the README, commit messages — all of it ships publicly to downstream users. Anything personal the user mentions stays in the conversation only.

@@ -69,13 +69,21 @@ For now, issues and PRs are the way. But the goal is to make contributing as fri
 
 This repo is dual-purpose: most people consume it as a *template* (a personal knowledge base to fill in), but a smaller group — maintainers and contributors — opens it in an AI coding tool to work on the framework itself. Those two modes need very different behavior from the AI.
 
-To handle this, every bootstrap file (`.claude/CLAUDE.md`, `AGENTS.md`, `.cursorrules`, `.windsurfrules`, `.cursor/rules/bootstrap.mdc`, `.github/copilot-instructions.md`) starts with a **Step 0 framework-source check**. It inspects `git remote get-url origin`; if the URL contains `asakin/llm-context-base`, the AI skips the Session Start Protocol and behaves as a normal engineering assistant for an open-source project. No init questions, no config population, no personal info written into files that will ship to every downstream user.
+To handle this, every bootstrap file (`.claude/CLAUDE.md`, `AGENTS.md`, `.cursorrules`, `.windsurfrules`, `.cursor/rules/bootstrap.mdc`, `.github/copilot-instructions.md`) starts with a **Step 0 framework-mode check**: it looks for `_config/.framework-mode`. If that file exists, the AI skips the Session Start Protocol and behaves as a normal engineering assistant for an open-source project. No init questions, no config population, no personal info written into files that will ship to every downstream user.
+
+To activate framework mode in any repo, run:
+
+    touch _config/.framework-mode
+
+To return to personal-instance mode:
+
+    rm _config/.framework-mode
 
 **What this means for you as a contributor:**
 
-- **Working on the canonical repo (`asakin/llm-context-base`)** → framework mode is detected automatically. You get a clean engineering assistant.
-- **Working on a fork you own** → detection falls through to personal-instance mode. This is intentional: it lets you dogfood framework changes against your own real wiki content, which is often the point of forking. Be deliberate about what you commit — personal files should not end up in a PR.
-- **Opening a PR from a fork** → genericize before you push, same as any other contribution. The AI won't help you catch accidental personal-info leaks in fork mode, so review diffs carefully.
+- **Working on the canonical repo** → `_config/.framework-mode` ships committed, so framework mode is on by default. You get a clean engineering assistant.
+- **Working on a fork you own** → if you want to dogfood framework changes against your real wiki, remove the file. If you're purely doing framework work, leave it. Your choice.
+- **Opening a PR from a fork** → genericize before you push. Review diffs carefully — personal content should not end up in a PR.
 
 If you update Step 0 in one bootstrap file, update it in all six. They are intentionally duplicated (one per AI tool) and must stay in sync.
 
