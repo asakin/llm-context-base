@@ -1,16 +1,27 @@
 ---
 type: knowledge
-summary: Active workspace for multi-artifact initiatives - keeps related work together until shipped.
+summary: Active project workspace — each project lives in its own folder with all related files.
 tags: [meta]
 status: active
-updated: 2026-04-09
+updated: 2026-04-11
 ---
 
 # 1-Projects/
 
-## Purpose
+Each project gets a folder. Everything related to it lives there — design docs, decisions, architecture, plans, notes. The actual work product goes wherever it belongs when shipped, but the thinking stays here.
 
-When working on something that creates multiple related artifacts (docs, plans, announcements), keep everything together here instead of scattering across directories.
+## Structure
+
+```
+1-Projects/
+  [project-name]/
+    _overview.md        ← status, goal, artifacts, links
+    plan.md
+    decisions.md
+    ...
+  _parked/              ← not now, not never
+  _SHIPPED/             ← done, archived for reference
+```
 
 ## When to Use
 
@@ -23,31 +34,26 @@ When working on something that creates multiple related artifacts (docs, plans, 
 - Single document → create directly in `2-Knowledge/`
 - Quick capture → use `_inbox/`
 
-## Workflow
-
-1. **Create** a folder: `[name]/` with an initiative overview
-2. **Work** on all related artifacts in one place
-3. **Ship** - move artifacts to final destinations when complete
-4. **Archive** - move folder to `_SHIPPED/` as permanent record
-
-## Structure
-
-```
-1-Projects/
-  my-initiative/
-    _initiative-overview.md    # Status, goals, artifacts
-    plan.md                    # The plan
-    research.md                # Supporting research
-    ...
-  _SHIPPED/                    # Completed initiatives
-```
-
 ---
 
-## Project Index
+## Active
 
 > AI-maintained. Updated whenever a project is created, modified, or archived.
 
-| Project | Status | Summary | Updated |
-|---------|--------|---------|---------|
-| *(no projects yet — add one to see this table in action)* | | | |
+| Project | Summary | Updated |
+|---------|---------|---------|
+| *(no projects yet — add one to see this table in action)* | | |
+
+---
+
+## Parked
+
+| Project | Summary |
+|---------|---------|
+| *(none)* | |
+
+---
+
+## Shipped
+
+See [_SHIPPED/](_SHIPPED/) for archived completed projects.

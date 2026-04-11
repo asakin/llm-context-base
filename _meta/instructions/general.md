@@ -229,14 +229,18 @@ The `_output/` directory exists for the rare case when the user needs a **throwa
 Files in `_output/` use a date prefix: `_output/YYYY-MM-DD-description.md`
 
 ### Project Index Maintenance
-`1-Projects/README.md` contains a Project Index table. **Update it whenever:**
-- A new project file is created in `1-Projects/`
-- A project's Status, Summary, or Updated fields change
-- A project is archived or deleted
+`1-Projects/README.md` contains Active and Parked tables. **Update them whenever:**
+- A new project folder is created in `1-Projects/`
+- A project's summary or updated date changes
+- A project is parked (move row to Parked table, move folder to `_parked/`)
+- A project is archived (remove from tables, move folder to `_SHIPPED/`)
 
-Each row: `| [filename-without-extension](filename.md) | status | one-line summary | YYYY-MM-DD |`
+Each project lives in its own folder with an `_overview.md` file (status, goal, artifacts, links).
 
-Keep the table sorted by Updated descending (most recently touched first).
+Active table row: `| [name](name/_overview.md) | one-line summary | YYYY-MM-DD |`
+Parked table row: `| [name](_parked/name/_overview.md) | one-line summary |`
+
+Keep active table sorted by Updated descending (most recently touched first).
 
 ### Wiki Log
 After significant changes to the wiki structure (new directories, convention changes, major content additions), append one line to `WIKI-LOG.md`:
