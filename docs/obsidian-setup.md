@@ -45,9 +45,10 @@ By default you use an AI tool (Claude Code, Claude app, Cursor, ChatGPT) in a se
 
 | Plugin | What it does |
 |--------|-------------|
-| **[Claudian](https://github.com/YishenTu/claudian)** | Claude Code panel inside Obsidian |
-| **[claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian)** | Claude Code with hot cache for faster context loading |
-| **[Copilot](https://www.obsidiancopilot.com/)** | AI chat sidebar — works with Claude, GPT-4, and others |
+| **[Claudian](https://github.com/YishenTu/claudian)** | Claude Code panel inside Obsidian — runs your full CLAUDE.md session protocol |
+| **[claude-obsidian](https://github.com/AgriciDaniel/claude-obsidian)** | Claude Code with hot cache for faster context loading — same as above, faster startup |
+| **[Terminal](https://github.com/polyipso/obsidian-terminal)** | Embedded terminal pane inside Obsidian — run `claude` directly without switching apps |
+| **[Copilot](https://www.obsidiancopilot.com/)** | AI chat sidebar — works with Claude, GPT-4, and others. Note: this is a generic chat panel and does not run your CLAUDE.md session protocol — your instruction modules, training phase, and inbox behavior won't apply |
 
 ### Want to save web pages directly to your inbox?
 
@@ -57,11 +58,11 @@ Install the [Obsidian Web Clipper](https://obsidian.md/clipper) browser extensio
 
 | Plugin | What it does |
 |--------|-------------|
-| **[Dataview](https://blacksmithgu.github.io/obsidian-dataview/)** | Query engine for metadata — build dashboards and filtered views* |
+| **[Dataview](https://blacksmithgu.github.io/obsidian-dataview/)** | Query engine for metadata — build dashboards and filtered views |
 | **[Kanban](https://github.com/mgmeyers/obsidian-kanban)** | Visual kanban boards backed by markdown |
-| **[Periodic Notes](https://github.com/liamcain/obsidian-periodic-notes)** | Daily/weekly/monthly notes mapped to `3-Journal/` |
+| **[Periodic Notes](https://github.com/liamcain/obsidian-periodic-notes)** | Daily/weekly/monthly notes mapped to `3-Journal/` — extends the built-in daily notes with weekly and monthly views |
 
-*\*Dataview note: Dataview inline fields require double-colon syntax (`**Type**:: knowledge`) while this system uses single-colon (`**Type:** knowledge`). If you want Dataview queries, either use double-colons in your files or use YAML frontmatter. The single-colon format is optimized for LLM readability.*
+**Dataview caveat:** This system's metadata format (`**Type:** knowledge`, single colon) is incompatible with Dataview's inline field syntax (`**Type**:: knowledge`, double colon). Dataview cannot query your existing notes as written. To use Dataview, you either need to migrate your files to double-colon syntax or switch to YAML frontmatter — both are significant changes to how the system operates. If dashboard queries are important to you, use YAML frontmatter from the start. If not, skip Dataview.
 
 ---
 
