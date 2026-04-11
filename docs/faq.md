@@ -71,3 +71,5 @@ Claude Sonnet 4.6 or Opus 4.6. Both support 1M token context windows natively. A
 **Can I load more context at session start with MCP?**
 
 Yes. Claude Code's MCP integration now supports tool results up to 500,000 characters (set via `_meta["anthropic/maxResultSizeChars"]`). If you're building an MCP server to feed wiki content to Claude Code, you can advertise this limit to inject significantly more context at session start than was previously possible.
+
+<!-- rebase smoke test -->
