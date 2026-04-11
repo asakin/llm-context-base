@@ -41,7 +41,7 @@ related: "[file1](path/file1.md), [file2](path/file2.md)"
 
 | Type | Required Fields | Optional Fields |
 |------|----------------|-----------------|
-| `knowledge` | Type, Summary, Tags, Status, Updated | Owner, Related |
+| `knowledge` | Type, Summary, Tags, Status, Updated | Owner, Related, Confidence |
 | `decision` | Type, Summary, Tags, Status, Owner, Updated | Related |
 | `initiative` | Type, Summary, Tags, Status, Owner, Updated | Related |
 | `meeting` | Type, Summary, Tags, Updated | Status, Owner, Related |
@@ -61,9 +61,22 @@ related: "[file1](path/file1.md), [file2](path/file2.md)"
 **Status** — Lifecycle state:
 - `active` — in use, current, being maintained
 - `draft` — work in progress, not finalized
-- `archived` — no longer active but kept for reference
+- `archived` — no longer active but kept for reference. When setting this, also add `failure_reason:` (see below).
+- `superseded` — replaced by a newer file or approach. Requires `failure_reason:` explaining what replaced it.
 - `complete` — finished (for todos, initiatives, decisions)
 - `blocked` — waiting on something external
+
+**Failure_reason** — Required when `status: archived` or `status: superseded`. One sentence explaining why the file was retired or replaced. Prevents "ghost" archived pages with no explanation.
+```yaml
+failure_reason: Replaced by 2-Knowledge/new-approach.md after the April 2026 refactor.
+```
+
+**Confidence** — Optional. Use on knowledge articles where claims may be uncertain or based on incomplete information.
+- `high` — well-sourced, verified, stable
+- `medium` — reasonable confidence, may need revisiting
+- `low` — speculative, early-stage, needs more sourcing
+
+Omit the field entirely when confidence is not relevant (tasks, journals, templates).
 
 **Owner** — Person or role responsible. Use whatever naming makes sense for you.
 
