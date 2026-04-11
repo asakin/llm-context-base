@@ -3,7 +3,7 @@ type: template
 summary: Health-check pass for the wiki — surfaces stale metadata, missing standard blocks, orphaned files, and stale inbox items.
 tags: [meta, maintenance]
 status: active
-updated: 2026-04-09
+updated: 2026-04-11
 ---
 
 # Knowledge Lint
@@ -41,7 +41,7 @@ The lint pass is the wiki's health check. Run it when the system feels messy, wh
 
 ### Check 2: Missing Standard Metadata
 
-**What:** Files in content directories that lack the metadata block (`**Type:**`, `**Summary:**`, `**Tags:**`).
+**What:** Files in content directories that lack a YAML frontmatter block.
 
 **Directories to scan:**
 - `2-Knowledge/HowTo/`
@@ -49,7 +49,7 @@ The lint pass is the wiki's health check. Run it when the system feels messy, wh
 - `2-Knowledge/References/`
 - `1-Projects/` (overview files only)
 
-**How:** Read each file's first 20 lines. If no `**Type:**` field found, flag it.
+**How:** Read each file's first 20 lines. If no `type:` YAML frontmatter field found, flag it.
 
 **Output format:**
 ```
@@ -63,7 +63,7 @@ The lint pass is the wiki's health check. Run it when the system feels messy, wh
 
 ### Check 3: Stale Active Files
 
-**What:** Files with `**Status:** active` but `**Updated:**` date > 90 days ago.
+**What:** Files with `status: active` but `updated:` date > 90 days ago.
 
 **Output format:**
 ```
