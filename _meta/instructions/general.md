@@ -160,6 +160,7 @@ The rule: **when something new is established in conversation, update the releva
 | Structural change (new dir, new type) | Personal README section + Training Log |
 | Purpose or scope shift | `_config/config.md` + README |
 | New instruction module behavior | The relevant `_meta/instructions/*.md` file |
+| Knowledge was ingested, a query was synthesized and saved, or lint was run | `2-Knowledge/log.md` — append one line: `## [YYYY-MM-DD] verb \| description`. Verbs: `ingest`, `query`, `lint`, `edit`, `archive`. |
 
 **The signal to act:** any time a conversation produces a rule, a preference, a "we decided to always...", or a "from now on..." — that's a pattern. Write it before moving on.
 
