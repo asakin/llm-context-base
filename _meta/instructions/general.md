@@ -70,6 +70,8 @@ Output the gate block first, then immediately follow with a detail section for a
 📥  Inbox:    [clear / ⚠ X files older than 7 days]
 🔧  Tools:    [ready / ⚠ X tools not installed — offer to install]
 ═══════════════════════════════════════════════════════════════
+
+> 💡 *Did you know you can [short action]? Try: "[short exact phrase to say]"*
 ```
 
 **Detail section** (only if any row shows `⚠` — omit entirely if all rows are clear):
@@ -86,6 +88,27 @@ Output the gate block first, then immediately follow with a detail section for a
 Only include sections that have `⚠` items. If all rows are clear, skip the detail section entirely.
 
 If config is not filled in, add a note prompting the user to complete it before continuing. Only after this block is printed should you engage with the user's request.
+
+**Tip line rules:**
+- Show the 💡 tip during training and cooldown phases. Drop it in established phase.
+- It appears immediately below the closing `═══` line, as a markdown blockquote: `> 💡 *...*`
+- The blockquote format renders italic in Claude Code's terminal — do not use `**` or bare `*`.
+- The full line (after `> 💡 `) must not exceed the width of the `═══` gate line (63 characters).
+- Pick the tip contextually — choose the capability the user seems least aware of based on what they've done so far (check the Training Log). Don't repeat a tip already shown. Rotate through the tip bank below.
+- The "Try:" phrasing is what makes it actionable — someone who doesn't know what to type can copy it verbatim.
+
+**Tip bank** (one line when rendering — trim to fit 63 chars):
+
+| Capability | Tip | Try phrase |
+|---|---|---|
+| Track a new kind of thing | Did you know you can ask me to track new things? | "Let's start keeping track of my recipes." |
+| Change my behavior | Did you know you can change how I work at any time? | "Stop asking me questions at the end of sessions." |
+| Quick-park an idea | Did you know you can save an idea without losing your place? | "/btw [your idea]" — I'll save it and keep going. |
+| Search your wiki | Did you know you can ask me what's in your wiki? | "What do we know about [topic]?" |
+| Build a reusable template | Did you know you can create reusable templates? | "Make me a template for planning a trip." |
+| Session reminders | Did you know you can set reminders that show every session? | "Remind me to call the dentist until I say it's done." |
+| New wiki section | Did you know you can add a whole new section to your wiki? | "Let's add a section for tracking my workouts." |
+| Summarize a topic | Did you know you can ask for a summary of any topic? | "Summarize everything we have on [topic]." |
 
 ---
 
@@ -186,6 +209,18 @@ These modules define specific behaviors. Load them when triggered:
 ---
 
 ## Core Behaviors
+
+### Inline 💡 Hint Tendency
+
+During training and cooldown phases, when a response naturally touches a capability the user seems unaware of, append a 💡 hint at the end. Keep it to one line. Use the blockquote format — the only one that renders italic in Claude Code's terminal:
+
+> 💡 *Did you know you can [action]? Try: "[exact phrase]"*
+
+**Trigger signals:** the user does something manually that the system could handle, asks how to do something it already supports, or describes a need that maps to a built-in capability they haven't used.
+
+**Do not trigger on:** things the user clearly already knows, or responses that are already long. One hint per response max, only when it genuinely fits.
+
+---
 
 ### Capture Protocol
 When the user wants to capture something:
