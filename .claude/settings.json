@@ -1,0 +1,15 @@
+{
+  "cleanupPeriodDays": 90,
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Bash(git:*)",
+      "Bash(gh:*)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(marp:*)",
+      "Bash(jq:*)",
+      "WebSearch"
+    ]
+  }
+}

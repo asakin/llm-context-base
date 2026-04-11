@@ -16,8 +16,8 @@ _output/*
 credentials.json
 secrets/
 
-# Claude Code local settings (machine-specific paths and permissions)
-.claude/settings.json
+# Claude Code local overrides (machine-specific paths and personal preferences)
+# settings.json is committed — it's the project-level recommended config for new users
 .claude/settings.local.json
 
 # Framework mode flag — create this file locally to enter framework mode (see CONTRIBUTING.md)
