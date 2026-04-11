@@ -44,13 +44,10 @@ Read `_config/tools.md`. For any tool with `**Status:** not installed`, offer to
 Ask once per tool, per machine. After installing, update the Status field to `installed`. Only surface this on first session or after a fresh clone — if all tools show `installed`, skip silently.
 
 ### Step 5: Check Inbox
-Check `_inbox/` for files older than 7 days. If any exist, surface them:
 
-```
-📥 Inbox triage needed: X files older than 7 days
-- _inbox/YYYY-MM-DD-topic.md (X days old)
-→ Action: File to final location, update, or discard
-```
+Collect findings silently. Do not output anything yet — details surface in Step 7.
+
+- Check `_inbox/` for files older than 7 days. Note count and filenames.
 
 ### Step 6: Training Check (Training Phase Only)
 If in training phase, review:
@@ -62,16 +59,31 @@ If in training phase, review:
 
 **You MUST output the session summary before responding to anything else.** This is the gate — the protocol is not complete until this block is printed.
 
+Output the gate block first, then immediately follow with a detail section for any row that has `⚠`.
+
+**Gate block:**
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SESSION START
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Phase:     [training / cooldown / established] (Day X of Y)
-Config:    [ready / ⚠ About You section not filled in / ⚠ Training Start Date not set]
-Inbox:     [clear / ⚠ X files older than 7 days]
-Tools:     [ready / ⚠ X tools not installed — offer to install]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+═══════════════════════════════════════════════════════════════
+🚀  SESSION START — [YYYY-MM-DD] · [Phase] · Day X of Y
+═══════════════════════════════════════════════════════════════
+⚙️  Config:   [ready / ⚠ About You section not filled in / ⚠ Training Start Date not set]
+📥  Inbox:    [clear / ⚠ X files older than 7 days]
+🔧  Tools:    [ready / ⚠ X tools not installed — offer to install]
+═══════════════════════════════════════════════════════════════
 ```
+
+**Detail section** (only if any row shows `⚠` — omit entirely if all rows are clear):
+```
+─── Needs attention ────────────────────────────────────────────
+
+📥  Inbox  (X files older than 7 days)
+    · _inbox/YYYY-MM-DD-topic.md  — X days old
+    → File to final location, update, or discard
+
+────────────────────────────────────────────────────────────────
+```
+
+Only include sections that have `⚠` items. If all rows are clear, skip the detail section entirely.
 
 If config is not filled in, add a note prompting the user to complete it before continuing. Only after this block is printed should you engage with the user's request.
 
