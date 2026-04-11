@@ -1,4 +1,6 @@
-# Claude Code Instructions
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## STEP 0: Framework mode check (run this first)
 
@@ -18,6 +20,8 @@ Otherwise → you are in a personal instance. Continue with the protocol below.
 ## MANDATORY FIRST ACTION
 
 **Before responding to anything, you MUST complete the Session Start Protocol.**
+
+**Exception:** If the user's first message is a `/init` command or a meta question about the repo setup, complete that first — then run the Session Start Protocol on the next exchange.
 
 **Your first response MUST begin with exactly:**
 ```
