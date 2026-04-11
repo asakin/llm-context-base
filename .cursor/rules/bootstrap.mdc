@@ -1,3 +1,5 @@
+<!-- Real instructions live in _config/config.md and _meta/instructions/general.md. This file only bootstraps Cursor into those. -->
+
 ## STEP 0: Framework mode check (run this first)
 
 Check whether `_config/.framework-mode` exists.
