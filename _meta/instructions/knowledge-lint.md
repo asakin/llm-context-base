@@ -65,6 +65,8 @@ The lint pass is the wiki's health check. Run it when the system feels messy, wh
 
 **What:** Files with `status: active` but `updated:` date > 90 days ago.
 
+**Exemptions:** Files with `status: archived` or `status: superseded` are exempt — terminal-status pages are intentionally frozen and should not be flagged as stale. Only flag `active` files.
+
 **Output format:**
 ```
 ⏰ STALE ACTIVE FILES (X files, >90 days since update)
