@@ -56,6 +56,12 @@ Most LLM wiki implementations focus on ingestion and retrieval. This system adds
 
 ---
 
+**How do I sync my journal (`3-Journal/`) across devices?**
+
+By default, `3-Journal/*` is gitignored, so journal entries live only on the machine where you wrote them. That's safe for single-device users but breaks if you write on a laptop and read on a desktop. Three options with different privacy trade-offs are documented in [journal-sync.md](journal-sync.md) — the simplest is to remove the gitignore rule if your repo is private, and there are two more secure options if you'd rather not bet on repo privacy staying intact.
+
+---
+
 **Should I use one vault for everything or split by domain?**
 
 Start with one. The cross-domain connections are where the most value emerges. A decision about tooling might reference a knowledge article about deployment which links to a project initiative. Splitting loses these connections. If it gets unwieldy, the training period will help you find the right boundaries.

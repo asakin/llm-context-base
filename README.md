@@ -95,6 +95,7 @@ These form a cycle. Capture feeds queries, queries inform decisions, decisions g
 |-------|-------------|
 | [Training Phases](docs/training-phases.md) | How the system adapts to you over 30 days |
 | [Directory Structure](docs/directory-structure.md) | What each folder is for, why there are only 4 |
+| [Journal Sync & Privacy](docs/journal-sync.md) | Syncing `3-Journal/` across devices — plaintext, git-crypt, or external |
 | [Metadata Standard](docs/metadata-standard.md) | The format that makes everything queryable |
 | [Supported Tools](docs/supported-tools.md) | Claude Code, Cursor, Copilot, Windsurf, ChatGPT, and others |
 | [Obsidian Setup](docs/obsidian-setup.md) | Pre-configured vault, plugins, web clipper |
