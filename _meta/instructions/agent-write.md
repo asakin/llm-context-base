@@ -18,6 +18,18 @@ This protocol ensures that all agent-written files are:
 
 ---
 
+## Content-Type Routing
+
+When creating specific content types, use the dedicated template and follow the corresponding instructions:
+
+| Content Type | Template | Instructions |
+|-------------|----------|-------------|
+| Blog post | `_meta/templates/blog-post.md` | `_meta/instructions/blog-posts/instructions.md` |
+
+For blog posts: copy the template, fill out the Visual Plan **before** writing the draft, and follow the publishing flow in the instructions.
+
+---
+
 ## The Golden Rule: Inbox First
 
 When capturing something new, it goes to `_inbox/` first — not directly to a final location. This keeps agent writes auditable and gives the user the chance to review before content becomes part of the system.
