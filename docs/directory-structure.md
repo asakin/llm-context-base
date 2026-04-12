@@ -18,7 +18,7 @@ llm-context-base/
     HowTo/                    # Step-by-step guides
     Decisions/                # Decision records
     References/               # Manuals, specs, architecture docs
-  3-Journal/                  # What you think (private reflections)
+  3-Journal/                  # What you think (private reflections, gitignored by default - see journal-sync.md)
   4-Private/                  # Sensitive content (gitignored)
   examples/                   # Example files showing the standard in action
 ```
