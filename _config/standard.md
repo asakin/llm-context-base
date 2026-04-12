@@ -23,7 +23,7 @@ Based on [Andrej Karpathy's LLM Wiki Pattern](https://gist.github.com/karpathy/4
 
 ## The Metadata Block
 
-Every file gets a YAML frontmatter block at the very top, before the `# Title` line.
+Every wiki file gets a YAML frontmatter block at the very top, before the `# Title` line. **Exceptions: `docs/` files, `_meta/` system files, and `README.md` files do not get frontmatter.**
 
 ```yaml
 ---

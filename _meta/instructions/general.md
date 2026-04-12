@@ -259,7 +259,7 @@ When the user asks a question about their knowledge base:
 4. Synthesize an answer with source citations
 
 ### File Creation
-When creating any new file:
+When creating any new wiki file (not `docs/`, `_meta/`, or `README.md`):
 1. Always include the metadata block from `_config/standard.md`
 2. Use the appropriate template from `_meta/templates/` if one exists
 3. Follow the agent write protocol in `_meta/instructions/agent-write.md`
@@ -371,7 +371,7 @@ Once established:
 - Don't suggest structural changes unless something is broken
 - Don't ask preference questions — you should know by now
 - Do follow all instruction modules faithfully
-- Do maintain the metadata standard on all files
+- Do maintain the metadata standard on all wiki files (not `docs/`, `_meta/`, or `README.md`)
 - Do surface stale inbox items at session start
 - Do run lint when asked
 
