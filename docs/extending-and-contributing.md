@@ -24,6 +24,16 @@ Structural patterns that help everyone:
 - Obsidian configurations or plugin recommendations that enhance the wiki pattern
 - Bug fixes where instructions don't work well with a particular LLM
 
+## Two Kinds of Extension
+
+Before building an extension, know which kind it is — they install differently and live in different places.
+
+**Markdown extension** — instructions, templates, or prompts that the AI reads and implements in your repo. No code required. You install it by pointing your AI at a link or copying files into your repo. Examples: a new template type, a custom instruction module, a domain-specific prompt library.
+
+**Code extension** — a worker, webhook receiver, or automation that runs *outside* the repo and writes files into it. It requires deployment (Cloudflare Worker, GitHub Action, Railway service, etc.). Examples: an Omi integration that commits voice memos to `_inbox/`, a social monitor that files daily reports, a webhook that routes emails into structured notes.
+
+The rule: if it requires code to run, it's a code extension and belongs in the intelligence layer above the substrate — not in the repo itself.
+
 ## The Litmus Test
 
 If your change requires knowing what *your* wiki is about, it's an extension. If it works regardless of domain, it's a contribution.

@@ -73,6 +73,17 @@ The corollary: things like hosted search, MCP servers, and automation pipelines 
 
 When in doubt: if it requires code to run, it's not substrate. It belongs in the intelligence layer.
 
+### Two types of extension
+
+This boundary clarifies what kind of extension you're building:
+
+| Type | What it is | How it installs | Lives where |
+|------|-----------|-----------------|-------------|
+| **Markdown extension** | Instructions, templates, prompts — things the AI reads and acts on | Point your AI at a link. No CLI, no npm. | In the substrate (your repo) |
+| **Code extension** | A worker, webhook receiver, or automation that runs outside the repo and writes files into it | Deploy the code separately (Cloudflare Worker, GitHub Action, Railway service) | In the intelligence layer, above the substrate |
+
+A markdown extension adds behavior without adding runtime. A code extension adds runtime — and that runtime lives outside the repo by design. Both are valid. They serve different purposes and install differently because they are different things.
+
 ---
 
 ## The Evolution Principle
