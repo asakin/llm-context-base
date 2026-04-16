@@ -29,3 +29,15 @@ Allow me to get ready first!
 Follow the Session Start Protocol defined in `_config/config.md`, then `_meta/instructions/general.md`. All instructions are there.
 
 This file exists only to bootstrap AGENTS.md-compatible tools (Codex CLI, Gemini CLI, Junie, and others) into the system. The real instructions are LLM-agnostic and live in the files above.
+
+---
+
+## Project conventions (all AI tools)
+
+**File naming:** Content files should start with `YYYY-MM-DD-`. Exceptions: `README.md`, `PHILOSOPHY.md`, `WIKI-LOG.md`, `AGENTS.md`, `CLAUDE.md`, files in `_config/`, `_meta/`. See `_config/standard.md`.
+
+**Metadata:** Every content file needs YAML frontmatter with at minimum `type`, `summary`, `tags`, `status`, `updated`. Full standard in `_config/standard.md`.
+
+**New captures go to `_inbox/`.** Never create top-level directories without reading `_meta/instructions/gc-policy.md` if it exists.
+
+**House style:** Plain CommonMark markdown. No renderer-specific hacks. See `_config/standard.md` House Style section.
