@@ -10,7 +10,7 @@ This doc describes a pattern for connecting them.
 
 When a project entry in `1-Projects/` has a corresponding code repo, create a multi-root workspace file that opens both together in a single editor window.
 
-The workspace puts **the code repo first, the wiki second.** You're working on code — the wiki is context, not the primary root.
+Folder order doesn't determine which rules are active — Cursor picks context from the active file path and task signals. Put roots in whatever order makes the sidebar most navigable.
 
 ```json
 {
@@ -21,7 +21,9 @@ The workspace puts **the code repo first, the wiki second.** You're working on c
 }
 ```
 
-If the project has a companion repo (Homebrew tap, extension registry, etc.), add it between the main project and the wiki.
+Each root can carry its own `.cursorrules` — Cursor applies whichever one matches the file you're working in. Rules with `alwaysApply: true` in their `.mdc` frontmatter load regardless of active file.
+
+Convention: **work repos first, wiki last.** If the project has companion repos (Homebrew tap, dependency library, etc.), list them between the main project and the wiki.
 
 ---
 
