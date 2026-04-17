@@ -8,6 +8,27 @@ updated: 2026-04-09
 
 # Document Standard
 
+## Standard Tiers
+
+The standard has two tiers. This prevents the standard from becoming a blocker on legitimate use cases while keeping the core queryable.
+
+**Tier 1 — Universal (always enforced)**
+Required on every content file. Non-negotiable. Lint will flag missing Tier 1 fields.
+- `type` — what kind of document this is
+- `summary` — one sentence a future query can use
+- `tags` — domain and type vocabulary
+- `status` — lifecycle state
+- `updated` — date of last meaningful change
+
+**Tier 2 — Advisory (context-dependent)**
+Use when relevant. Not required. Lint will not flag missing Tier 2 fields.
+- `owner` — relevant for team wikis, shared knowledge
+- `confidence` — relevant for research, claims, uncertain knowledge
+- `failure_reason` — required when `status: archived` or `superseded`
+- `related` — helpful for navigating dense knowledge graphs
+
+---
+
 ## Why This Standard Exists
 
 As your knowledge base grows, documents accumulate across directories. Without a common metadata layer, finding information requires manual navigation or loading entire files into context. This standard makes every document in the system:

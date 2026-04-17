@@ -68,6 +68,65 @@ Claude Code will still prompt for unlisted domains — you can approve them one-
 
 ---
 
+## Hooks
+
+Claude Code hooks let you run shell commands at specific lifecycle events. Two patterns worth knowing for a wiki setup:
+
+### Re-run session start after /compact
+
+When you run `/compact`, Claude Code compresses the conversation context. Without intervention, the next response won't know it needs to re-run the session start protocol.
+
+**The sentinel pattern** — PostCompact writes a flag file; UserPromptSubmit reads it on the next prompt and injects the re-init instruction:
+
+```json
+{
+  "hooks": {
+    "PostCompact": [{
+      "matcher": "manual",
+      "hooks": [{
+        "type": "command",
+        "command": "touch /tmp/wiki-post-compact && printf '{\"systemMessage\": \"Wiki context compacted — re-init will fire on your next message.\"}\\n'"
+      }]
+    }],
+    "UserPromptSubmit": [{
+      "matcher": "",
+      "hooks": [{
+        "type": "command",
+        "command": "bash .claude/hooks/post-compact-check.sh"
+      }]
+    }]
+  }
+}
+```
+
+Create `.claude/hooks/post-compact-check.sh`:
+```bash
+#!/bin/bash
+SENTINEL="/tmp/wiki-post-compact"
+if [ -f "$SENTINEL" ]; then
+  rm -f "$SENTINEL"
+  printf '%s\n' '{"hookSpecificOutput":{"hookEventName":"UserPromptSubmit","additionalContext":"Context was just compacted. Re-run the session start protocol now before responding to anything else."}}'
+fi
+```
+
+Note: `PostCompact` does not support `hookSpecificOutput.additionalContext` — only `UserPromptSubmit` and `PostToolUse` do. The sentinel pattern is the correct workaround.
+
+### Track wiki files read per session
+
+Useful for knowing how much of the wiki was consulted during a session:
+
+```json
+"PostToolUse": [{
+  "matcher": "Read",
+  "hooks": [{
+    "type": "command",
+    "command": "jq -r '.tool_input.file_path // empty' | grep -E '\\.md$' >> /tmp/claude-wiki-reads-${SESSION_ID}.log 2>/dev/null || true"
+  }]
+}]
+```
+
+---
+
 ## Tips
 
 **During setup, let Claude offer to auto-allow.** When a new command gets prompted, Claude can add it to the allow list for you. Just say yes when it asks.

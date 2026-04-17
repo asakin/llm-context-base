@@ -120,13 +120,72 @@ If optimization review is overdue, suggest loading `_meta/instructions/optimizat
 
 ---
 
+### Check 6: Non-Timestamped Filenames
+
+**What:** Files in content directories whose names don't start with `YYYY-MM-DD-`.
+
+**Scope:** `0-Ideas/`, `1-Projects/`, `2-Knowledge/`, `3-Journal/`, `4-Private/`, `5-Publishing/`, `_inbox/`, `_seeds/` (if present).
+
+**Exceptions (skip):** Any file named `README.md`, `PHILOSOPHY.md`, `WIKI-LOG.md`, `AGENTS.md`, `CLAUDE.md`, or any file in `_config/`, `_meta/`.
+
+**How:**
+1. For each non-compliant file, get its first-commit date:
+   ```bash
+   git log --diff-filter=A --follow --format="%ad" --date=short -- <file> | tail -1
+   ```
+2. If the file has no git history (untracked), use today's date.
+3. Propose rename: `YYYY-MM-DD-original-name.md` where the date is the first-commit date.
+
+**Output format:**
+```
+📅 NON-TIMESTAMPED FILENAMES (X files)
+- 2-Knowledge/some-concept.md → 2026-03-15-some-concept.md (first commit: 2026-03-15)
+- 0-Ideas/startup-idea.md → 2026-04-10-startup-idea.md (first commit: 2026-04-10)
+→ Action: Rename files — retroactive, uses git first-commit date as timestamp
+```
+
+This check is retroactive by design. Run it periodically to catch files added before the rule was enforced.
+
+---
+
+### Check 7: Raw File Paths (Not Wiki Links)
+
+**What:** File paths written as plain text or backtick code spans in table cells or prose that should be wiki links. Catches two sub-cases:
+
+1. **Format issue** — path exists but is written as `` `path/to/file.md` `` or `path/to/file.md` instead of `[[path/to/file]]`
+2. **Broken link** — an existing `[[wikilink]]` where the target file does not exist
+
+**Scope:** All `.md` files in content directories. Common in "Where" or "Source" table columns, and in files imported from external tools.
+
+**How to detect format issues:**
+```bash
+grep -rn '`[^`]*/[^`]*\.md`' --include="*.md" <directories>
+```
+
+**How to detect broken links:** grep for `\[\[[^\]]+\]\]`, extract the path (before any `|`), strip extension, check if the file exists.
+
+**Conversion rule:**
+- Strip the `.md` extension
+- Wrap in `[[` and `]]`
+- Full vault-relative path preferred: `[[1-Projects/foo/bar]]`
+
+**Output format:**
+```
+🔗 RAW PATHS / BROKEN LINKS (X items)
+FORMAT: 2-Knowledge/doc.md:12 — `1-Projects/foo/bar.md` → [[1-Projects/foo/bar]]
+BROKEN: 2-Knowledge/doc.md:8 — [[1-Projects/old-name]] → target not found
+→ Action: Convert format issues in-place; broken links need manual resolution
+```
+
+---
+
 ## Output: Lint Report
 
 After running all checks, compile a summary:
 
 ```
 📋 WIKI LINT REPORT — YYYY-MM-DD
-- ✅ Checks run: 5
+- ✅ Checks run: 7
 - ⚠️ Issues found: X
 - 🔴 Requires action: X
 
@@ -135,7 +194,7 @@ After running all checks, compile a summary:
 
 Append one line to `WIKI-LOG.md`:
 ```
-## [YYYY-MM-DD] lint | X issues found — stale: X, missing metadata: X, orphaned: X
+## [YYYY-MM-DD] lint | X issues found — stale: X, missing metadata: X, orphaned: X, timestamps: X, paths: X
 ```
 
 ---
