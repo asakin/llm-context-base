@@ -101,6 +101,7 @@ These form a cycle. Capture feeds queries, queries inform decisions, decisions g
 | [Obsidian Setup](docs/obsidian-setup.md) | Pre-configured vault, plugins, web clipper |
 | [Design Decisions](docs/design-decisions.md) | Why the system works the way it does |
 | [FAQ](docs/faq.md) | Common questions |
+| [Linked Code Repos](docs/linked-code-repos.md) | Connect wiki project entries to real code repos — workspace files, context files, Obsidian plugin dev |
 | [Extending & Contributing](docs/extending-and-contributing.md) | Customize locally vs. contribute upstream |
 | [Future Directions](docs/future-directions.md) | Where this is headed |
 | [Philosophy](PHILOSOPHY.md) | The deeper thinking behind the system |
