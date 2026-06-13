@@ -10,6 +10,30 @@ This is a **pile of markdown files in Git**. It's not production code. It's not 
 
 The default Claude Code permission model is designed for codebases where edits matter and bash commands can be dangerous. For a markdown knowledge base, that level of caution creates friction without adding safety. The settings below are calibrated for this use case.
 
+Claude Code now also has native project subagents, so this template does not need to rely on prompt tricks to keep agents focused on wiki maintenance. Project-specific subagents live in `.claude/agents/` and are checked into the repo for everyone using the wiki.
+
+---
+
+## Included wiki-maintainer subagents
+
+This repo ships Claude Code project subagents in `.claude/agents/`:
+
+| Subagent | Use it for |
+|----------|------------|
+| `wiki-librarian` | Filing inbox items, updating pages, normalizing metadata, preserving citations |
+| `wiki-researcher` | Researching topics or sources, producing synthesis, identifying pages to update |
+| `wiki-critic` | Read-only critique: contradictions, stale claims, weak evidence, conceptual gaps |
+| `wiki-gardener` | Structural cleanup: merges, splits, backlinks, metadata normalization |
+| `wiki-editor` | Prose, tone, terminology, and readability without changing underlying claims |
+
+These agents are framed around the same principle:
+
+> You maintain the user's LLM Wiki. The wiki is the durable artifact. Your job is to improve it, not replace it.
+
+Claude Code discovers project subagents from `.claude/agents/`. They are loaded at session start, so restart Claude Code after adding or editing agent files directly on disk. You can invoke them by name in natural language, with an agent @-mention in Claude Code, or by running a whole session as one with `claude --agent wiki-librarian`.
+
+Custom subagents run in their own context window with their own system prompt and tool access. That makes them useful for focused, self-contained wiki maintenance tasks, especially work that would otherwise flood the main conversation with search output, source reading, or health-check findings.
+
 ---
 
 ## Recommended settings.json

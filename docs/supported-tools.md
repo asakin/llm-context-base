@@ -4,7 +4,7 @@ This repo works with any LLM that can read files. Agent-specific bootstrap files
 
 | Tool | Bootstrap File | Setup |
 |------|---------------|-------|
-| **Claude Code** | `.claude/CLAUDE.md` | Automatic |
+| **Claude Code** | `.claude/CLAUDE.md`, `.claude/agents/` | Automatic; includes native wiki-maintainer subagents |
 | **Cursor** | `.cursor/rules/` | Automatic |
 | **GitHub Copilot** | `.github/copilot-instructions.md` | Automatic in VS Code |
 | **Windsurf** | `.windsurfrules` | Automatic |
@@ -14,9 +14,11 @@ This repo works with any LLM that can read files. Agent-specific bootstrap files
 
 ## How It Works
 
-All real instructions live in `_config/config.md` and `_meta/instructions/general.md`. The tool-specific files are thin shims that point there.
+All real instructions live in `_config/config.md` and `_meta/instructions/general.md`. The tool-specific bootstrap files are thin shims that point there.
 
-This is intentional. When you customize the system's behavior, you change it in one place and every tool picks it up. Adding support for a new tool is trivial: create a shim file that says "read config.md first."
+Claude Code also supports native project subagents in `.claude/agents/`. This repo uses that newer agent framework for role-specific wiki maintenance agents — librarian, researcher, critic, gardener, and editor — instead of relying only on broad prompt instructions.
+
+This is intentional. When you customize the system's core behavior, you change it in one place and every tool picks it up. When a tool has a first-class agent framework, this repo can add focused role definitions that still point back to the same LLM Wiki principles.
 
 ## The State of Agent Instruction Files
 
