@@ -18,9 +18,11 @@ related: []  # links to related notes, in the link style set in config
 ## Context
 
 ### The Situation
+
 [What prompted this decision? What problem were we solving?]
 
 ### What We Knew
+
 [Key facts, constraints, requirements at the time]
 
 ---
@@ -32,10 +34,12 @@ related: []  # links to related notes, in the link style set in config
 **Description:** [What this option entails]
 
 **Pros:**
+
 - [Benefit 1]
 - [Benefit 2]
 
 **Cons:**
+
 - [Drawback 1]
 - [Drawback 2]
 
@@ -46,10 +50,12 @@ related: []  # links to related notes, in the link style set in config
 **Description:** [What this option entails]
 
 **Pros:**
+
 - [Benefit 1]
 - [Benefit 2]
 
 **Cons:**
+
 - [Drawback 1]
 - [Drawback 2]
 
@@ -60,12 +66,15 @@ related: []  # links to related notes, in the link style set in config
 ## Decision & Rationale
 
 ### The Decision
+
 [Restate the decision clearly]
 
 ### Why This Approach
+
 [What made Option A better than B?]
 
 ### Trade-offs Accepted
+
 [What downsides are we accepting?]
 
 ---
@@ -86,12 +95,15 @@ related: []  # links to related notes, in the link style set in config
 - **Reviewed:** [YYYY-MM-DD — when you revisited this decision]
 
 ### What Actually Happened
+
 [How did this play out? Was the decision validated or challenged?]
 
 ### What We'd Do Differently
+
 [With hindsight, what would you change? What surprised you?]
 
 ### Constraints Discovered
+
 [Any constraints or failure modes you didn't anticipate that should inform future decisions?]
 
 ---
@@ -101,6 +113,7 @@ related: []  # links to related notes, in the link style set in config
 **When to cite this decision:** [Describe the scenario when someone should reference this]
 
 **Key takeaways:**
+
 - [Lesson 1]
 - [Lesson 2]
 

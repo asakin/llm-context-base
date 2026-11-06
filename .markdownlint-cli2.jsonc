@@ -1,0 +1,15 @@
+{
+  "config": {
+    // Prose is wrapped by sentence or not at all; tables and code carry long lines.
+    "MD013": false,
+    // Several docs use bold lead-ins and a second H1-level title in examples.
+    "MD024": { "siblings_only": true },
+    // Templates and agent files start with frontmatter or a comment, not a heading.
+    "MD041": false,
+    // AGENTS.md wraps the framework block in HTML comment markers.
+    "MD033": false,
+    // Table pipe spacing is cosmetic and varies by editor.
+    "MD060": false
+  },
+  "ignores": ["node_modules/**", ".jj/**"]
+}

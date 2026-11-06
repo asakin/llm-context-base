@@ -14,7 +14,7 @@ Remove the `Journal/` rule from `.gitignore`. Journal entries commit and sync li
 
 Good fit: solo users with a private GitHub repo, comfortable betting on repo visibility never changing.
 
-**To switch:** ask your AI to "implement option 1 from https://github.com/asakin/llm-context-base/blob/main/docs/journal-sync.md". The AI has enough spec in this doc to remove the gitignore rule, stage any existing journal files that were previously ignored, and commit.
+**To switch:** ask your AI to "implement option 1 from <https://github.com/asakin/llm-context-base/blob/main/docs/journal-sync.md>". The AI has enough spec in this doc to remove the gitignore rule, stage any existing journal files that were previously ignored, and commit.
 
 ---
 
@@ -28,7 +28,7 @@ The usual `git-crypt` flow uses a binary key file that must be shipped securely 
 
 Good fit: users who want cross-device sync but aren't comfortable betting on repo privacy staying intact.
 
-**To switch:** ask your AI to "implement option 2 from https://github.com/asakin/llm-context-base/blob/main/docs/journal-sync.md". The AI has enough spec in this doc to install `git-crypt` and `age` if needed, generate the git-crypt key, wrap it with your passphrase, commit the wrapped blob, set up `.gitattributes` for `Journal/`, and walk you through unlocking on a second device.
+**To switch:** ask your AI to "implement option 2 from <https://github.com/asakin/llm-context-base/blob/main/docs/journal-sync.md>". The AI has enough spec in this doc to install `git-crypt` and `age` if needed, generate the git-crypt key, wrap it with your passphrase, commit the wrapped blob, set up `.gitattributes` for `Journal/`, and walk you through unlocking on a second device.
 
 ---
 
@@ -40,7 +40,7 @@ Leave `Journal/` gitignored. Put the real journal in a folder that's already syn
 
 Good fit: users already paying for a trusted sync service who don't want the journal mixed into git at all.
 
-**To switch:** ask your AI to "implement option 3 from https://github.com/asakin/llm-context-base/blob/main/docs/journal-sync.md". The AI has enough spec in this doc to help you pick a location, move any existing entries, set up the symlink, and verify the gitignore still catches the symlinked path so nothing leaks into git.
+**To switch:** ask your AI to "implement option 3 from <https://github.com/asakin/llm-context-base/blob/main/docs/journal-sync.md>". The AI has enough spec in this doc to help you pick a location, move any existing entries, set up the symlink, and verify the gitignore still catches the symlinked path so nothing leaks into git.
 
 ---
 

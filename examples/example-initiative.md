@@ -27,12 +27,14 @@ New hires take 2-3 weeks to become productive. Exit surveys from the last 3 hire
 ## Scope
 
 **In scope:**
+
 - Dev environment setup guide
 - Architecture overview for new engineers
 - Team processes and conventions
 - Tool access and permissions guide
 
 **Out of scope:**
+
 - HR onboarding (handled by People team)
 - Product training (handled by Product team)
 - Customer-facing documentation

@@ -27,9 +27,11 @@ related: []  # links to related notes, in the link style set in config
 ## Scope
 
 **In scope:**
+
 - [What's included]
 
 **Out of scope:**
+
 - [What's not included — prevents scope creep]
 
 ---

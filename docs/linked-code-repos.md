@@ -47,6 +47,7 @@ Projects/
 ```
 
 Open it with:
+
 - VS Code: `code Projects/my-project/my-project.code-workspace`
 - Cursor: `cursor Projects/my-project/my-project.code-workspace`
 
