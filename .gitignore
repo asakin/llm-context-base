@@ -59,3 +59,7 @@ venv/
 # OS files
 Thumbs.db
 Desktop.ini
+
+# The framework ships AGENTS.md and CLAUDE.md; keep them tracked even if a global ignore lists them
+!AGENTS.md
+!CLAUDE.md

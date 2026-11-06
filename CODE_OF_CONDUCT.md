@@ -20,29 +20,8 @@ Examples of unacceptable behavior:
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by opening an issue or contacting the maintainer directly. All complaints will be reviewed and investigated promptly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by opening an issue or by contacting the maintainer, Ariel Sakin, through [GitHub](https://github.com/asakin). All complaints will be reviewed and investigated promptly.
 
 ## Attribution
 
 This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org), version 2.1.
-1. Commit with message: meta: add code of conduct
-
-Step 5: Set up your profile README
-1. Go to https://github.com/new
-2. Create a repo named exactly asakin (same as your username). Must be public. Check "Add a README file."
-3. Open the README and replace everything with this:
-
-markdown
-## Ariel Sakin
-
-Software engineer, operations person, occasional CIO. I spend most of my time making systems work: infrastructure, processes, and increasingly, AI tooling.
-
-**Currently building:** [llm-context-base](https://github.com/asakin/llm-context-base) - an opinionated git template for building personal knowledge bases with LLMs. Based on Karpathy's LLM Wiki pattern, extended with a training period, metadata standard, and health checks.
-
-**Background:** Engineering and operations, with a lean toward systems that compound over time rather than ones that require constant maintenance.
-
-**Interests:** AI/ML tooling, personal knowledge systems, home automation, making things that actually work and then leaving them alone.
-
----
-
-`llm-context-base` · Apache 2.0 · [use the template](https://github.com/asakin/llm-context-base)
