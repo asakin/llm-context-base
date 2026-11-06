@@ -1,6 +1,6 @@
 # Journal Sync and Privacy
 
-`3-Journal/` is where you write reflections, daily notes, and observations that aren't ready to share. By default, the template gitignores everything in `3-Journal/` except `README.md`, so journal entries live only on the machine where you wrote them. That's the safe default: new users don't accidentally push private reflections on the first commit. It also breaks the moment you use your wiki on more than one device. You'll write an entry on your laptop and not see it on your desktop.
+A journal folder (`Journal/` in the examples below; whatever folder you listed under `private` in `.agents/wiki/config.md`) holds reflections and notes that aren't ready to share. When setup runs in a git repository it offers to add the `private` folders to `.gitignore`, so their notes stay on the machine where you wrote them. That's the safe default: nothing private gets pushed on the first commit. It also breaks the moment you use the wiki on more than one device: you write an entry on your laptop and don't see it on your desktop.
 
 Three options, from simplest to most secure. Pick one and commit to it. Don't mix them (see the warning at the bottom).
 
@@ -8,13 +8,13 @@ Three options, from simplest to most secure. Pick one and commit to it. Don't mi
 
 ## Option 1: Plaintext in a private repo
 
-Remove the `3-Journal/*` rule from `.gitignore`. Journal entries commit and sync like any other file in your repo. The content travels with the repo.
+Remove the `Journal/` rule from `.gitignore`. Journal entries commit and sync like any other file in your repo. The content travels with the repo.
 
 **Safe only if your repo is, and stays, private forever.** Git history is forever. Once you commit a journal entry, it sits in the repo's history. If the repo ever flips to public or leaks, every journal entry in history is exposed, including ones you later "deleted" (delete commits still sit in history behind the new HEAD).
 
 Good fit: solo users with a private GitHub repo, comfortable betting on repo visibility never changing.
 
-**To switch:** ask your AI to "implement option 1 from `docs/journal-sync.md`". The AI has enough spec in this doc to remove the gitignore rule, stage any existing journal files that were previously ignored, and commit.
+**To switch:** ask your AI to "implement option 1 from https://github.com/asakin/llm-context-base/blob/main/docs/journal-sync.md". The AI has enough spec in this doc to remove the gitignore rule, stage any existing journal files that were previously ignored, and commit.
 
 ---
 
@@ -28,19 +28,19 @@ The usual `git-crypt` flow uses a binary key file that must be shipped securely 
 
 Good fit: users who want cross-device sync but aren't comfortable betting on repo privacy staying intact.
 
-**To switch:** ask your AI to "implement option 2 from `docs/journal-sync.md`". The AI has enough spec in this doc to install `git-crypt` and `age` if needed, generate the git-crypt key, wrap it with your passphrase, commit the wrapped blob, set up `.gitattributes` for `3-Journal/`, and walk you through unlocking on a second device.
+**To switch:** ask your AI to "implement option 2 from https://github.com/asakin/llm-context-base/blob/main/docs/journal-sync.md". The AI has enough spec in this doc to install `git-crypt` and `age` if needed, generate the git-crypt key, wrap it with your passphrase, commit the wrapped blob, set up `.gitattributes` for `Journal/`, and walk you through unlocking on a second device.
 
 ---
 
 ## Option 3: Journal outside the repo
 
-Leave `3-Journal/*` gitignored. Put the real journal in a folder that's already synced by something else (iCloud, Dropbox, Syncthing, a private NAS) and symlink it into the repo's `3-Journal/` path.
+Leave `Journal/` gitignored. Put the real journal in a folder that's already synced by something else (iCloud, Dropbox, Syncthing, a private NAS) and symlink it into the repo's `Journal/` path.
 
 **No crypto, no git history for the journal itself, the cloud provider becomes the trust anchor.** On the plus side: zero passphrase friction, no binary merges, sync conflicts handled by the sync tool instead of by git.
 
 Good fit: users already paying for a trusted sync service who don't want the journal mixed into git at all.
 
-**To switch:** ask your AI to "implement option 3 from `docs/journal-sync.md`". The AI has enough spec in this doc to help you pick a location, move any existing entries, set up the symlink, and verify the gitignore still catches the symlinked path so nothing leaks into git.
+**To switch:** ask your AI to "implement option 3 from https://github.com/asakin/llm-context-base/blob/main/docs/journal-sync.md". The AI has enough spec in this doc to help you pick a location, move any existing entries, set up the symlink, and verify the gitignore still catches the symlinked path so nothing leaks into git.
 
 ---
 

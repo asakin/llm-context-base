@@ -29,7 +29,7 @@ TAG=$(git ls-remote --tags --refs --sort=-v:refname "$REPO" 'v*' | head -1 | sed
 SRC=$(mktemp -d) && git clone --quiet --depth 1 --branch "$TAG" "$REPO" "$SRC"
 ```
 
-Without git, download `$REPO/archive/refs/tags/$TAG.tar.gz` and unpack it instead. In **update** mode, compare `$TAG` with the version in the target's `<!-- llm-context-base:start vX.Y.Z -->` line; if they match, say it's up to date and offer only the agent re-tuning in step 6. Otherwise show the release notes (`$REPO/releases/tag/$TAG`) before continuing.
+Without git, download `$REPO/archive/refs/tags/$TAG.tar.gz` and unpack it instead. If the user names a source (a local clone, a branch, a fork), use that as `$SRC` instead of the latest release, and say so. In **update** mode, compare `$TAG` with the version in the target's `<!-- llm-context-base:start vX.Y.Z -->` line; if they match, say it's up to date and offer only the agent re-tuning in step 6. Otherwise show the release notes (`$REPO/releases/tag/$TAG`) before continuing.
 
 ## 3. Tell the user what will change, then install
 
