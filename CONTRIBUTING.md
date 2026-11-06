@@ -40,15 +40,9 @@ Keep the always-loaded part small: the `AGENTS.md` block and a fresh `config.md`
 
 ## Working on the framework with an agent
 
-This repository's own `AGENTS.md` is the framework block, so an agent opened here would treat it as a wiki. To work on the framework instead, create the framework-mode file:
+A clone of this repository is a contributor checkout, not a wiki. The committed file `.agents/wiki/.framework-mode` tells agents (including Warren and Marlowe) to work as engineering assistants on an open-source project: no setup, no personalizing, no personal information in files that ship to every user. Setup never copies that file, so installed wikis don't have it.
 
-```bash
-touch .agents/wiki/.framework-mode
-```
-
-It is gitignored. With it present, agents (including Warren and Marlowe) behave as engineering assistants for an open-source project and don't write personal information into files that ship to every user. Delete it to test the repository as a wiki.
-
-To test setup end to end, open an agent in a scratch folder and ask it to set up llm-context-base from your working copy (give it the local path); setup uses a source you name instead of the latest release.
+To try the repository itself as a wiki, delete the file locally and don't commit the deletion. To test setup properly, open an agent in a scratch folder (empty for a fresh start, or a copy of a real vault) and ask it to set up llm-context-base from your working copy by giving it the local path; setup uses a source you name instead of the latest release.
 
 ## Commits and checks
 

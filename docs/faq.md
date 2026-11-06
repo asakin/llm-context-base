@@ -2,14 +2,11 @@
 
 ## How do I install it?
 
-Open your agent in the folder you want to use (an existing notes folder or vault, or an empty one) and say:
+There is nothing to clone. For a new wiki, tell your agent "Start a new llm-context-base wiki in ~/wiki by following" and the setup link; for notes you already have, open the agent in that folder and say "Set up llm-context-base in this folder by following" and the same link. The agent fetches the latest release, shows you what it will add, and asks a few questions. See the [README](../README.md#quick-start).
 
-```text
-Set up llm-context-base in this folder by following
-https://raw.githubusercontent.com/asakin/llm-context-base/main/.agents/skills/wiki-setup/SKILL.md
-```
+## Should I clone the repository?
 
-The agent fetches the latest release, shows you what it will add, and asks a few questions. See the [README](../README.md#quick-start).
+Only to contribute. A clone is the framework's source, marked so agents work on the framework rather than treat it as a wiki. See [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ## How do I get updates?
 

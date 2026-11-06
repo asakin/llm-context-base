@@ -1,6 +1,3 @@
-# Framework mode: create this file locally when working on llm-context-base itself (see CONTRIBUTING.md)
-.agents/wiki/.framework-mode
-
 # The framework ships AGENTS.md and CLAUDE.md; keep them tracked even if a global ignore lists them
 !AGENTS.md
 !CLAUDE.md

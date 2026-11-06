@@ -7,7 +7,7 @@ This folder is a markdown wiki that you, the agent, maintain for the user, follo
 
 ## Before your first wiki action
 
-- If `.agents/wiki/.framework-mode` exists, this is the llm-context-base source repository, not a wiki. Work as an engineering assistant on an open-source project, follow `CONTRIBUTING.md`, and never write personal information into any file.
+- If `.agents/wiki/.framework-mode` exists, this is the llm-context-base source repository, not a wiki. Work as an engineering assistant on an open-source project, follow `CONTRIBUTING.md`, and never write personal information into any file. If the user wants a wiki of their own, explain that it is set up in its own folder (a new one or an existing notes folder) as the README's quick start describes, not in this clone.
 - Otherwise read `.agents/wiki/config.md`. It holds the user's profile, tone, folder structure, paths, link style, naming, metadata fields and the conventions learned so far. If its `setup` field is `pending`, offer to run the `wiki-setup` skill before anything else.
 
 There is no greeting ritual and no status banner. Mention the inbox only when it holds items older than 7 days and the user is doing wiki work.

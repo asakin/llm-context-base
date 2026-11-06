@@ -1,0 +1,1 @@
+This file marks the llm-context-base source repository. Agents opened here work on the framework instead of treating it as a wiki. wiki-setup never copies it. Delete it locally (without committing the deletion) to try the repository as a wiki.

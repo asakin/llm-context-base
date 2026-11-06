@@ -10,18 +10,37 @@ It is a ready-made implementation of [Andrej Karpathy's LLM Wiki pattern](https:
 
 ## Quick start
 
-Open your agent in the folder you want to use and say:
+There are two ways in. Both use the same setup skill, which you hand to your agent as a link; nothing to clone or install first.
+
+### Start a fresh wiki
+
+Open your agent anywhere and say:
+
+```text
+Start a new llm-context-base wiki in ~/wiki by following
+https://raw.githubusercontent.com/asakin/llm-context-base/main/.agents/skills/wiki-setup/SKILL.md
+```
+
+The agent creates the folder, offers `git init` so every change can be undone, adds the framework files, and creates an inbox and a log. It asks what the wiki is for and offers a starter layout (Projects, Knowledge, Journal, Private), which you can decline and let the structure grow from what you capture. Open the folder as an Obsidian vault if you like to watch it fill in.
+
+### Add it to notes you already have
+
+Commit or back up your folder, open your agent in it (an Obsidian vault, a docs folder, any folder of markdown), and say:
 
 ```text
 Set up llm-context-base in this folder by following
 https://raw.githubusercontent.com/asakin/llm-context-base/main/.agents/skills/wiki-setup/SKILL.md
 ```
 
-The agent fetches the latest release, shows you what it will add, surveys your folder (its folders, link style, naming, frontmatter, which folders look private), asks a few questions, and writes what it learned to `.agents/wiki/config.md`. Your notes are not moved, renamed or rewritten.
+The agent shows you what it will add, then surveys the folder: what each folder holds, link style, naming, the frontmatter fields you use, and which folders look private. It records all of that in `.agents/wiki/config.md` and works with your conventions from then on. Your notes are not moved, renamed or rewritten, and frontmatter is added to a note only when the agent next works on it. If you already have an `AGENTS.md` or `CLAUDE.md`, your text in them is kept.
 
-In an empty folder it creates an inbox and a log and offers a starter layout. If you use Obsidian, keep it open next to the agent and watch the wiki fill in; see [Using with Obsidian](docs/obsidian.md).
+A v1 wiki goes this way too; see [Coming from v1](#coming-from-v1).
 
-To update later, say "update llm-context-base".
+### Either way
+
+To update later, say "update llm-context-base". If you use Obsidian, see [Using with Obsidian](docs/obsidian.md).
+
+Cloning this repository gets you the framework's source, set up for contributors, not a wiki; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## What you can say
 

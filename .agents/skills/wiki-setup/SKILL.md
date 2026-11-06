@@ -1,6 +1,6 @@
 ---
 name: wiki-setup
-description: Install, update or migrate llm-context-base in a folder of markdown notes, and tune the wiki's agents. Use when the user says "set up llm-context-base here", "turn this folder into an LLM wiki", "update llm-context-base", "migrate from v1", "re-tune Warren/Marlowe", or when .agents/wiki/config.md says setup is pending.
+description: Start a new llm-context-base wiki, or install, update or migrate it in an existing folder of markdown notes, and tune the wiki's agents. Use when the user says "start a new wiki", "set up llm-context-base here", "turn this folder into an LLM wiki", "update llm-context-base", "migrate from v1", "re-tune Warren/Marlowe", or when .agents/wiki/config.md says setup is pending.
 ---
 
 # Setting up llm-context-base
@@ -9,15 +9,19 @@ The target is the folder the user is working in. Setup adds a small set of frame
 
 ## 1. Find out what kind of folder this is
 
-| What you find | Mode |
+If the user named a folder ("start a new wiki in ~/notes"), work there: create it if it doesn't exist. Otherwise the target is the current folder.
+
+| What you find in the target | Mode |
 |---|---|
-| `.agents/wiki/.framework-mode` | The llm-context-base source repo. Stop: there is nothing to set up. |
+| `.agents/wiki/.framework-mode` | A clone of the llm-context-base source repo, meant for contributors. Stop, and offer to start a fresh wiki in a new folder or to set it up in an existing notes folder instead. |
 | `AGENTS.md` containing `<!-- llm-context-base:start` | **Update** (also used to re-tune the agents) |
 | `_config/config.md` and `_meta/instructions/` | **Migrate from v1** |
 | Markdown notes, an `.obsidian/` folder, or other content | **Existing folder** |
-| Nothing but perhaps a README or `.git` | **Empty folder** |
+| Nothing, or only a README or `.git` | **Fresh start** |
 
-If the folder is a git repository with uncommitted changes, suggest committing first so setup's changes can be reviewed and reverted on their own.
+If the user's words and the folder disagree (they asked for a fresh wiki but the folder holds notes, or the reverse), say what you found and ask which they meant before going on.
+
+**Fresh start:** if the folder isn't a git repository, offer `git init`; history is how the user undoes anything the agent does. **Existing folder:** if it's a git repository with uncommitted changes, suggest committing first so setup's changes can be reviewed and reverted on their own; if it isn't one, mention that a commit or backup before setup is a good idea, and go on when the user is ready.
 
 ## 2. Get the framework files
 
@@ -45,7 +49,7 @@ List the files you will add or replace and wait for a yes. Then, from `$SRC`:
 
 Nothing else from `$SRC` is copied: not its README, docs, license, assets or CI. Delete `$SRC` when you're done.
 
-## 4. Learn the folder (existing, v1 and empty modes)
+## 4. Learn the folder (fresh, existing and v1 modes)
 
 Survey before you write config, and show the user what you found:
 
@@ -59,7 +63,7 @@ Survey before you write config, and show the user what you found:
 
 Then fill in the frontmatter of `config.md` and set `setup:` to today's date.
 
-**Empty folder:** create the inbox and the log. Offer a starter layout in one short paragraph, and create it only on a yes: `Projects/` (one folder per project with an `_overview.md`), `Knowledge/` (with `HowTo/`, `Decisions/`, `References/`), `Journal/` and `Private/` (both in `private`). Otherwise the structure grows as the user captures things.
+**Fresh start:** there is nothing to survey. Create the inbox and the log. Offer a starter layout in one short paragraph, and create it only on a yes: `Projects/` (one folder per project with an `_overview.md`), `Knowledge/` (with `HowTo/`, `Decisions/`, `References/`), `Journal/` and `Private/` (both in `private`). Otherwise the structure grows as the user captures things.
 
 ## 5. Migrate from v1
 
