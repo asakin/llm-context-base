@@ -2,8 +2,15 @@
   "schemaVersion": "0.1.0",
   "name": "llm-wiki inbox",
   "behavior": "create",
-  "noteContentFormat": "**Type:** knowledge\n**Summary:** {{meta:name:description}}\n**Tags:** #clipped #read-later\n**Status:** draft\n**Updated:** {{date|date:\"YYYY-MM-DD\"}}\n**Source:** {{url}}\n\n---\n\n> Why I saved this: [fill in one sentence before closing the clipper]\n\n---\n\n{{content}}",
-  "properties": [],
+  "noteContentFormat": "> Why I saved this: [fill in one sentence before closing the clipper]\n\n---\n\n{{content}}",
+  "properties": [
+    { "name": "type", "value": "knowledge", "type": "text" },
+    { "name": "summary", "value": "{{meta:name:description}}", "type": "text" },
+    { "name": "tags", "value": "clipped", "type": "multitext" },
+    { "name": "status", "value": "draft", "type": "text" },
+    { "name": "updated", "value": "{{date|date:\"YYYY-MM-DD\"}}", "type": "date" },
+    { "name": "source", "value": "{{url}}", "type": "text" }
+  ],
   "noteNameFormat": "{{date|date:\"YYYY-MM-DD\"}}-{{title}}",
-  "path": "_inbox"
+  "path": "inbox"
 }

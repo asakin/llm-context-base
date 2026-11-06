@@ -36,7 +36,7 @@ For each item, oldest first:
 3. Otherwise create a note in the folder the Structure table in config points to, using the matching template. If nothing fits, propose a folder (and add it to Structure on approval) or leave the item in the inbox with a clear next action.
 4. Set frontmatter: correct `type`, `status: draft` until the user has reviewed it, `updated` to today, two to five tags from the vocabulary already in use.
 5. Link the note to the one to three notes it most relates to, in the configured link style.
-6. If `preserve_sources` is true and the original is worth keeping (a key reference, a page that may disappear, something worth re-processing later), move it to `sources/YYYY-MM-DD-slug.md`. Otherwise delete the inbox file once its content is filed.
+6. If `preserve_sources` is true and the original is worth keeping (a key reference, a page that may disappear, something worth re-processing later), move it to `<sources>/YYYY-MM-DD-slug.md`. Otherwise delete the inbox file once its content is filed.
 7. Keep contradictions and corrections visible: note the before and after instead of smoothing them over. Leave items that are too fresh or ambiguous in the inbox with a next action.
 
 Never write into a `private` folder without asking. Append one `file` line to the log for a filing pass, not one per item.

@@ -5,7 +5,8 @@ log: log.md             # the one log of significant wiki changes
 link_style: wikilink    # wikilink | markdown
 naming: descriptive     # descriptive | date-prefixed | as-found (keep whatever each folder already does)
 private: []             # folders agents must not quote from or write to without asking, e.g. [Journal/, Private/]
-preserve_sources: false # true: keep important originals in sources/ when filing
+preserve_sources: false # true: keep important originals when filing
+sources: sources/       # where preserved originals go
 extra_frontmatter: []   # frontmatter fields this folder already uses, kept alongside the standard ones
 ---
 
