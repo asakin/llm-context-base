@@ -5,7 +5,7 @@ tags: [initiative, domain]  # replace domain with real tag
 status: active
 owner: "[Name or role]"
 updated: YYYY-MM-DD
-related: "[linked decision](path), [linked knowledge article](path)"
+related: []  # links to related notes, in the link style set in config
 ---
 
 # [Initiative Name]

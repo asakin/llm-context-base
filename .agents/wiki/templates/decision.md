@@ -2,10 +2,10 @@
 type: decision
 summary: "[One sentence: what was decided and why]"
 tags: [decision, domain]  # replace domain with real tag
-status: "[draft | active | complete]"
+status: draft
 owner: "[Name]"
 updated: YYYY-MM-DD
-related: "[related files](path)"
+related: []  # links to related notes, in the link style set in config
 ---
 
 # [Decision Title]

@@ -2,10 +2,10 @@
 type: knowledge
 summary: "[One sentence: what does this document cover? Use terms someone would search for.]"
 tags: [domain, type]  # replace with real tags, no # prefix
-status: active
+status: draft
 owner: "[Person or role]"
 updated: YYYY-MM-DD
-related: "[related-file](related-file.md)"
+related: []  # links to related notes, in the link style set in config
 ---
 
 # [Title — descriptive, searchable]
