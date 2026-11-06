@@ -32,7 +32,6 @@ Step 5: Set up your profile README
 2. Create a repo named exactly asakin (same as your username). Must be public. Check "Add a README file."
 3. Open the README and replace everything with this:
 
-
 markdown
 ## Ariel Sakin
 

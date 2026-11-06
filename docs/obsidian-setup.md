@@ -78,7 +78,7 @@ That's it. Every clip lands in `_inbox/` with the metadata standard applied.
 
 **The template adds one important field:**
 
-```
+```text
 > Why I saved this: [fill in one sentence before closing the clipper]
 ```
 
@@ -142,7 +142,7 @@ The graph is pre-configured with colors per directory:
 | Purple | 3-Journal |
 | Red | 4-Private |
 | Orange | _inbox |
-| Gray | _meta, _config |
-| Teal | _output, _sources |
+| Gray | \_meta, \_config |
+| Teal | \_output, \_sources |
 
 If Obsidian resets your graph settings (it sometimes does when the vault reopens), you can restore them by running `git checkout .obsidian/graph.json` and restarting Obsidian.

@@ -30,7 +30,7 @@ The lint pass is the wiki's health check. Run it when the system feels messy, wh
 - Flag any older than 7 days
 
 **Output format:**
-```
+```text
 📥 STALE INBOX (X items, >7 days old)
 - _inbox/2026-03-28-security-observation.md — 10 days old
 - _inbox/2026-03-30-vendor-note.md — 8 days old
@@ -52,7 +52,7 @@ The lint pass is the wiki's health check. Run it when the system feels messy, wh
 **How:** Read each file's first 20 lines. If no `type:` YAML frontmatter field found, flag it.
 
 **Output format:**
-```
+```text
 🏷️ MISSING METADATA (X files)
 - 2-Knowledge/HowTo/deployment-guide.md — no metadata block
 - 2-Knowledge/Decisions/old-decision.md — no metadata block
@@ -68,7 +68,7 @@ The lint pass is the wiki's health check. Run it when the system feels messy, wh
 **Exemptions:** Files with `status: archived` or `status: superseded` are exempt — terminal-status pages are intentionally frozen and should not be flagged as stale. Only flag `active` files.
 
 **Output format:**
-```
+```text
 ⏰ STALE ACTIVE FILES (X files, >90 days since update)
 - 2-Knowledge/HowTo/onboarding-process.md — last updated 2025-10-15 (173 days ago)
 → Action: Review each — update, archive, or mark as stable
@@ -83,7 +83,7 @@ The lint pass is the wiki's health check. Run it when the system feels messy, wh
 **How:** Check if each scanned file appears in any other file as a markdown link `[text](path)`.
 
 **Output format:**
-```
+```text
 🔗 ORPHANED FILES (X files — no inbound links)
 - 2-Knowledge/HowTo/old-tool-setup.md
 → Action: Link from a relevant doc or archive
@@ -108,7 +108,7 @@ cat .last-optimization-review 2>/dev/null || echo "No review recorded"
 ```
 
 **Output format:**
-```
+```text
 🧠 CONTEXT SIZE & OPTIMIZATION
 ⚠️ general.md: 450 lines (approaching 500 — consider modularizing)
 ✓ PHILOSOPHY.md: 120 lines
@@ -137,7 +137,7 @@ If optimization review is overdue, suggest loading `_meta/instructions/optimizat
 3. Propose rename: `YYYY-MM-DD-original-name.md` where the date is the first-commit date.
 
 **Output format:**
-```
+```text
 📅 NON-TIMESTAMPED FILENAMES (X files)
 - 2-Knowledge/some-concept.md → 2026-03-15-some-concept.md (first commit: 2026-03-15)
 - 0-Ideas/startup-idea.md → 2026-04-10-startup-idea.md (first commit: 2026-04-10)
@@ -170,7 +170,7 @@ grep -rn '`[^`]*/[^`]*\.md`' --include="*.md" <directories>
 - Full vault-relative path preferred: `[[1-Projects/foo/bar]]`
 
 **Output format:**
-```
+```text
 🔗 RAW PATHS / BROKEN LINKS (X items)
 FORMAT: 2-Knowledge/doc.md:12 — `1-Projects/foo/bar.md` → [[1-Projects/foo/bar]]
 BROKEN: 2-Knowledge/doc.md:8 — [[1-Projects/old-name]] → target not found
@@ -183,7 +183,7 @@ BROKEN: 2-Knowledge/doc.md:8 — [[1-Projects/old-name]] → target not found
 
 After running all checks, compile a summary:
 
-```
+```text
 📋 WIKI LINT REPORT — YYYY-MM-DD
 - ✅ Checks run: 7
 - ⚠️ Issues found: X
@@ -193,7 +193,7 @@ After running all checks, compile a summary:
 ```
 
 Append one line to `WIKI-LOG.md`:
-```
+```text
 ## [YYYY-MM-DD] lint | X issues found — stale: X, missing metadata: X, orphaned: X, timestamps: X, paths: X
 ```
 

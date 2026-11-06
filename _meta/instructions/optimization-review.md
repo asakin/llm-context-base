@@ -75,7 +75,7 @@ Flag anything that exceeds thresholds:
 
 Present findings to the user:
 
-```
+```text
 📊 Context Optimization Review - YYYY-MM-DD
 
 Session start files: [X] lines total
@@ -112,7 +112,7 @@ date +%Y-%m-%d > .last-optimization-review
 ```
 
 Append to WIKI-LOG.md:
-```
+```text
 ## [YYYY-MM-DD] optimization | Session start: [X] lines, [changes made or "no changes needed"]
 ```
 

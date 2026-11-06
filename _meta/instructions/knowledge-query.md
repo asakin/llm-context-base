@@ -58,7 +58,7 @@ Read the 1-3 most relevant files in full. For very large files (500+ lines), foc
 ### Step 5: Synthesize and cite
 Return a synthesized answer with source citations:
 
-```
+```text
 **Source:** `2-Knowledge/HowTo/deployment-process.md`
 **Updated:** 2026-03-15 | **Type:** knowledge
 
@@ -66,7 +66,7 @@ Return a synthesized answer with source citations:
 ```
 
 For multiple sources:
-```
+```text
 **Sources:**
 - `2-Knowledge/HowTo/deployment-process.md` (Updated: 2026-03-15)
 - `2-Knowledge/Decisions/database-choice.md` (Updated: 2026-02-20)
@@ -82,7 +82,7 @@ If a file's `**Updated:**` date is more than:
 - **30 days** for time-sensitive content (status, active projects) → warn
 - **90 days** for reference content (guides, architecture docs) → warn
 
-```
+```text
 ⚠️ This file was last updated X days ago. Content may be stale.
 ```
 
@@ -134,7 +134,7 @@ When a user is about to make a new decision (evaluating options, choosing betwee
 2. **Search past decisions** — Scan `2-Knowledge/Decisions/` for decisions in the same domain (match by tags or topic)
 3. **Surface relevant precedents** — If past decisions have an `## Outcome` section filled in, surface them:
 
-```
+```text
 📋 Related past decisions:
 - `choosing-postgresql-over-mongodb.md` — Outcome: succeeded
   Key lesson: "Match the database to the data model, not the hype"
@@ -154,7 +154,7 @@ The system doesn't just remember what you decided — it learns from how those d
 
 If the user asks about something that doesn't exist yet, offer to capture it:
 
-```
+```text
 I couldn't find documentation for [X]. Would you like me to:
 1. Add it to _inbox/ as a capture for later
 2. Create a knowledge article now

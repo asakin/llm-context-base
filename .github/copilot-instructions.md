@@ -20,7 +20,7 @@ Otherwise → you are in a personal instance. Continue with the protocol below.
 **Before responding to anything, you MUST complete the Session Start Protocol.**
 
 **Your first response MUST begin with exactly:**
-```
+```text
 Allow me to get ready first!
 ```
 

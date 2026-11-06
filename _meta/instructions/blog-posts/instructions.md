@@ -82,7 +82,7 @@ This is optional but encouraged. It adds a human touch and can seed future conte
 ## File Naming
 
 Blog post files should follow the standard:
-```
+```text
 YYYY-MM-DD-short-description.md
 ```
 

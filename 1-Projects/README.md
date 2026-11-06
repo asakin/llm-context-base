@@ -12,7 +12,7 @@ Each project gets a folder. Everything related to it lives there — design docs
 
 ## Structure
 
-```
+```text
 1-Projects/
   [project-name]/
     _overview.md        ← status, goal, artifacts, links

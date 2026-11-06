@@ -65,7 +65,7 @@ The `source` field identifies the originating agent and allows filtering during 
 ## Inbox File Naming
 
 Agent-created inbox files must follow:
-```
+```text
 _inbox/YYYY-MM-DD-[short-description].md
 ```
 

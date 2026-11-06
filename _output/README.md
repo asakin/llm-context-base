@@ -32,7 +32,7 @@ This directory is for the exception: **throwaway artifacts** generated *from* yo
 ## File Naming
 
 Date-prefixed for easy chronological browsing:
-```
+```text
 YYYY-MM-DD-[description].[ext]
 ```
 

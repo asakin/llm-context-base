@@ -29,7 +29,7 @@ But sometimes a source is important enough to preserve:
 
 ## File Naming
 
-```
+```text
 YYYY-MM-DD-[description].[ext]
 ```
 

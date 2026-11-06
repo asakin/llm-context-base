@@ -14,7 +14,7 @@ This is where your knowledge lives. Everything here should be findable, queryabl
 
 ## Structure
 
-```
+```text
 2-Knowledge/
   HowTo/        # Step-by-step guides and processes
   Decisions/     # Decision records with context and rationale

@@ -1,6 +1,6 @@
 # Directory Structure
 
-```
+```text
 llm-context-base/
   _config/                    # Your configuration (the brain)
     config.md                 # Profile + training controller + LLM instructions

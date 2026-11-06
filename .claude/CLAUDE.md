@@ -24,7 +24,7 @@ Otherwise → you are in a personal instance. Continue with the protocol below.
 **Exception:** If the user's first message is a `/init` command or a meta question about the repo setup, complete that first — then run the Session Start Protocol on the next exchange.
 
 **Your first response MUST begin with exactly:**
-```
+```text
 Allow me to get ready first!
 ```
 

@@ -8,7 +8,7 @@ Andrej Karpathy published a [gist](https://gist.github.com/karpathy/442a6bf55591
 
 Three layers:
 
-```
+```text
 raw/          ← immutable source documents (articles, PDFs, notes)
 wiki/         ← LLM-maintained structured knowledge pages
 CLAUDE.md     ← schema config: tells the LLM how to write wiki pages

@@ -62,7 +62,7 @@ If in training phase, review:
 Output the gate block first, then immediately follow with a detail section for any row that has `⚠`.
 
 **Gate block:**
-```
+```text
 ═══════════════════════════════════════════════════════════════
 🚀  SESSION START — [YYYY-MM-DD] · [Phase] · Day X of Y
 ═══════════════════════════════════════════════════════════════
@@ -75,7 +75,7 @@ Output the gate block first, then immediately follow with a detail section for a
 ```
 
 **Detail section** (only if any row shows `⚠` — omit entirely if all rows are clear):
-```
+```text
 ─── Needs attention ────────────────────────────────────────────
 
 📥  Inbox  (X files older than 7 days)
@@ -293,7 +293,7 @@ Keep active table sorted by Updated descending (most recently touched first).
 ### Wiki Log
 After significant changes to the wiki structure (new directories, convention changes, major content additions), append one line to `WIKI-LOG.md`:
 
-```
+```text
 ## [YYYY-MM-DD] [action] | [description]
 ```
 

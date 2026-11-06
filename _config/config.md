@@ -122,7 +122,7 @@ At the start of every session:
 
 ### Phase Calculation
 
-```
+```text
 today = current date
 start = Training Start Date
 training_end = start + Training Period Days
@@ -161,7 +161,7 @@ Training question frequency is per day, not per response. Structure suggestions 
 
 **Training Status Footer** — shown only when there are training questions to ask:
 
-```
+```text
 ───────────────────────────
 🧠 Training — Day [X] of [Y] [progress bar] [percent]%
 Phase: [Discovery / Refinement / Quiet] ([phase description])

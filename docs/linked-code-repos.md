@@ -39,7 +39,7 @@ The code repo also gets a context file that explains how it fits into the larger
 
 Save the `.code-workspace` file in the project's `1-Projects/` folder:
 
-```
+```text
 1-Projects/
   my-project/
     _overview.md

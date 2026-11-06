@@ -28,7 +28,7 @@ Tell your AI: `"capture this: [content]"` or `"add to inbox: [content]"`
 It will create a file here with the standard metadata block and offer to file it immediately or defer.
 
 ### File naming
-```
+```text
 YYYY-MM-DD-[short-slug].md
 ```
 
