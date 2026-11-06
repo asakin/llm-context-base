@@ -5,7 +5,7 @@ tags: [cooking, how-to, meal-planning]
 status: active
 owner: Jane
 updated: 2026-03-15
-related: "[example-decision-record.md](example-decision-record.md)"
+related: ["[[example-decision-record]]"]
 ---
 
 # How I Plan Weekly Meals
@@ -38,7 +38,7 @@ Without a system, I was shopping 3-4 times a week and throwing away produce that
 
 ## Related Resources
 
-- Decision on switching to meal planning: `2-Knowledge/Decisions/`
+- Decision on switching to meal planning: `Knowledge/Decisions/`
 
 ---
 

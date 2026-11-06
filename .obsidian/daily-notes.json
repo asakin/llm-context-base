@@ -1,6 +1,0 @@
-{
-  "folder": "3-Journal",
-  "template": "_meta/templates/journal-entry",
-  "format": "YYYY-MM-DD",
-  "autorun": false
-}
