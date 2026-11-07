@@ -6,7 +6,7 @@ The recommended setup is Obsidian on one side and your AI agent on the other. Yo
 
 ## Setup
 
-1. Run setup in your vault folder (see the [README](../README.md#quick-start)). It never touches `.obsidian/`, so your theme, plugins and hotkeys stay as they are. Setup's files live in hidden folders (`.agents/`, `.claude/`), so Obsidian doesn't show them; `AGENTS.md`, `CLAUDE.md`, the inbox and the log are visible.
+1. Run setup in your vault folder (see the [README](../README.md#quick-start)). It never touches `.obsidian/`, so your theme, plugins and hotkeys stay as they are. Setup's files live in hidden folders (`.agents/`, `.claude/`), so Obsidian doesn't show them; `AGENTS.md`, `CLAUDE.md` and the inbox are visible.
 2. Open your agent in a terminal next to Obsidian, or inside Obsidian with one of the plugins below.
 3. Optional: point Obsidian's **Default location for new notes** (Settings → Files and links) at the inbox so new notes land there.
 

@@ -5,7 +5,7 @@ description: Answer questions from an llm-context-base wiki with citations. Use 
 
 # Answering from the wiki
 
-Read `.agents/wiki/config.md` first: the Structure table says where each kind of note lives.
+Read `.agents/wiki/config.md` first: the Structure table says where each kind of note lives, and the House rules say what dates and fields can be trusted (a sync may rewrite `updated`).
 
 ## Search
 
@@ -29,7 +29,7 @@ Warn when a cited note is stale: more than 30 days old for status or active-proj
 
 If nothing matches, say so plainly ("I couldn't find anything on X") and offer to capture it in the inbox or start a note. Never answer as if a document exists when it doesn't.
 
-If the answer took real synthesis across several notes, offer to save it back into the wiki as a note, and log it with the `query` verb.
+If the answer took real synthesis across several notes, offer to save it back into the wiki as a note.
 
 ## Past decisions
 

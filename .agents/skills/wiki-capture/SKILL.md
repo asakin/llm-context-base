@@ -5,11 +5,11 @@ description: Capture new material into an llm-context-base wiki and file the inb
 
 # Capture and filing
 
-Read `.agents/wiki/config.md` first for the inbox path, structure, link style, naming and private folders. Templates for each note type are in `.agents/wiki/templates/`.
+Read `.agents/wiki/config.md` first for the inbox path, house rules, structure, link style, naming, frontmatter setting and private folders. House rules win over anything below. Templates for each note type are in `.agents/wiki/templates/`.
 
 ## Capture
 
-1. Create `<inbox>/YYYY-MM-DD-short-slug.md` with frontmatter (`status: draft`, an informative `summary`, never "Auto-generated note"). Use `inbox-capture.md` as the shape.
+1. Create `<inbox>/YYYY-MM-DD-short-slug.md`. When config `frontmatter` is `llm-context-base`, give it frontmatter (`status: draft`, an informative `summary`, never "Auto-generated note") using `inbox-capture.md` as the shape; otherwise follow the house rules.
 2. If another agent or automation is writing, set `source:` to its name so triage can filter it.
 3. Ask once: "File this now or leave it in the inbox?" If the user named a destination, write there directly.
 
@@ -34,12 +34,12 @@ For each item, oldest first:
 1. Read it and decide what it is. Extract the durable claims, decisions, corrections and source references. Raw captures are input, not truth.
 2. Look for an existing note on the same subject (search titles, `summary` fields, tags). Update it rather than creating a duplicate.
 3. Otherwise create a note in the folder the Structure table in config points to, using the matching template. If nothing fits, propose a folder (and add it to Structure on approval) or leave the item in the inbox with a clear next action.
-4. Set frontmatter: correct `type`, `status: draft` until the user has reviewed it, `updated` to today, two to five tags from the vocabulary already in use.
+4. When config `frontmatter` is `llm-context-base`, set it: correct `type`, `status: draft` until the user has reviewed it, `updated` to today, two to five tags from the vocabulary already in use. Otherwise leave frontmatter to the house.
 5. Link the note to the one to three notes it most relates to, in the configured link style.
 6. If `preserve_sources` is true and the original is worth keeping (a key reference, a page that may disappear, something worth re-processing later), move it to `<sources>/YYYY-MM-DD-slug.md`. Otherwise delete the inbox file once its content is filed.
 7. Keep contradictions and corrections visible: note the before and after instead of smoothing them over. Leave items that are too fresh or ambiguous in the inbox with a next action.
 
-Never write into a `private` folder without asking. Append one `file` line to the log for a filing pass, not one per item.
+Never write into a `private` folder without asking.
 
 ## When a note is done
 

@@ -21,7 +21,7 @@ Start a new llm-context-base wiki in ~/wiki by following
 https://raw.githubusercontent.com/asakin/llm-context-base/main/.agents/skills/wiki-setup/SKILL.md
 ```
 
-The agent creates the folder, offers `git init` so every change can be undone, adds the framework files, and creates an inbox and a log. It asks what the wiki is for and offers a starter layout (Projects, Knowledge, Journal, Private), which you can decline and let the structure grow from what you capture. Open the folder as an Obsidian vault if you like to watch it fill in.
+The agent creates the folder, offers `git init` so every change can be undone, adds the framework files, and creates an inbox. It asks what the wiki is for and offers a starter layout (Projects, Knowledge, Journal, Private), which you can decline and let the structure grow from what you capture. Open the folder as an Obsidian vault if you like to watch it fill in.
 
 ### Add it to notes you already have
 
@@ -32,7 +32,7 @@ Set up llm-context-base in this folder by following
 https://raw.githubusercontent.com/asakin/llm-context-base/main/.agents/skills/wiki-setup/SKILL.md
 ```
 
-The agent shows you what it will add, then surveys the folder: what each folder holds, link style, naming, the frontmatter fields you use, and which folders look private. It records all of that in `.agents/wiki/config.md` and works with your conventions from then on. Your notes are not moved, renamed or rewritten, and frontmatter is added to a note only when the agent next works on it. If you already have an `AGENTS.md` or `CLAUDE.md`, your text in them is kept.
+The agent first reads your folder's house rules: instruction files, sync or publishing tooling, linters, and how your notes are written (links, naming, frontmatter, intake folder). It then shows you how llm-context-base will fit in: it adopts your conventions where they already do the job, brings its own where you have none, and proposes a change only where it would improve your practice. Nothing is installed until you agree, and the result is recorded in `.agents/wiki/config.md`. Your notes are not moved, renamed or rewritten, and frontmatter is added to a note only when the agent next works on it. If you already have an `AGENTS.md` or `CLAUDE.md`, your text in them is kept.
 
 A v1 wiki goes this way too; see [Coming from v1](#coming-from-v1).
 
@@ -72,7 +72,7 @@ CLAUDE.md                  @AGENTS.md, so Claude Code loads the same rules
 .agents/wiki/templates/    decision, initiative, knowledge, meeting, journal, capture
 .agents/skills/            wiki-setup, wiki-capture, wiki-query, wiki-lint (Agent Skills)
 .claude/agents/            warren.md, marlowe.md
-inbox/  log.md             paths you can change in config
+inbox/                     a path you can change in config
 ```
 
 The rest of the folder is yours. [How It Works](docs/how-it-works.md) explains each part and the design behind it.

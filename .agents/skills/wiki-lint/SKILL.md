@@ -1,65 +1,37 @@
 ---
 name: wiki-lint
-description: Health check for an llm-context-base wiki. Use when the user says "lint the wiki", "health check", "what's stale?", "what needs cleanup?", "what's orphaned?", "audit the wiki", or "are we being efficient with context?".
+description: Health check for an llm-context-base wiki that ends in fixes the agent can make. Use when the user says "lint the wiki", "health check", "what's stale?", "what needs cleanup?", "what's orphaned?", "audit the wiki", or "are we being efficient with context?".
 ---
 
 # Wiki health check
 
-Read `.agents/wiki/config.md` first. Scan the folders in its Structure table plus any other folder holding notes; skip `.agents/`, `.claude/`, `.obsidian/`, `.git/` and the `private` folders (count their files, don't read them). Lint reports and proposes. Change nothing without approval, except format-only link fixes in check 5 when the user said "fix it".
+The point of a health check is fixes, not a report. Find what's wrong, then offer to fix the parts that matter most.
 
-Run the checks in order and report only the ones with findings.
+## Before you start
 
-## 1. Stale inbox
+Read `.agents/wiki/config.md`. Its **Lint** section adapts the checks below to this folder: skip the checks it turns off, use its thresholds, and run the house-specific checks it adds. Its **House rules** section says what a fix must respect (link format, who writes frontmatter, where new pages may go).
 
-Files in the inbox older than 7 days, by filename date or `updated`.
+Scan the folders in the Structure table plus any other folder holding notes; skip `.agents/`, `.claude/`, `.obsidian/`, `.git/` and the `private` folders. Change nothing without approval, except format-only link fixes when the user said "fix it".
 
-```text
-STALE INBOX (2, older than 7 days)
-- inbox/2026-03-28-vendor-note.md: 10 days
-→ file, update or discard
-```
+## Checks
 
-## 2. Missing metadata
+1. **Stale inbox.** Items in the inbox older than 7 days, by filename date or `updated`.
+2. **Missing metadata.** Only when config `frontmatter` is `llm-context-base`: notes missing `type`, `summary` or `updated`, skipping `README.md` files. Frontmatter is added as notes are touched, so report this as a count per folder unless the user asked for a backfill.
+3. **Stale and stuck notes.** `status: active` with `updated` more than 90 days ago (`archived`, `superseded`, `complete` exempt); drafts untouched for more than 30 days, including placeholder pages ("under construction", "TODO", empty bodies); `archived` or `superseded` without `failure_reason`. If a sync rewrites `updated`, judge age from other evidence (dates in titles, git history) and say so.
+4. **Orphans.** Notes no other note links to, counting both `[[Note]]` and `[text](path.md)` links, links in the `related` field, and parent-child relationships the house rules define.
+5. **Broken links and raw paths.** Links whose target doesn't exist; paths written as text or code spans where a link was meant; links the house's publisher would refuse.
+6. **Naming.** Only when config `naming` is `date-prefixed`: notes without a `YYYY-MM-DD-` prefix (skip `README.md`, `AGENTS.md`, `CLAUDE.md`). Propose renames from the file's first commit date (`git log --diff-filter=A --follow --format=%ad --date=short -- <file> | tail -1`); renames update inbound links in the same pass.
+7. **Context size.** `wc -l AGENTS.md .agents/wiki/config.md` and `wc -l .agents/skills/*/SKILL.md`. Flag `AGENTS.md` plus `config.md` over 300 lines, or a skill over 300 lines. For config, propose compacting Conventions: merge duplicates, drop rules the structure now makes obvious.
+8. **House checks.** Whatever the Lint section of config adds.
 
-Notes without YAML frontmatter or missing `type`, `summary` or `updated`. Skip `README.md` files. In a folder adopted from an existing vault, report the count per folder rather than every file; frontmatter is added when a note is next touched, not in bulk, unless the user asks for a backfill.
+## Report as fixes
 
-## 3. Stale and stuck notes
+Lead with what you propose to do, not with counts:
 
-- `status: active` with `updated` more than 90 days ago. `archived`, `superseded` and `complete` notes are exempt.
-- `status: draft` with `updated` more than 30 days ago: propose finishing, filing or archiving it.
-- `archived` or `superseded` without `failure_reason`.
+1. **The fixes worth doing, best first.** Up to five, each one line: what you'd change, where, and why it matters to the user (a page people land on is a placeholder; a decision's link points nowhere; ten meeting notes aren't reachable from their parent). Group mechanical fixes ("convert 23 code-span paths to links in Engineering/") into one line.
+2. **One line of totals** for everything else, so nothing is hidden.
+3. **An offer:** do the first fix now, or all the mechanical ones.
 
-## 4. Orphans
-
-Notes no other note links to. Count both link styles: `[[Note name]]` (also `[[path/Note name|alias]]`) and `[text](path.md)`, including links inside the `related` frontmatter field. Propose a note to link from, or archiving.
-
-## 5. Broken links and raw paths
-
-- Links whose target doesn't exist: list them for manual resolution.
-- Paths written as text or code spans (`` `Knowledge/foo.md` ``) where a link was meant: propose converting them to the configured link style (`wikilink` → strip `.md`, wrap in `[[ ]]`).
-
-## 6. Naming
-
-Only when config `naming` is `date-prefixed`: notes outside the exceptions (`README.md`, `AGENTS.md`, `CLAUDE.md`, the log) without a `YYYY-MM-DD-` prefix. Propose renames using the file's first commit date (`git log --diff-filter=A --follow --format=%ad --date=short -- <file> | tail -1`), or today's date if untracked. Renames must update inbound links in the same pass. For `descriptive` or `as-found`, skip this check.
-
-## 7. Context size
-
-What the agent loads every session should stay small as the wiki grows.
-
-```bash
-wc -l AGENTS.md CLAUDE.md .agents/wiki/config.md
-wc -l .agents/skills/*/SKILL.md | sort -rn
-```
-
-Flag `AGENTS.md` plus `config.md` over 300 lines, any skill over 300 lines, any template over 100 lines. For config, propose compacting the Conventions section: merge duplicates, drop rules that are now obvious from the structure. Never restructure instruction files without approval, and don't optimize what isn't a problem.
-
-## Report
-
-```text
-WIKI LINT, YYYY-MM-DD: 7 checks, 5 findings
-[sections with findings]
-```
-
-Append to the log: `## [YYYY-MM-DD] lint | 5 findings: stale 2, metadata 1, orphans 2`.
+Keep the report short enough to read in one screen. If the user wants the full list, give it on request.
 
 Monthly is a reasonable cadence, or whenever the wiki feels messy.

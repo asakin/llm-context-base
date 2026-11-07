@@ -10,11 +10,11 @@ llm-context-base is a set of instructions that turns any AI agent with file acce
 |---|---|---|
 | `AGENTS.md` (a marked block) | framework | The rules every session follows: capture first, metadata, links, logging, privacy, and which skill or agent handles what |
 | `CLAUDE.md` (`@AGENTS.md`) | framework | Makes Claude Code load `AGENTS.md`, which it skips when a `CLAUDE.md` exists |
-| `.agents/wiki/config.md` | you | Profile, tone, folder structure, paths, link style, naming, private folders, and the conventions the agent has learned |
+| `.agents/wiki/config.md` | you | Your folder's house rules and how llm-context-base adapted to them, plus profile, tone, structure, paths, link style, naming, lint adaptations and the conventions the agent has learned. Where it disagrees with `AGENTS.md`, it wins |
 | `.agents/wiki/templates/` | framework, plus yours | Note templates: decision, initiative, knowledge article, meeting notes, journal entry, inbox capture |
 | `.agents/skills/wiki-*` | framework | The four skills: setup, capture, query, lint |
 | `.claude/agents/warren.md`, `marlowe.md` | framework, plus a local section | The two wiki agents |
-| `inbox/`, `log.md` | you | Where captures land, and the log of significant changes. Both paths are set in config |
+| `inbox/` | you | Where captures land; setup reuses an intake folder you already have |
 
 Everything else in the folder is yours and stays where it is. Re-running setup updates the framework-owned parts and leaves the rest alone.
 
@@ -73,7 +73,7 @@ YAML frontmatter shows as Properties in Obsidian, a table on GitHub, and plain t
 
 **One instruction file, read natively.** Earlier versions shipped a shim per tool. Since AGENTS.md became the shared convention, one file covers every major agent, and Agent Skills replace the hand-rolled just-in-time loading of v1.
 
-**Install on top, never take over.** Most people already have a folder of notes. Setup adds a marked block and a hidden `.agents/` folder, learns the folder's link style, naming and frontmatter, and leaves notes where they are.
+**Adapt to the host.** Most people already have a folder of notes, and many folders have rules of their own: a sync to Outline or Notion that owns the frontmatter, a publisher that refuses wikilinks, an intake folder, an `AGENTS.md` nobody may edit. Setup reads those house rules first and fits llm-context-base to them: it adopts the folder's convention where it already does the job, brings its own where the folder has none, and proposes a change only where it would improve the user's practice. Even the lint checks are adapted: checks the house makes meaningless are turned off, and house rules worth enforcing become checks. The result lives in `config.md`, which outranks the framework's defaults. Setup never moves notes or edits the folder's own instruction files.
 
 **Learn conventions instead of a training period.** v1 ran a 30-day training period with day counters and footers. v2 writes conventions to `config.md` the moment a conversation settles one, asks at most one organizing question per session, and proposes a new folder only when material keeps not fitting.
 

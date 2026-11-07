@@ -5,7 +5,9 @@ description: Start a new llm-context-base wiki, or install, update or migrate it
 
 # Setting up llm-context-base
 
-The target is the folder the user is working in. Setup adds a small set of framework files, learns how the folder is already organized, and never moves, renames or rewrites the user's notes without asking.
+llm-context-base joins a folder the way a symbiont joins a host: it adapts to the conventions already there, brings what the folder lacks, and leaves the folder better at what it was already doing. In an existing folder it never moves, renames or rewrites notes, and never edits the folder's own instruction files.
+
+**Talk the user through it.** This is their first look at the system. Before each step, say in a sentence or two what you are about to do and why. When you ask a question, say what depends on the answer. Keep survey numbers to the few that explain a decision; the user doesn't need counts for their own sake.
 
 ## 1. Find out what kind of folder this is
 
@@ -19,9 +21,9 @@ If the user named a folder ("start a new wiki in ~/notes"), work there: create i
 | Markdown notes, an `.obsidian/` folder, or other content | **Existing folder** |
 | Nothing, or only a README or `.git` | **Fresh start** |
 
-If the user's words and the folder disagree (they asked for a fresh wiki but the folder holds notes, or the reverse), say what you found and ask which they meant before going on.
+If the user's words and the folder disagree (they asked for a fresh wiki but the folder holds notes, or the reverse), say what you found and ask which they meant.
 
-**Fresh start:** if the folder isn't a git repository, offer `git init`; history is how the user undoes anything the agent does. **Existing folder:** if it's a git repository with uncommitted changes, suggest committing first so setup's changes can be reviewed and reverted on their own; if it isn't one, mention that a commit or backup before setup is a good idea, and go on when the user is ready.
+**Fresh start:** if the folder isn't a git repository, offer `git init`; history is how the user undoes anything an agent does. **Existing folder:** if it's a git repository with uncommitted changes, suggest committing first so setup's changes can be reviewed and reverted on their own; if it isn't one, suggest a backup, and go on when the user is ready.
 
 ## 2. Get the framework files
 
@@ -33,48 +35,80 @@ TAG=$(git ls-remote --tags --refs --sort=-v:refname "$REPO" 'v*' | head -1 | sed
 SRC=$(mktemp -d) && git clone --quiet --depth 1 --branch "$TAG" "$REPO" "$SRC"
 ```
 
-Without git, download `$REPO/archive/refs/tags/$TAG.tar.gz` and unpack it instead. If the user names a source (a local clone, a branch, a fork), use that as `$SRC` instead of the latest release, and say so. In **update** mode, compare `$TAG` with the version in the target's `<!-- llm-context-base:start vX.Y.Z -->` line; if they match, say it's up to date and offer only the agent re-tuning in step 6. Otherwise show the release notes (`$REPO/releases/tag/$TAG`) before continuing.
+Without git, download `$REPO/archive/refs/tags/$TAG.tar.gz` and unpack it instead. If the user names a source (a local clone, a branch, a fork), use that as `$SRC` and say so. In **update** mode, compare `$TAG` with the version in the target's `<!-- llm-context-base:start vX.Y.Z -->` line; if they match, say it's up to date and offer only the agent re-tuning in step 7. Otherwise show the release notes (`$REPO/releases/tag/$TAG`) before continuing.
 
-## 3. Tell the user what will change, then install
+Read `$SRC/AGENTS.md`, `$SRC/.agents/wiki/config.md` and the four skills before going on: they are the defaults you are about to fit to this folder.
+
+## 3. Read the house rules (existing and v1 modes)
+
+Before installing anything, learn how this folder already works. You are the newcomer. Read:
+
+- **Instruction files:** every `AGENTS.md` (nested ones too), `CLAUDE.md`, `.claude/`, `.cursor/rules/`, `.github/copilot-instructions.md`, `.github/instructions/`, `GEMINI.md`, and any README or CONTRIBUTING that tells people or agents how to write here.
+- **Tooling that touches notes:** sync scripts and the CI that runs them (a wiki mirrored from Notion, Outline, Confluence or a docs site), git hooks (`.git/hooks/`, a `pre-commit` config, `scripts/`), linters and formatters (`.markdownlint*`, `.prettierrc`, `.editorconfig`), publishing configs (Hugo, MkDocs, Docusaurus, Jekyll, Quartz), `.gitignore`, Obsidian's `.obsidian/` settings and plugins.
+- **The notes themselves:** sample up to 200. Note the link style (count `[[…]]` against `[…](….md)`, and how spaces and paths are written), the frontmatter fields in use and whether a tool generates them, file naming, folder hierarchy (does a parent page have a same-named folder of children?), and any markup that only works in one renderer.
+
+From this, work out what each house rule implies for an agent writing here, for example: frontmatter written by a sync must never be touched; wikilinks are refused by the publisher; new top-level folders are created somewhere else; an intake folder already exists and is gitignored; a rule forbids editing `AGENTS.md`.
+
+## 4. Fit llm-context-base to the house
+
+For each thing llm-context-base brings, find the house's equivalent and decide:
+
+| llm-context-base brings | Look for the house's |
+|---|---|
+| An inbox for captures | Intake folder: `raw/`, `Inbox/`, `_inbox/`, `00 Inbox/`, a daily-notes folder, or whatever the instruction files describe |
+| YAML frontmatter (`type`, `summary`, `tags`, `status`, `updated`) | Frontmatter fields and who writes them |
+| A link style | Link format the folder or its publisher requires |
+| A naming rule | Naming per folder |
+| Note templates | Existing templates (Obsidian Templates or Templater folder, a templates directory) |
+| Private folders | Folders the instruction files or `.gitignore` keep personal or agent-owned |
+| Lint checks (see the `wiki-lint` skill) | Linters, hooks and publisher rules that already check notes, and rules a lint check would contradict |
+| Committing finished work | Commit and push rules |
+
+Decide each row this way:
+
+- **The house has an equivalent and the difference doesn't matter:** adopt the house's. The user's established practice wins over ours.
+- **The house has an equivalent and ours is meaningfully better:** propose ours, say concretely what the user gains, and let them choose. Improving their practice is the point, but it's their call.
+- **The house has nothing:** bring ours.
+- **A house rule blocks something llm-context-base needs:** say which rule and ask. Never edit the folder's own instruction files, hooks or tooling to get around it. If the house has a mechanism for proposing changes (for example, writing a proposed `AGENTS.md` next to the real one), use it.
+
+Show the user the result as a short table (topic, house rule, what llm-context-base will do here) and wait for a yes before installing. That table becomes the House rules section of `config.md`.
+
+## 5. Install
 
 List the files you will add or replace and wait for a yes. Then, from `$SRC`:
 
-- **`AGENTS.md`:** copy the block from `<!-- llm-context-base:start` through `<!-- llm-context-base:end -->`. If the target has an `AGENTS.md`, replace its existing block or, if it has none, put the block at the top; keep everything else in the file as it is. If the target has no `AGENTS.md`, create one with just the block.
-- **`CLAUDE.md`:** must contain the line `@AGENTS.md`. Create the file if missing; otherwise add the line at the top if it isn't there. Leave the rest alone. A `.claude/CLAUDE.md` gets the same treatment if it exists instead of a root one.
-- **`.agents/skills/wiki-*`:** replace each `wiki-*` directory whole. Leave any other skills in `.agents/skills/` alone.
-- **`.agents/wiki/templates/`:** copy each shipped template, overwriting files of the same name. The user's own templates in that folder stay.
+- **`AGENTS.md`:** copy the block from `<!-- llm-context-base:start` through `<!-- llm-context-base:end -->`. If the target has an `AGENTS.md`, replace its existing block or, if it has none, put the block at the top; keep everything else in the file as it is. If the target has no `AGENTS.md`, create one with just the block. If a house rule forbids editing `AGENTS.md`, follow step 4's last rule.
+- **`CLAUDE.md`:** must contain the line `@AGENTS.md`. Create the file if missing; otherwise add the line at the top if it isn't there. A `.claude/CLAUDE.md` gets the same treatment if it exists instead of a root one.
+- **`.agents/skills/wiki-*`:** replace each `wiki-*` directory whole. Leave other skills alone.
+- **`.agents/wiki/templates/`:** copy each shipped template, overwriting files of the same name. Skip this if the house has its own templates and the user chose them in step 4.
 - **`.agents/wiki/config.md`:** copy only if it doesn't exist. Never overwrite it.
-- **`.claude/agents/warren.md` and `marlowe.md`:** if the target already has a file of that name without the `llm-context-base:agent` comment, it is the user's own: stop and ask before touching it. Otherwise replace everything above the `<!-- llm-context-base:local -->` line with the new version and keep the local section below it.
-- **Claude Code skills:** Claude Code reads only `.claude/skills/`. If `.claude/skills` doesn't exist, link it: `ln -s ../.agents/skills .claude/skills`. If it exists as a folder, link each wiki skill inside it instead: `ln -s ../../.agents/skills/wiki-capture .claude/skills/wiki-capture` (and so on). On Windows, or if symlinks fail, copy the directories and tell the user an update will refresh the copies.
+- **`.claude/agents/warren.md` and `marlowe.md`:** if a file of that name exists without the `llm-context-base:agent` comment, it is the user's own: ask before touching it. Otherwise replace everything above the `<!-- llm-context-base:local -->` line and keep the local section below it.
+- **Claude Code skills:** Claude Code reads only `.claude/skills/`. If it doesn't exist, link it: `ln -s ../.agents/skills .claude/skills`. If it exists as a folder, link each wiki skill inside it: `ln -s ../../.agents/skills/wiki-capture .claude/skills/wiki-capture` (and so on). If symlinks fail, copy the directories and say an update will refresh them.
 
-Nothing else from `$SRC` is copied: not its README, docs, license, assets or CI. Delete `$SRC` when you're done.
+Nothing else from `$SRC` is copied. Delete `$SRC` when you're done.
 
-## 4. Learn the folder (fresh, existing and v1 modes)
+## 6. Write the config
 
-Survey before you write config, and show the user what you found:
+Fill in `.agents/wiki/config.md` from steps 3 and 4:
 
-- **Structure:** top-level folders, what each seems to hold, and note counts. Write them to the Structure table in `config.md`.
-- **Inbox:** reuse an existing inbox-like folder (`Inbox/`, `_inbox/`, `00 Inbox/`…) as `inbox`; otherwise use `inbox/`.
-- **Log:** reuse an existing `log.md`-style changelog if there is one; otherwise `log.md`.
-- **Link style:** count `[[…]]` against `[…](….md)` across notes; the majority sets `link_style`.
-- **Frontmatter:** sample up to 200 notes and list the fields in use. Fields other than `type`, `summary`, `tags`, `status`, `updated` go in `extra_frontmatter`. Do not add frontmatter to notes now; it gets added as notes are touched.
-- **Naming:** if most notes start with `YYYY-MM-DD-`, set `naming: date-prefixed`; if folders differ, `as-found`; else `descriptive`.
-- **Private:** propose folders that look personal (`Journal`, `Diary`, `Private`, `Personal`, `Health`, `Finance`) for `private` and let the user confirm.
+- **Frontmatter keys:** `inbox`, `link_style`, `naming`, `frontmatter` (`llm-context-base`, `host` when another tool writes it, or `none`), `private`, and `setup:` set to today.
+- **House rules:** the table from step 4, one row per topic, plus any other house rule an agent writing here must know.
+- **Structure:** the top-level folders and what each holds, in a sentence each.
+- **Lint:** how the `wiki-lint` checks apply here. Turn off checks the house makes meaningless (for example the metadata check when `frontmatter` is `host`), change thresholds that don't fit, and add checks for house rules worth enforcing (for example "wikilinks that match several pages are refused by the publisher"). Give each a one-line reason.
+- **Conventions:** anything the user decided during setup, dated.
 
-Then fill in the frontmatter of `config.md` and set `setup:` to today's date.
+Do not add frontmatter to notes during setup.
 
-**Fresh start:** there is nothing to survey. Create the inbox and the log. Offer a starter layout in one short paragraph, and create it only on a yes: `Projects/` (one folder per project with an `_overview.md`), `Knowledge/` (with `HowTo/`, `Decisions/`, `References/`), `Journal/` and `Private/` (both in `private`). Otherwise the structure grows as the user captures things.
+**Fresh start:** there is nothing to survey. Create the inbox. Offer a starter layout in one short paragraph, and create it only on a yes: `Projects/` (one folder per project with an `_overview.md`), `Knowledge/` (with `HowTo/`, `Decisions/`, `References/`), `Journal/` and `Private/` (both in `private`). Otherwise the structure grows as the user captures things.
 
-## 5. Migrate from v1
+**Migrate from v1:** after the install, showing each change first:
 
-Do these after step 3, showing each change first:
-
-1. **Config:** copy About You, Conversation Tone, Training Log and Your Conventions from `_config/config.md`, plus everything in `_config/context.md`, into the matching sections of `.agents/wiki/config.md` (training-log entries become dated Conventions lines). Copy tool entries from `_config/tools.md` into Tools. Set `inbox: _inbox/`, `private: [3-Journal/, 4-Private/]`, `preserve_sources` from the old setting with `sources: _sources/`, `link_style: markdown` unless the survey says otherwise, `naming: as-found`, and `log` to `2-Knowledge/log.md` if it exists, else `WIKI-LOG.md`. Keep `1-Projects/` to `4-Private/` as they are and describe them in Structure.
+1. **Config:** copy About You, Conversation Tone, Training Log and Your Conventions from `_config/config.md`, plus everything in `_config/context.md`, into the matching sections of `config.md` (training-log entries become dated Conventions lines). Copy tool entries from `_config/tools.md` into Tools. Set `inbox: _inbox/`, `private: [3-Journal/, 4-Private/]`, `preserve_sources` from the old setting with `sources: _sources/`, `link_style: markdown` unless the notes say otherwise, `naming: as-found`. Keep `1-Projects/` to `4-Private/` and describe them in Structure.
 2. **Templates:** copy any template in `_meta/templates/` that the user changed or added into `.agents/wiki/templates/` under a name the framework doesn't ship.
-3. **Old framework files:** remove, after confirming the list: `.cursorrules`, `.cursor/rules/bootstrap.mdc`, `.windsurfrules`, `.github/copilot-instructions.md`, `.claude/CLAUDE.md`, `_config/`, `_meta/instructions/`, `_meta/templates/`. The v1 `AGENTS.md` and `CLAUDE.md` were shims too (they start with "STEP 0: Framework mode check" and point at `_config/config.md`): remove that shim text and keep only the new block plus anything the user added. Offer to remove the v1 template's own files too if they're still there: `PHILOSOPHY.md`, `docs/`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `migrate-to-yaml-frontmatter.py`, and the framework half of `README.md` (everything from `<!-- llm-context-base:framework-readme -->` down).
+3. **Old framework files:** remove, after confirming the list: `.cursorrules`, `.cursor/rules/bootstrap.mdc`, `.windsurfrules`, `.github/copilot-instructions.md`, `.claude/CLAUDE.md`, `_config/`, `_meta/instructions/`, `_meta/templates/`. The v1 `AGENTS.md` and `CLAUDE.md` were shims too (they start with "STEP 0: Framework mode check"): remove that text and keep only the new block plus anything the user added. Offer to remove the v1 template's own files if still there: `PHILOSOPHY.md`, `docs/`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `migrate-to-yaml-frontmatter.py`, `WIKI-LOG.md`, and the framework half of `README.md` (everything from `<!-- llm-context-base:framework-readme -->` down).
 4. **Metadata:** v1.0 notes use `**Type:** …` lines and some v1.1 notes use `- **Type:** …` bullets. Run `python3 .agents/skills/wiki-setup/scripts/migrate-frontmatter.py . --dry-run`, show the list, and run it without `--dry-run` only on a yes.
 
-## 6. Tune the agents
+## 7. Tune the agents
 
 Ask in a single message, all optional:
 
@@ -85,18 +119,24 @@ Ask in a single message, all optional:
 
 Write the answers into the `<!-- llm-context-base:local -->` section of `warren.md` and `marlowe.md` as short rules, and the profile and tone answers into About You and Tone in `config.md`. When re-tuning, show the current local sections and edit them; don't start over.
 
-## 7. Offer the pi extension
+## 8. Offer pi extensions
 
-If `pi` is on the PATH (`command -v pi`) and the install source below is filled in, offer: "You use pi. Install the PI_EXTENSION_NAME extension so Warren and Marlowe work in pi too?" On a yes, run the install command and tell the user to `/reload` any running pi session. If the extension reads agents from somewhere other than `.claude/agents/`, link the two agent files there. If `pi` isn't installed, don't mention it.
+Only if `pi` is on the PATH (`command -v pi`); otherwise don't mention pi.
+
+- **pi-rebrief** reloads `AGENTS.md` and other context files into a running pi session, so a session started before setup picks up the new rules without restarting. Offer it if `pi list` doesn't show it: `pi install git:github.com/asakin/pi-rebrief`, then `/reload` and `/rebrief` in the running session.
+- **The pi agents extension** lets Warren and Marlowe run in pi. Offer it only if the install source below is filled in. On a yes, install it and tell the user to `/reload`. If it reads agents from somewhere other than `.claude/agents/`, link the two agent files there.
 
 <!-- TODO(pi-extension): fill in before releasing v2.0.0. -->
 - Name: PI_EXTENSION_NAME
 - Install: `pi install PI_EXTENSION_SOURCE`
 - Agent path it reads: PI_AGENT_PATH
 
-## 8. Finish
+## 9. Finish
 
-1. Append `## [YYYY-MM-DD] setup | llm-context-base vX.Y.Z (mode)` to the log.
-2. If it's a git repository: make sure `AGENTS.md`, `CLAUDE.md` and `.agents/` aren't ignored; offer to add the `private` folders to `.gitignore`; commit with `chore: set up llm-context-base vX.Y.Z` (or `update to`).
-3. If there's an `.obsidian/` folder, mention the Web Clipper template (`https://github.com/asakin/llm-context-base/blob/main/assets/clipper-template.json`, import it in Web Clipper settings and set its folder to the inbox) and kepano/obsidian-skills for Obsidian-specific syntax.
-4. Tell the user what was added and three things to try: "Capture this: …", "What do we know about …?", "Lint the wiki."
+1. **Commit.** If it's a git repository: make sure `AGENTS.md`, `CLAUDE.md` and `.agents/` aren't ignored; offer to add `private` folders to `.gitignore` if the house rules allow; commit with `chore: set up llm-context-base vX.Y.Z` (or `update to`).
+2. **Reload.** The agent session that ran setup loaded its instructions before the block existed. Tell the user to start a new session (or `/rebrief` in pi) so every rule applies.
+3. **Show what changed for them.** Don't report survey statistics or run a lint. In a short message:
+   - **What you can do now that you couldn't before:** three to five things, each with a phrase to try that uses this folder's real content (a real project name, a real topic). For example "Capture this: …" landing in their intake folder, "What do we know about <topic they have notes on>?" answered with citations, "File my inbox", "Should we <a decision their notes touch on>?" surfacing past decisions.
+   - **How it fits their house rules:** one or two sentences on the most important adaptations (what you adopted, what you brought).
+   - **One concrete improvement to start with:** pick a single specific thing you noticed during the survey that you can fix now, and offer to do it ("Four pages are still placeholders, starting with *What we build*. Want me to draft it from what the wiki already says?"). One offer, not a list.
+4. **Obsidian:** if there's an `.obsidian/` folder, mention the Web Clipper template (`https://github.com/asakin/llm-context-base/blob/main/assets/clipper-template.json`, imported with its folder set to the inbox) and kepano/obsidian-skills for Obsidian syntax.
