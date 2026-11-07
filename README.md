@@ -4,7 +4,7 @@
 
 Point any coding agent at your notes (an Obsidian vault, a docs folder, an empty directory) and it captures, files, links and answers from them, following one set of rules in `AGENTS.md`. It learns how your folder is already organized instead of making you adopt a new structure, and it works the same in Claude Code, Codex, Cursor, Copilot, pi and the other agents that read `AGENTS.md`.
 
-It is a ready-made implementation of [Andrej Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f): you supply the sources and the conversation, the agent maintains the wiki.
+You supply the sources and the conversation; the agent maintains the wiki.
 
 ---
 
@@ -89,7 +89,7 @@ v2 replaces the per-tool shims with `AGENTS.md`, the `_config/` and `_meta/` fol
 
 | Page | What's there |
 |---|---|
-| [How It Works](docs/how-it-works.md) | The files, a session, the metadata, the relation to Karpathy's gist, design decisions |
+| [How It Works](docs/how-it-works.md) | The files, a session, the metadata, design decisions |
 | [Supported Tools](docs/supported-tools.md) | What each agent reads, chat apps, local models, privacy |
 | [Using with Obsidian](docs/obsidian.md) | Setup next to a vault, Web Clipper template, Bases, plugins |
 | [Journal Sync and Privacy](docs/journal-sync.md) | Three ways to sync a private folder across devices |
@@ -99,9 +99,9 @@ v2 replaces the per-tool shims with `AGENTS.md`, the `_config/` and `_meta/` fol
 
 The [`examples/`](examples/) folder has four sample notes showing the metadata in use.
 
-## Credits
+## Author
 
-Built on [Andrej Karpathy's LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). By [Ariel Sakin](https://github.com/asakin).
+[Ariel Sakin](https://github.com/asakin).
 
 ## License
 
