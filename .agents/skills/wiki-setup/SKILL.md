@@ -49,7 +49,16 @@ There are always house rules, even in an empty folder. The instructions your har
 - **Tooling that touches notes:** sync scripts and the CI that runs them (a wiki mirrored from Notion, Outline, Confluence or a docs site), git hooks (`.git/hooks/`, a `pre-commit` config, `scripts/`), linters and formatters (`.markdownlint*`, `.prettierrc`, `.editorconfig`), publishing configs (Hugo, MkDocs, Docusaurus, Jekyll, Quartz), `.gitignore`, Obsidian's `.obsidian/` settings and plugins.
 - **The notes themselves:** sample up to 200. Note the link style (count `[[…]]` against `[…](….md)`, and how spaces and paths are written), the frontmatter fields in use and whether a tool generates them, file naming, folder hierarchy (does a parent page have a same-named folder of children?), and any markup that only works in one renderer.
 
-From this, work out what each house rule implies for an agent writing here, for example: frontmatter written by a sync must never be touched; wikilinks are refused by the publisher; new top-level folders are created somewhere else; an intake folder already exists and is gitignored; a rule forbids editing `AGENTS.md`.
+From this, work out what each house rule implies for an agent writing here. Folders differ widely; some of the kinds of rules you may find:
+
+- **Publishing:** a static site (MkDocs, Docusaurus, Hugo, Quartz) needs a `title` or `draft` field, a page listed in a nav file, or files under `content/`; a mirror of Notion, Outline or Confluence owns the frontmatter and rejects some markup.
+- **Note-taking method:** Zettelkasten timestamp IDs and flat folders, Johnny.Decimal or PARA numbering, Logseq `journals/` and `pages/` with `key:: value` properties, Dendron or Foam dot-hierarchies (`project.alpha.notes.md`), daily notes as the only intake.
+- **Metadata:** tags written inline as `#tag` rather than in frontmatter, Dataview inline fields, a fixed set of properties per note type, no frontmatter at all.
+- **Process:** decisions as numbered ADRs with a fixed template, changes only through pull requests, CODEOWNERS on some folders, generated files nobody edits by hand.
+- **Language and style:** a spelling or language rule, a formatter that wraps lines, a style guide.
+- **Boundaries:** encrypted or gitignored folders, folders owned by a person or another agent, an instruction file nobody may edit.
+
+Don't assume any of these; record only what the folder actually shows.
 
 ## 4. Fit llm-context-base to the house
 
@@ -96,7 +105,7 @@ Nothing else from `$SRC` is copied. Delete `$SRC` when you're done.
 
 The shipped skills describe the defaults. Each installed copy must describe this folder, so that an agent following it never has to translate. Edit the six `wiki-*` skills in place:
 
-- Replace default names with the house's: the inbox path (`raw/` instead of `inbox/`, for example), link style and link syntax, the frontmatter rule (when `frontmatter` is `host`, every instruction to set or read `type`, `summary`, `status` or `updated` becomes the house's equivalent, or is removed), naming, the private folders.
+- Replace llm-context-base's defaults with the house's wherever a skill mentions them: the intake folder, link style and syntax, the metadata rule (when `frontmatter` is `host` or `none`, every instruction to set or read `type`, `summary`, `status` or `updated` becomes the house's equivalent, such as inline tags, a property syntax or a nav entry, or is removed), naming, where new notes go, decision format, the private folders.
 - In `wiki-lint`, delete the checks turned off for this folder, change thresholds, and write the house checks out in full as numbered checks of their own.
 - In `wiki-capture`, replace the filing steps that don't apply with the house's intake workflow, and point to the house's templates if those were chosen.
 - In `wiki-query`, say which dates and fields can be trusted here.

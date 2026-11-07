@@ -28,7 +28,7 @@ Scan the folders in the Structure table plus any other folder holding notes; ski
 
 Lead with what you propose to do, not with counts:
 
-1. **The fixes worth doing, best first.** Up to five, each one line: what you'd change, where, and why it matters to the user (a page people land on is a placeholder; a decision's link points nowhere; ten meeting notes aren't reachable from their parent). Group mechanical fixes ("convert 23 code-span paths to links in Engineering/") into one line.
+1. **The fixes worth doing, best first.** Up to five, each one line: what you'd change, where, and why it matters to the user (a page people land on is still a placeholder; a decision links to a note that no longer exists; a cluster of notes nothing links to). Group mechanical fixes ("convert 23 code-span paths to links in Engineering/") into one line.
 2. **One line of totals** for everything else, so nothing is hidden.
 3. **An offer:** do the first fix now, or all the mechanical ones.
 
