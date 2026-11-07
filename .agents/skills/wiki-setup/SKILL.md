@@ -77,7 +77,7 @@ In an existing folder, show the user the result as a short table (topic, house r
 
 ## 5. Install
 
-List the files you will add or replace and wait for a yes. Then, from `$SRC`:
+List the files you will add or replace and wait for a yes. In a fresh start, describe them in a sentence instead (the rules in `AGENTS.md`, the skills and settings in hidden folders, an inbox); a new user has no use for the file list. Then, from `$SRC`:
 
 - **`AGENTS.md`:** copy the block from `<!-- llm-context-base:start` through `<!-- llm-context-base:end -->`. If the target has an `AGENTS.md`, replace its existing block or, if it has none, put the block at the top; keep everything else in the file as it is. If the target has no `AGENTS.md`, create one with just the block. If a house rule forbids editing `AGENTS.md`, follow step 4's last rule.
 - **`CLAUDE.md`:** must contain the line `@AGENTS.md`. Create the file if missing; otherwise add the line at the top if it isn't there. A `.claude/CLAUDE.md` gets the same treatment if it exists instead of a root one.
