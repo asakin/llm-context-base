@@ -39,11 +39,13 @@ Without git, download `$REPO/archive/refs/tags/$TAG.tar.gz` and unpack it instea
 
 Read `$SRC/AGENTS.md`, `$SRC/.agents/wiki/config.md` and the four skills before going on: they are the defaults you are about to fit to this folder.
 
-## 3. Read the house rules (existing and v1 modes)
+## 3. Learn the house rules
 
-Before installing anything, learn how this folder already works. You are the newcomer. Read:
+Before installing anything, learn how this folder already works. You are the newcomer.
 
-- **Instruction files:** every `AGENTS.md` (nested ones too), `CLAUDE.md`, `.claude/`, `.cursor/rules/`, `.github/copilot-instructions.md`, `.github/instructions/`, `GEMINI.md`, and any README or CONTRIBUTING that tells people or agents how to write here.
+There are always house rules, even in an empty folder. The instructions your harness has already loaded into this session (from this folder, the folders above it, the user's home, or an organization's managed policy) are house rules too. You don't need to go looking for them, and you can't override them: adapt to whatever they say, and leave enforcing them to the user's own guardrails. The folder may hold more that no harness loads, so in an existing folder also read:
+
+- **Instruction files in the folder** that weren't loaded into this session, such as a README or CONTRIBUTING that tells people or agents how to write here.
 - **Tooling that touches notes:** sync scripts and the CI that runs them (a wiki mirrored from Notion, Outline, Confluence or a docs site), git hooks (`.git/hooks/`, a `pre-commit` config, `scripts/`), linters and formatters (`.markdownlint*`, `.prettierrc`, `.editorconfig`), publishing configs (Hugo, MkDocs, Docusaurus, Jekyll, Quartz), `.gitignore`, Obsidian's `.obsidian/` settings and plugins.
 - **The notes themselves:** sample up to 200. Note the link style (count `[[…]]` against `[…](….md)`, and how spaces and paths are written), the frontmatter fields in use and whether a tool generates them, file naming, folder hierarchy (does a parent page have a same-named folder of children?), and any markup that only works in one renderer.
 
@@ -71,7 +73,7 @@ Decide each row this way:
 - **The house has nothing:** bring ours.
 - **A house rule blocks something llm-context-base needs:** say which rule and ask. Never edit the folder's own instruction files, hooks or tooling to get around it. If the house has a mechanism for proposing changes (for example, writing a proposed `AGENTS.md` next to the real one), use it, and say what that means: agents only read the real `AGENTS.md`, so llm-context-base stays switched off until someone accepts the proposal. Let the user choose between that and approving the edit now.
 
-Show the user the result as a short table (topic, house rule, what llm-context-base will do here) and wait for a yes before installing. That table becomes the House rules section of `config.md`.
+In an existing folder, show the user the result as a short table (topic, house rule, what llm-context-base will do here) and wait for a yes before installing. That table becomes the House rules section of `config.md`. In a fresh start, skip the table: say in a sentence that llm-context-base's defaults apply within the rules the user's tools already set, name any default the user is likely to care about (for example wikilinks, which suit Obsidian, or markdown links, which suit GitHub), and record the defaults in the House rules section.
 
 ## 5. Install
 

@@ -17,7 +17,7 @@ There is no greeting ritual and no status banner. Mention the inbox only when it
 Many folders had conventions before llm-context-base arrived: instruction files, a sync to another tool, link or naming rules, a frontmatter format, an intake folder. Setup recorded them, and how llm-context-base adapted to each, in the House rules section of `config.md`.
 
 - Where `config.md` and this block disagree, `config.md` wins. The rules below are defaults for whatever the house rules don't cover.
-- Follow the folder's other instruction files (any `AGENTS.md` outside this block, `CLAUDE.md`, rules files). Never edit them. If one stands in the way of what the user asked, say which rule and ask.
+- Every other instruction you were given (the rest of this file, `CLAUDE.md`, rules from parent folders, the user's home or their organization) is a house rule too. Follow it and never edit the files it comes from. If one stands in the way of what the user asked, say which rule and ask.
 
 ## Skills and agents
 
