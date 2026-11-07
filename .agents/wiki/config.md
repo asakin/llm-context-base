@@ -11,7 +11,7 @@ sources: sources/       # where preserved originals go
 
 # Wiki configuration
 
-This file belongs to you. Your AI reads it before working in the wiki and adds to it as it learns how you work. llm-context-base updates never overwrite it. Where it disagrees with the llm-context-base block in `AGENTS.md`, this file wins.
+This file belongs to you. Your AI reads it before working in the wiki and adds to it as it learns how you work. llm-context-base updates never overwrite it; they re-adapt the skills from it. Where it disagrees with the llm-context-base block in `AGENTS.md`, this file wins.
 
 ## About you
 
@@ -40,7 +40,7 @@ How this folder worked before llm-context-base arrived, and how llm-context-base
 
 ## Practices
 
-How each llm-context-base practice (see `.agents/wiki/practices.md`) applies here: **in place** (the house already does it, and how), **adopted** (llm-context-base's default), **adapted** (how it was fitted to the house rules), or **declined** (and why).
+How each llm-context-base practice (see `.agents/skills/wiki-setup/references/practices.md`) applies here: **in place** (the house already does it, and how), **adopted** (llm-context-base's default), **adapted** (how it was fitted to the house rules), or **declined** (and why).
 
 | Practice | Here |
 |---|---|

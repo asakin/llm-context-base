@@ -5,7 +5,7 @@ description: Capture new material into an llm-context-base wiki and file the inb
 
 # Capture and filing
 
-Read `.agents/wiki/config.md` first for the inbox path, house rules, structure, link style, naming, frontmatter setting and private folders. House rules win over anything below. Templates for each note type are in `.agents/wiki/templates/`.
+Read `.agents/wiki/config.md` first for the inbox path, house rules, structure, link style, naming, frontmatter setting and private folders. House rules win over anything below. Templates for each note type are in this skill's `assets/templates/`.
 
 ## Capture
 

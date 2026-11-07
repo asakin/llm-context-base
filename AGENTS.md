@@ -21,7 +21,7 @@ Any agent working here should be able to use the wiki skills, whatever tool it r
 
 ## What llm-context-base adds
 
-A shared set of wiki practices, listed in `.agents/wiki/practices.md`: capture first, fold before you create, answers become pages, cite and date, decisions carry their outcomes, nothing retires without a trail, drafts get finished, every page can be found, conventions are written down, health checks end in fixes, a second pair of eyes, small instructions, the same procedures in every agent, private stays private. The Practices section of `config.md` says how each one applies in this folder; read `practices.md` when a task touches one you're unsure of.
+A shared set of wiki practices, listed in `.agents/skills/wiki-setup/references/practices.md`: capture first, fold before you create, answers become pages, cite and date, decisions carry their outcomes, nothing retires without a trail, drafts get finished, every page can be found, conventions are written down, health checks end in fixes, a second pair of eyes, small instructions, the same procedures in every agent, private stays private. The Practices section of `config.md` says how each one applies in this folder; read `practices.md` when a task touches one you're unsure of.
 
 ## The folder's own rules come first
 
@@ -37,11 +37,13 @@ Many folders had conventions before llm-context-base arrived: instruction files,
 | capture something, park an idea, triage a web clip, file the inbox | `wiki-capture` skill |
 | know what the wiki says, find a doc, check past decisions | `wiki-query` skill |
 | a health check, a cleanup, to know what needs attention | `wiki-lint` skill |
+| maintenance: merge, split, archive, restructure, tidy prose | `wiki-keep` skill |
+| research, an audit, a page verified against its sources | `wiki-investigate` skill |
 | install, update, migrate from v1, re-tune the agents | `wiki-setup` skill |
 
-If your tool does not load skills on its own, read `.agents/skills/<name>/SKILL.md` when a task matches.
+The skills were adapted to this folder when they were installed (paths, link style, frontmatter, house checks), so follow them as written here rather than from memory of the originals. If your tool does not load skills on its own, read `.agents/skills/<name>/SKILL.md` when a task matches.
 
-Two agents are defined in `.claude/agents/`: **warren** keeps the wiki (filing, writing, linking, restructuring) and **marlowe** investigates (questions, research, critique). Delegate multi-step work to them when your tool supports subagents.
+Two agents are defined in `.claude/agents/`: **warren** keeps the wiki (the `wiki-keep` skill) and **marlowe** investigates (the `wiki-investigate` skill). Delegate multi-step work to them when your tool supports subagents; otherwise follow the skill yourself.
 
 ## Defaults
 

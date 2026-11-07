@@ -11,10 +11,8 @@ llm-context-base is a set of instructions that turns any AI agent with file acce
 | `AGENTS.md` (a marked block) | framework | The rules every session follows: capture first, metadata, links, logging, privacy, and which skill or agent handles what |
 | `CLAUDE.md` (`@AGENTS.md`) | framework | Makes Claude Code load `AGENTS.md`, which it skips when a `CLAUDE.md` exists |
 | `.agents/wiki/config.md` | you | Your folder's house rules and how llm-context-base adapted to them, plus profile, tone, structure, paths, link style, naming, lint adaptations and the conventions the agent has learned. Where it disagrees with `AGENTS.md`, it wins |
-| `.agents/wiki/practices.md` | framework | The shared wiki practices and how each is applied or adapted |
-| `.agents/wiki/templates/` | framework, plus yours | Note templates: decision, initiative, knowledge article, meeting notes, journal entry, inbox capture |
-| `.agents/skills/wiki-*` | framework | The four skills: setup, capture, query, lint |
-| `.claude/agents/warren.md`, `marlowe.md` | framework, plus a local section | The two wiki agents |
+| `.agents/skills/wiki-*` | framework, adapted to you | Six skills: setup (with the practices list), capture (with the note templates), query, lint, keep, investigate. Setup edits each one to your folder's paths and rules; an update replaces them and adapts them again |
+| `.claude/agents/warren.md`, `marlowe.md` | framework, plus a local section | The two wiki agents; each is a name, a namesake and a pointer to its skill |
 | `inbox/` | you | Where captures land; setup reuses an intake folder you already have |
 
 Everything else in the folder is yours and stays where it is. Re-running setup updates the framework-owned parts and leaves the rest alone.
