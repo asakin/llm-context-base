@@ -1,8 +1,0 @@
-{
-  "baseFontSize": 16,
-  "showRibbon": true,
-  "cssTheme": "Minimal",
-  "enabledCssSnippets": [
-    "llm-wiki"
-  ]
-}

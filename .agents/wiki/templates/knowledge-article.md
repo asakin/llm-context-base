@@ -1,0 +1,36 @@
+---
+type: knowledge
+summary: "[One sentence: what does this document cover? Use terms someone would search for.]"
+tags: [domain, type]  # replace with real tags, no # prefix
+status: draft
+owner: "[Person or role]"
+updated: YYYY-MM-DD
+related: []  # links to related notes, in the link style set in config
+---
+
+# [Title — descriptive, searchable]
+
+## Overview
+
+[1-2 sentence overview of what this document covers and who it's for]
+
+---
+
+## [Main Content Section]
+
+[Content here]
+
+---
+
+## Related Resources
+
+- [Link to related guide]
+- [Link to related decision]
+
+---
+
+## Change Log
+
+| Date | Change | Author |
+|------|--------|--------|
+| YYYY-MM-DD | Initial document | [Name] |

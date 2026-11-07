@@ -21,6 +21,6 @@ The float test actually works - drop a spoonful in water, if it floats it's read
 
 ## Notes
 
-This should probably become a proper guide in `2-Knowledge/HowTo/`. It's the kind of thing I'll forget and need to look up again.
+This should probably become a proper guide in `Knowledge/HowTo/`. It's the kind of thing I'll forget and need to look up again.
 
 Could also create a decision record about switching from commercial yeast to sourdough - there were real trade-offs (time, consistency, flavor).

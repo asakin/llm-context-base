@@ -1,86 +1,37 @@
 # Supported Tools
 
-This repo works with any LLM that can read files. Agent-specific bootstrap files are included:
-
-| Tool | Bootstrap File | Setup |
-|------|---------------|-------|
-| **Claude Code** | `.claude/CLAUDE.md` | Automatic |
-| **Cursor** | `.cursor/rules/` | Automatic |
-| **GitHub Copilot** | `.github/copilot-instructions.md` | Automatic in VS Code |
-| **Windsurf** | `.windsurfrules` | Automatic |
-| **Codex CLI / Gemini CLI / others** | `AGENTS.md` | Automatic via the [AGENTS.md standard](https://agents.md/) |
-| **Claude Chat (claude.ai)** | — | GitHub sync via Projects (see below) |
-| **ChatGPT** | — | GitHub connector or Vector Store Sync (see below) |
-
-## How It Works
-
-All real instructions live in `_config/config.md` and `_meta/instructions/general.md`. The tool-specific files are thin shims that point there.
-
-This is intentional. When you customize the system's behavior, you change it in one place and every tool picks it up. Adding support for a new tool is trivial: create a shim file that says "read config.md first."
-
-## The State of Agent Instruction Files
-
-The ecosystem is still converging. [AGENTS.md](https://agents.md/) (now under the Linux Foundation) is the closest thing to a cross-tool standard, but most tools still read their own proprietary file too. This repo ships shims for the most common ones. If your tool isn't listed, creating a shim takes 30 seconds.
+llm-context-base works with any AI agent that can read and write files in a folder. The rules live in `AGENTS.md`, which most agents now read on their own; the on-demand parts are [Agent Skills](https://agentskills.io) in `.agents/skills/`.
 
 ---
 
-## Agentic Tools vs. Chat LLMs
+## Agents with file access
 
-There are two classes of tools, and they work differently with this system.
+| Tool | Reads the rules from | Skills | Warren and Marlowe |
+|---|---|---|---|
+| **Claude Code** | `CLAUDE.md`, which imports `AGENTS.md` | `.claude/skills/` (setup links it to `.agents/skills/`) | Native subagents |
+| **Codex** | `AGENTS.md` | `.agents/skills/` | — |
+| **Cursor** | `AGENTS.md` | `.agents/skills/` | — |
+| **GitHub Copilot** (VS Code, CLI, cloud agent) | `AGENTS.md` | `.agents/skills/` | — |
+| **Antigravity CLI** (successor to Gemini CLI) | `AGENTS.md` | `.agents/skills/` | — |
+| **pi** | `AGENTS.md` | `.agents/skills/` | Through the pi agents extension, which setup offers when `pi` is installed |
+| **Devin Desktop** (formerly Windsurf) | `AGENTS.md` | Reads a skill's file when `AGENTS.md` points it there | — |
+| **Gemini CLI** | `GEMINI.md` by default; add `AGENTS.md` to `context.fileName` in `.gemini/settings.json` | `.agents/skills/` | — |
+| **Anything else** | Tell it to read `AGENTS.md` first | `AGENTS.md` lists each skill's path | — |
 
-**Agentic tools** (Claude Code, Cursor, Copilot, Windsurf) have file system access. They read your wiki at session start, write files, and commit to git. They get the full experience — session start protocol, routing table, lint, everything.
+Claude Code needs the `CLAUDE.md` import because it reads `AGENTS.md` only when no `CLAUDE.md` exists, and versions before 2.1.277 don't read it at all. The one-line `@AGENTS.md` works on every version.
 
-**Chat LLMs** (Claude Chat, ChatGPT) have no file system access by default. They can't write to your repo. They're thinking partners and research tools — useful alongside agentic tools, not as replacements for them.
+If a tool doesn't load skills by itself, nothing breaks: `AGENTS.md` names each skill and tells the agent to read its `SKILL.md` when a task matches.
 
-The practical split:
-- Use an agentic tool to capture, file, and maintain the wiki
-- Use a chat LLM to research, brainstorm, and think — then bring the output back to the agentic tool to file
+## Chat apps
 
----
+Chat apps without access to your files (the Claude and ChatGPT apps) can read a wiki kept in a GitHub repository through their GitHub connectors. Use them for research and thinking, then bring the result to an agent with file access to capture and file it. They can't follow the write rules, so they shouldn't be the ones editing the wiki.
 
-## Using Claude Chat (claude.ai) with Your Wiki
+## Local models
 
-### GitHub Sync via Claude Projects
+The instructions are plain markdown and need no special tool calls. Smaller local models handle the capture, metadata and query rules; multi-step skills such as setup and lint go better with a stronger model.
 
-Claude Projects has an official GitHub connector. Setup:
+## Privacy
 
-1. Create a Project at [claude.ai](https://claude.ai)
-2. In the project settings, connect your GitHub repo
-3. Select the branch and files to sync — recommended: `_config/config.md`, `_config/context.md`, and whatever you're currently working on
-4. Every chat in the project loads those files as background context
+llm-context-base makes no network calls of its own. What leaves your machine is whatever your agent sends to its model provider, so the question is the usual one: is that tool allowed to read these files? Folders listed under `private` in config are never quoted in anything that leaves the wiki.
 
-When you push changes, click "Sync now" inside the project to pull the latest. One click, not a re-upload.
-
-**What gets synced:** File contents only. Not git history or PR metadata.
-
-**For private repos:** Claude reads through GitHub's OAuth — your data stays inside GitHub's trust boundary. Nothing is exposed publicly.
-
----
-
-## Using ChatGPT with Your Wiki
-
-Two options, in increasing order of automation.
-
-### Option A: GitHub Connector (On-Demand)
-
-ChatGPT can connect to your GitHub repo and read it in real time via the GitHub connector in ChatGPT settings. Good for one-off questions about your wiki content without any setup beyond OAuth.
-
-### Option B: Vector Store Sync (Automatic)
-
-The [ChatGPT Assistants Vector Store Sync](https://github.com/marketplace/actions/chatgpt-assistants-vector-store-sync) GitHub Action automatically updates a ChatGPT assistant's knowledge base every time you push to the repo. After setup, every `git push` triggers a sync — no manual action needed.
-
-This is the most automated option available without building a custom server.
-
----
-
-## MCP Servers and Privacy
-
-An MCP server wrapping the wiki can expose it to any MCP-compatible client. Before setting one up, consider:
-
-**Local MCP server (safe):** Run it on `localhost` only. Claude Code connects to it locally. Nothing touches the internet. Works when your computer is on; doesn't help with mobile or remote access.
-
-**Internet-facing MCP server (use carefully):** Exposes your wiki over the internet. If your wiki contains private notes, journal entries, or sensitive decisions, this is a real risk. If you need it, protect it with a secret token and run it on a managed platform (Cloudflare Workers, Fly.io) rather than your own machine.
-
-**The safer alternative for most needs:** The GitHub-based sync options above (Claude Projects, ChatGPT connector) keep everything within GitHub's security perimeter. You're already trusting GitHub with the data — these integrations don't expand that trust boundary.
-
-**GitHub Actions as private compute:** For automation that needs to read the full wiki and do AI-powered work (summaries, analysis, scheduled reports), GitHub Actions is a good option. It runs within GitHub's infrastructure, reads your private repo with your credentials, and writes results back — no server required, no data exposed.
+If you expose the wiki through an MCP server, keep it on `localhost` unless you need remote access, and put authentication in front of a remote one. A wiki usually holds things you wouldn't publish.

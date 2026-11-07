@@ -1,118 +1,123 @@
-# [Project Name]
-
-> This README will be personalized during your first session.
-
----
-
-<!-- llm-context-base:framework-readme -->
-
 # llm-context-base
 
-**An opinionated template for building your own LLM Wiki.**
+**Turn the markdown folder you already have into a wiki your AI agent maintains.**
 
-Use the template, point your AI assistant at it, and start talking. Over time, it learns how you work and adapts its structure to your needs without you having to design anything upfront.
+Point any coding agent at your notes (an Obsidian vault, a docs folder, an empty directory) and it captures, files, links and answers from them, following one set of rules in `AGENTS.md`. It learns how your folder is already organized instead of making you adopt a new structure, and it works the same in Claude Code, Codex, Cursor, Copilot, pi and the other agents that read `AGENTS.md`.
 
----
-
-## How This Relates to Karpathy's LLM Wiki
-
-Andrej Karpathy's [LLM Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) describes a three-layer pattern: raw source documents → an LLM-maintained wiki → a schema config file (like `CLAUDE.md` or `AGENTS.md`). The LLM reads sources, maintains structured wiki pages, and follows the schema config to stay consistent.
-
-llm-context-base implements this pattern as a ready-to-use template — so you don't have to build it from scratch. What it adds on top of the base pattern:
-
-- **Metadata standard** — every file gets a queryable header (type, summary, tags, status, date). The LLM scans these instead of loading full files, which scales cleanly to hundreds of documents.
-- **Inbox-first capture** — a frictionless landing zone with a 7-day TTL. You capture without deciding where things go. The LLM files them later.
-- **Training period** — the system starts chatty (learning your patterns) and goes quiet as it adapts. You never design a taxonomy upfront.
-- **Lint system** — surfaces stale files, missing metadata, and orphaned docs on demand.
-- **Multi-LLM support** — bootstrap shims for Claude Code, Cursor, Copilot, Windsurf, and others. One config, any tool.
-
-[Full comparison with the Karpathy pattern &rarr;](docs/llm-wiki-pattern.md)
+You supply the sources and the conversation; the agent maintains the wiki.
 
 ---
 
-## Quick Start
+## Quick start
 
-**1. Create your copy.** Click **"Use this template"** on GitHub. Make it private. Clone it.
+There are two ways in. Both use the same setup skill, which you hand to your agent as a link; nothing to clone or install first.
 
-```bash
-git clone https://github.com/YOUR-USERNAME/my-wiki.git
-cd my-wiki
+### Start a fresh wiki
+
+Open your agent anywhere and say:
+
+```text
+Start a new llm-context-base wiki in ~/wiki by following
+https://raw.githubusercontent.com/asakin/llm-context-base/main/.agents/skills/wiki-setup/SKILL.md
 ```
 
-**2. Set up your workspace.** Open the repo as an Obsidian vault on one side, your AI agent on the other. You talk to the AI — it builds the wiki. You watch it happen in Obsidian.
+The agent creates the folder, offers `git init` so every change can be undone, adds the framework files, and creates an inbox. It asks what the wiki is for and offers a starter layout (Projects, Knowledge, Journal, Private), which you can decline and let the structure grow from what you capture. Open the folder as an Obsidian vault if you like to watch it fill in.
 
-[Full Obsidian setup &rarr;](docs/obsidian-setup.md) · No Obsidian? Any editor + any [supported AI tool](docs/supported-tools.md) works fine.
+### Add it to notes you already have
 
-**3. Fill in your profile.** Open `_config/config.md`, fill in the **About You** section, and set `Training Start Date` to today.
+Commit or back up your folder, open your agent in it (an Obsidian vault, a docs folder, any folder of markdown), and say:
 
-**4. Start talking.** Open in your AI tool of choice and go:
+```text
+Set up llm-context-base in this folder by following
+https://raw.githubusercontent.com/asakin/llm-context-base/main/.agents/skills/wiki-setup/SKILL.md
+```
 
-- *"Capture this: here's how our onboarding process works..."*
-- *"We decided to use PostgreSQL over MongoDB, let me document why"*
-- *"What do we know about our deployment process?"*
-- *"Lint the wiki, what needs attention?"*
+The agent first reads your folder's house rules: instruction files, sync or publishing tooling, linters, and how your notes are written (links, naming, frontmatter, intake folder). It then shows you how llm-context-base will fit in: it adopts your conventions where they already do the job, brings its own where you have none, and proposes a change only where it would improve your practice. Nothing is installed until you agree, and the result is recorded in `.agents/wiki/config.md`. Your notes are not moved, renamed or rewritten, and frontmatter is added to a note only when the agent next works on it. If you already have an `AGENTS.md` or `CLAUDE.md`, your text in them is kept.
 
-That's it. The system adapts to what you actually need.
+A v1 wiki goes this way too; see [Coming from v1](#coming-from-v1).
 
-**Want to stay updated as the framework improves?** The template approach gives you a clean start but disconnects you from upstream. If you want to pull future improvements (new protocols, better training behavior, bug fixes), use the [Framework Track setup](docs/faq.md#how-do-i-get-upstream-updates) instead.
+### Either way
 
----
+To update later, say "update llm-context-base". If you use Obsidian, see [Using with Obsidian](docs/obsidian.md).
 
-## What Makes This Different
+Cloning this repository gets you the framework's source, set up for contributors, not a wiki; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
-**It learns how you work.** The first 30 days are a training period. Your AI asks questions, suggests directories, and logs what it learns. By day 45, it's quiet and efficient. You never design a taxonomy upfront. [Full details &rarr;](docs/training-phases.md)
+## What it brings to your wiki
 
-**Capture first, organize later.** Everything lands in `_inbox/` with a 7-day TTL. You never hesitate to capture because you don't have to decide where it goes yet. Your AI files it later.
+Every wiki is ahead on some things and behind on others. llm-context-base brings a common set of practices and fits them to what you already have, without breaking it:
 
-**Your README stays yours.** This file has two sections split by a marker. Above it: your personal project README, maintained by your AI as the wiki evolves. Below it: the framework docs, which track upstream cleanly. You get living documentation without merge conflicts.
+- **Capture first, file later**, and fold new material into existing pages before creating new ones
+- **Answers become pages**, cited and dated, with gaps admitted instead of filled
+- **Decisions carry their outcomes**, so past choices come up when a similar one does
+- **Nothing retires without a trail**, drafts get finished, every page can be found
+- **Conventions are written down** the moment they're decided
+- **Health checks end in fixes**, and a second agent audits what the first one wrote
+- **Instructions stay small**, and every agent follows the same procedures
 
-**Patterns are captured as they emerge.** When your AI learns a new convention or preference during a conversation, it writes it down immediately, not at commit time. Nothing is lost if you commit from the command line without AI involvement.
+Setup checks each practice against your folder and tells you which you already have, which it adds, and which it adapts to your own rules. The full list is in [`.agents/wiki/practices.md`](.agents/wiki/practices.md).
 
-**Every file is queryable.** A [metadata standard](docs/metadata-standard.md) on every document means your AI can scan summaries and tags without loading full files. This scales to hundreds of documents.
+## What you can say
 
-**It maintains itself.** Lint checks surface stale files, missing metadata, and orphaned docs. The system even reviews its own instruction efficiency to prevent context window bloat as your wiki grows.
+| Say | What happens |
+|---|---|
+| "Capture this: here's how we set up monitoring…" | A dated note in the inbox, with an offer to file it now |
+| "We chose Terraform over Pulumi; write down why" | A decision note with context, options, rationale, and an Outcome section for later |
+| "What do we know about our hiring process?" | An answer synthesized from the relevant notes, citing each one and flagging stale ones |
+| "File my inbox" | Items become new notes or updates to existing ones, linked to related notes |
+| "Should we move to Kubernetes?" | Past decisions in the same area surface first, especially the ones that went badly |
+| "Lint the wiki" | Stale inbox items, notes missing metadata, stale and stuck drafts, orphans, broken links |
+| "From now on, name meeting notes by date" | The convention is written to config immediately and followed from then on |
 
----
+## Meet Warren and Marlowe
 
-## What You Can Do
+Two agents ship with the wiki, as Claude Code subagents (and in pi through the pi agents extension, which setup offers if you use pi).
 
-| Say this | What happens |
-|----------|-------------|
-| *"Capture this: here's how we set up monitoring..."* | Creates a file in `_inbox/`, offers to file it |
-| *"We decided to use Terraform over Pulumi, document why"* | Decision record with context, options, rationale, and an outcome section to fill in later |
-| *"What do we know about our hiring process?"* | Scans summaries, synthesizes an answer with source citations |
-| *"Lint the wiki"* | Surfaces stale files, missing metadata, orphaned docs |
-| *"Start a new initiative: migrate to Kubernetes"* | Project workspace with brief, timeline, artifact tracking |
-| *"Create a slide deck summarizing Q1 decisions"* | Generates output in `_output/`, dated and organized |
+- **Warren** keeps the wiki: files the inbox, writes and updates notes, maintains links and metadata, merges and splits notes, tidies prose without changing what notes claim.
+- **Marlowe** investigates: answers questions with citations, researches new sources and maps them onto what the wiki already says, and critiques the wiki for contradictions, stale claims, weak evidence and gaps. Marlowe proposes changes rather than rewriting notes.
 
-These form a cycle. Capture feeds queries, queries inform decisions, decisions get tracked, lint keeps it all healthy. The system compounds over time.
+During setup you tell them what the wiki is for, what Warren may do without asking, and which sources Marlowe should trust. Those answers live in a local section of each agent that updates never overwrite.
 
----
+## What it adds to your folder
 
-## Go Deeper
+```text
+AGENTS.md                  the rules, in a marked block; anything else in the file stays yours
+CLAUDE.md                  @AGENTS.md, so Claude Code loads the same rules
+.agents/wiki/config.md     your settings, house rules and the conventions learned so far
+.agents/wiki/practices.md  the practices, and how an agent applies each
+.agents/wiki/templates/    decision, initiative, knowledge, meeting, journal, capture
+.agents/skills/            six Agent Skills, adapted to your folder on install: setup, capture,
+                             query, lint, keep, investigate
+.claude/agents/            warren.md, marlowe.md
+inbox/                     a path you can change in config
+```
 
-| Topic | What's there |
-|-------|-------------|
-| [Training Phases](docs/training-phases.md) | How the system adapts to you over 30 days |
-| [Directory Structure](docs/directory-structure.md) | What each folder is for, why there are only 4 |
-| [Journal Sync & Privacy](docs/journal-sync.md) | Syncing `3-Journal/` across devices — plaintext, git-crypt, or external |
-| [Metadata Standard](docs/metadata-standard.md) | The format that makes everything queryable |
-| [Supported Tools](docs/supported-tools.md) | Claude Code, Cursor, Copilot, Windsurf, ChatGPT, and others |
-| [Obsidian Setup](docs/obsidian-setup.md) | Pre-configured vault, plugins, web clipper |
-| [Design Decisions](docs/design-decisions.md) | Why the system works the way it does |
-| [FAQ](docs/faq.md) | Common questions |
-| [Linked Code Repos](docs/linked-code-repos.md) | Connect wiki project entries to real code repos — workspace files, context files, Obsidian plugin dev |
-| [Extending & Contributing](docs/extending-and-contributing.md) | Customize locally vs. contribute upstream |
-| [Future Directions](docs/future-directions.md) | Where this is headed |
-| [Philosophy](PHILOSOPHY.md) | The deeper thinking behind the system |
+The rest of the folder is yours. [How It Works](docs/how-it-works.md) explains each part and the design behind it.
 
-The `examples/` directory has four sample files showing the metadata standard in action. Read them, then delete them when you're comfortable.
+## Works with
 
----
+Any agent that reads `AGENTS.md` and can edit files: Claude Code, Codex, Cursor, GitHub Copilot, Antigravity CLI, pi, Devin Desktop and others. The skills use the [Agent Skills](https://agentskills.io) format in `.agents/skills/`. See [Supported Tools](docs/supported-tools.md) for what each one reads.
 
-## Credits
+## Coming from v1
 
-Built on [Andrej Karpathy's LLM Wiki Pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f). Implementation by [Ariel Sakin](https://github.com/asakin), refined over several months of daily use managing business operations.
+v2 replaces the per-tool shims with `AGENTS.md`, the `_config/` and `_meta/` folders with `.agents/`, and the 30-day training period with conventions learned as you go. Run setup in your v1 folder: it migrates your profile and conventions, keeps your content folders where they are, and offers to convert old-style metadata. See the [FAQ](docs/faq.md#im-on-v1-how-do-i-move-to-v2).
+
+## Documentation
+
+| Page | What's there |
+|---|---|
+| [How It Works](docs/how-it-works.md) | The files, a session, the metadata, design decisions |
+| [Supported Tools](docs/supported-tools.md) | What each agent reads, chat apps, local models, privacy |
+| [Using with Obsidian](docs/obsidian.md) | Setup next to a vault, Web Clipper template, Bases, plugins |
+| [Journal Sync and Privacy](docs/journal-sync.md) | Three ways to sync a private folder across devices |
+| [Linked Code Repos](docs/linked-code-repos.md) | Connecting project notes to the code repositories they describe |
+| [FAQ](docs/faq.md) | Installing, updating, existing files, v1 |
+| [Contributing](CONTRIBUTING.md) | Working on the framework, what makes a good contribution, releases |
+
+The [`examples/`](examples/) folder has four sample notes showing the metadata in use.
+
+## Author
+
+[Ariel Sakin](https://github.com/asakin).
 
 ## License
 

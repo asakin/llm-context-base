@@ -1,92 +1,66 @@
 # Contributing to llm-context-base
 
-## The Vision
+Every installed copy of llm-context-base is an experiment. As the agent adapts a wiki to someone's needs, useful patterns turn up: a template, a skill, a lint check, a better way to adopt an existing folder. Those patterns are what this project grows from.
 
-Every copy of this project is a living experiment. As you walk the pattern and the system adapts to your needs, you'll discover structural patterns that could help others - new templates, instruction modules, directory conventions, or workflow ideas.
+## What makes a good contribution
 
-This project is designed to grow from the collective experience of its users. Your `5-Recipes/` directory with a custom template might become a generic "content collection" pattern. Your decision learning loop refinement might improve the template for everyone. The wiki maintains itself - and so does this project.
+Contribute structure, not content. Your notes stay in your wiki; what helps others is the pattern.
 
-## What Makes a Good Contribution
+Good contributions:
 
-**Contribute structure, not content.** Your personal knowledge stays in your copy. What's valuable to the community is the *patterns* you discovered.
+- **Templates** for note types the set doesn't cover (retrospectives, reading notes, vendor evaluations)
+- **Skills** that teach the agent a broadly useful behavior, or improvements to the four existing ones
+- **Setup improvements**, especially for folder layouts and conventions that setup doesn't recognize yet
+- **Agent improvements** to Warren and Marlowe
+- **Fixes** where an instruction doesn't work well with a particular agent or model
 
-Great contributions:
-- **New templates** - You created a template for something the bootstrap doesn't cover (retrospectives, reading notes, vendor evaluations, etc.)
-- **Instruction modules** - You wrote an instruction file that teaches the AI a useful new behavior
-- **Directory patterns** - You discovered a directory structure that solves a common problem
-- **Training improvements** - You found a better way to calibrate during the training period
-- **Obsidian configurations** - You found a plugin or setting that enhances the wiki pattern
-- **Bug fixes** - Something in the instructions doesn't work well with a particular LLM
+Not contributions: personal content, company-specific conventions, or changes that only make sense for one wiki.
 
-Not contributions:
-- Your personal content, knowledge articles, or decisions
-- Company-specific conventions or workflows
-- Changes that only make sense for your specific use case
+Genericize before you submit. A `Recipes/` template with cuisine and prep-time fields becomes a "collection item" template with user-defined categories and attributes. If a change requires knowing what your wiki is about, it's a local customization; if it works regardless of domain, it's a contribution.
 
-## How to Contribute
+## How to contribute
 
-### The Simple Way (Today)
+Open an [issue](https://github.com/asakin/llm-context-base/issues) describing the pattern: the problem it solves, how you implemented it, why it would help others. Or fork the repo, add the genericized version, and open a pull request.
 
-1. Open an [issue](../../issues) describing the pattern you discovered
-2. Include: what problem it solves, how you implemented it, and why it would be useful to others
-3. If you can, include a genericized version - strip your specific content and make it domain-agnostic
+## Repository layout
 
-### With a Pull Request
+The repository is the source of what setup installs. Setup copies only these paths into a user's folder:
 
-1. Fork the repo
-2. Add your contribution (template, instruction module, etc.)
-3. **Genericize it** - replace your specific domain content with placeholders and examples that work across use cases
-4. Make sure it follows the metadata standard in `_config/standard.md`
-5. Open a PR with a clear description of what pattern this captures
+| Path | Installed as |
+|---|---|
+| `AGENTS.md`, between the `llm-context-base:start` and `:end` markers | The block in the user's `AGENTS.md` |
+| `.agents/skills/wiki-*` | Replaced whole on every update, then re-adapted to the folder from `config.md` |
+| `.agents/wiki/practices.md` | Replaced on every update |
+| `.agents/wiki/templates/*` | Overwritten by file name; user templates with other names are kept |
+| `.agents/wiki/config.md` | Copied only if the user has none; never overwritten |
+| `.claude/agents/warren.md`, `marlowe.md` | Replaced above the `llm-context-base:local` line |
 
-### What "Genericize" Means
+Everything else (`README.md`, `docs/`, `examples/`, `assets/`, `.github/`) stays in this repository. If you add a framework file, add it to the install list in `.agents/skills/wiki-setup/SKILL.md` and to this table.
 
-Your copy might have:
-```markdown
-# Recipe: {{title}}
-- **Cuisine:** [Italian | Japanese | Mexican | ...]
-- **Prep Time:** ...
-- **Ingredients:** ...
+Keep the always-loaded part small: the `AGENTS.md` block and a fresh `config.md` together should stay well under 300 lines. Anything needed only for some tasks belongs in a skill. Skill frontmatter uses only `name` and `description`, so every agent that supports Agent Skills can load it.
+
+## Working on the framework with an agent
+
+A clone of this repository is a contributor checkout, not a wiki. The committed file `.agents/wiki/.framework-mode` tells agents (including Warren and Marlowe) to work as engineering assistants on an open-source project: no setup, no personalizing, no personal information in files that ship to every user. Setup never copies that file, so installed wikis don't have it.
+
+To try the repository itself as a wiki, delete the file locally and don't commit the deletion. To test setup properly, open an agent in a scratch folder (empty for a fresh start, or a copy of a real vault) and ask it to set up llm-context-base from your working copy by giving it the local path; setup uses a source you name instead of the latest release.
+
+## Commits and checks
+
+Commit messages use [Conventional Commits](https://www.conventionalcommits.org/) prefixes: `feat:`, `fix:`, `docs:`, `refactor:`, `chore:`, with `!` for breaking changes. CI runs markdownlint and a link check on every pull request; run them locally with:
+
+```bash
+npx markdownlint-cli2 "**/*.md"
+lychee --no-progress .
+python3 .agents/skills/wiki-setup/scripts/migrate-frontmatter.py --self-test
 ```
 
-The contribution should be:
-```markdown
-# [Item Title]
-- **Category:** [user-defined categories]
-- **Key Attributes:** ...
-- **Details:** ...
-```
+## Releasing
 
-The specific becomes the general. Your experience becomes everyone's starting point.
+1. Update the version in the `llm-context-base:start` line of `AGENTS.md` and the `llm-context-base:agent` lines of both agents.
+2. Make sure `grep -rn "TODO(pi-extension)" .agents` returns nothing.
+3. Merge to `main`, tag `vX.Y.Z`, and publish a GitHub release with notes. Setup installs the newest `v*` tag, so the tag is what users get.
 
-## The Future
+## Code of conduct
 
-We're working toward a system where your AI can help package useful patterns into contributions automatically - genericizing your specific implementation into something the community can use, and opening a PR on your behalf. The wiki that maintains itself, contributing to the project that powers it.
-
-For now, issues and PRs are the way. But the goal is to make contributing as frictionless as using the system itself.
-
-## Developing the framework with an AI assistant
-
-This repo is dual-purpose: most people consume it as a *template* (a personal knowledge base to fill in), but a smaller group — maintainers and contributors — opens it in an AI coding tool to work on the framework itself. Those two modes need very different behavior from the AI.
-
-To handle this, every bootstrap file (`.claude/CLAUDE.md`, `AGENTS.md`, `.cursorrules`, `.windsurfrules`, `.cursor/rules/bootstrap.mdc`, `.github/copilot-instructions.md`) starts with a **Step 0 framework-mode check**: it looks for `_config/.framework-mode`. If that file exists, the AI skips the Session Start Protocol and behaves as a normal engineering assistant for an open-source project. No init questions, no config population, no personal info written into files that will ship to every downstream user.
-
-To activate framework mode in any repo, run:
-
-    touch _config/.framework-mode
-
-To return to personal-instance mode:
-
-    rm _config/.framework-mode
-
-**What this means for you as a contributor:**
-
-- **Working on the canonical repo** → `_config/.framework-mode` ships committed, so framework mode is on by default. You get a clean engineering assistant.
-- **Working on a fork you own** → if you want to dogfood framework changes against your real wiki, remove the file. If you're purely doing framework work, leave it. Your choice.
-- **Opening a PR from a fork** → genericize before you push. Review diffs carefully — personal content should not end up in a PR.
-
-If you update Step 0 in one bootstrap file, update it in all six. They are intentionally duplicated (one per AI tool) and must stay in sync.
-
-## Code of Conduct
-
-Be kind. This project exists because people shared their patterns. Keep that spirit going.
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). Be kind; this project exists because people shared their patterns.

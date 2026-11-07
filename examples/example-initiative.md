@@ -5,7 +5,7 @@ tags: [initiative, onboarding, documentation]
 status: active
 owner: Engineering Manager
 updated: 2026-03-28
-related: "[example-knowledge-article.md](example-knowledge-article.md)"
+related: ["[[example-knowledge-article]]"]
 ---
 
 # Onboarding Documentation Overhaul
@@ -27,12 +27,14 @@ New hires take 2-3 weeks to become productive. Exit surveys from the last 3 hire
 ## Scope
 
 **In scope:**
+
 - Dev environment setup guide
 - Architecture overview for new engineers
 - Team processes and conventions
 - Tool access and permissions guide
 
 **Out of scope:**
+
 - HR onboarding (handled by People team)
 - Product training (handled by Product team)
 - Customer-facing documentation
@@ -51,10 +53,10 @@ New hires take 2-3 weeks to become productive. Exit surveys from the last 3 hire
 
 | Artifact | Location | Status |
 |----------|----------|--------|
-| Dev environment setup | `2-Knowledge/HowTo/dev-setup.md` | In progress |
-| Architecture overview | `2-Knowledge/References/architecture.md` | Draft |
-| Team conventions | `2-Knowledge/HowTo/team-conventions.md` | Not started |
-| Tool access guide | `2-Knowledge/HowTo/tool-access.md` | Not started |
+| Dev environment setup | `Knowledge/HowTo/dev-setup.md` | In progress |
+| Architecture overview | `Knowledge/References/architecture.md` | Draft |
+| Team conventions | `Knowledge/HowTo/team-conventions.md` | Not started |
+| Tool access guide | `Knowledge/HowTo/tool-access.md` | Not started |
 
 ---
 

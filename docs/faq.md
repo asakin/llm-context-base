@@ -1,79 +1,57 @@
 # FAQ
 
-**How do I get upstream updates?**
+## How do I install it?
 
-Two paths:
+There is nothing to clone. For a new wiki, tell your agent "Start a new llm-context-base wiki in ~/wiki by following" and the setup link; for notes you already have, open the agent in that folder and say "Set up llm-context-base in this folder by following" and the same link. The agent fetches the latest release, shows you what it will add, and asks a few questions. See the [README](../README.md#quick-start).
 
-**Quick Start (template)** — what the README recommends. Clean start, no shared history. Fine if you set it up once and don't care about updates.
+## Should I clone the repository?
 
-**Framework Track** — for users who want to pull improvements as the system evolves. Three extra steps upfront:
+Only to contribute. A clone is the framework's source, marked so agents work on the framework rather than treat it as a wiki. See [CONTRIBUTING.md](../CONTRIBUTING.md).
 
-```bash
-# 1. Clone directly (instead of "Use this template")
-git clone https://github.com/asakin/llm-context-base.git my-wiki
-cd my-wiki
+## How do I get updates?
 
-# 2. Create an empty private repo on GitHub, then rewire remotes:
-git remote rename origin upstream
-git remote add origin https://github.com/YOU/my-wiki.git
-git push -u origin main
+Say "update llm-context-base". The installed `wiki-setup` skill fetches the latest release and replaces only the framework's parts: the block in `AGENTS.md`, the `wiki-*` skills, the shipped templates, and Warren and Marlowe outside their local sections. Your notes, `config.md`, your own templates, and anything you wrote outside the marked block are left alone.
 
-# 3. Pull future updates:
-git fetch upstream
-git rebase upstream/main
-git push --force-with-lease origin main
-```
+## I'm on v1. How do I move to v2?
 
-Your repo is fully independent (not a GitHub fork, not publicly linked). You just share git history with upstream, which is what makes rebase work cleanly.
+Run setup in your v1 folder, the same way as a fresh install. It recognizes the v1 layout, moves your profile, tone, training log and conventions into `.agents/wiki/config.md`, keeps `1-Projects/` to `4-Private/` where they are, removes the old shims and `_config/`/`_meta/` after showing you the list, and offers to convert any old `**Type:**`-style metadata to YAML with a dry run first. Commit before you start so you can review the change on its own.
 
----
+## Does it change my existing notes?
 
-**On my first Claude Code session I saw something about a missing MEMORY.md. Is that an error?**
+No. Setup adds files; it doesn't move, rename or rewrite notes. Afterwards, the agent adds frontmatter to a note only when it works on that note, and every move, merge or rename on more than a handful of notes is proposed before it happens.
 
-No. Claude Code has a built-in memory system that stores notes about your project in a file outside the repo (`~/.claude/projects/.../memory/MEMORY.md`). On the very first session it tries to read that file, finds it doesn't exist yet, and creates it. You'll only see this once.
+## What if my folder already has an AGENTS.md or CLAUDE.md?
 
----
+Setup adds a marked block to `AGENTS.md` and an `@AGENTS.md` line to `CLAUDE.md`, and keeps everything else in both files. Updates replace only the marked block.
 
-**Does this work with local/smaller models (Ollama, etc.)?**
+## Why are the files hidden?
 
-Yes. All instructions are plain markdown, no special API calls or tool use required. Smaller models may need you to manually update the `Current Phase` field in `_config/config.md` rather than calculating it automatically, and may not follow the training behavior as precisely. The core value (metadata standard, directory structure, templates) works regardless of model capability.
+So the framework doesn't clutter your notes. Obsidian and most file browsers hide dot-folders. `AGENTS.md` and `CLAUDE.md` stay at the root because that is where agents look for them.
 
----
+## Do I need Claude Code?
 
-**Will my company's proxy or firewall block this? Can I use it at work?**
+No. Any agent that reads `AGENTS.md` gets the rules and the skills; see [Supported Tools](supported-tools.md). Warren and Marlowe are Claude Code subagents, and are also available in pi through the pi agents extension.
 
-There is nothing for a proxy to block. llm-context-base has zero runtime and generates no network activity of its own. It is a git clone of markdown files. After clone, the repo never touches the network: no telemetry, no phone-home, no CDN dependencies, no background processes, no analytics.
+## Does it work with local models?
 
-The only network-related question is whether your company allows the AI tool you use to read and write files (Claude Code, Cursor, Copilot, Windsurf, ChatGPT, etc.) — and that's the same question you'd face with or without this repo. If your AI tool works at work, llm-context-base works at work. The framework adds no additional surface a proxy could block.
+Yes. Everything is plain markdown. Smaller models handle capture, metadata and queries; setup and lint are multi-step and go better with a stronger model.
 
-This is a direct consequence of the substrate principle: the repo stays dumb, intelligence lives above it. See [PHILOSOPHY.md → The Substrate Principle](../PHILOSOPHY.md#the-substrate-principle) for the design rationale.
+## Can I use it at work, behind a proxy?
 
----
+llm-context-base has no runtime and makes no network calls: no telemetry, no CDN, no background process. The only question is whether your company allows the agent you use to read and write files, the same question you'd have without it. Setup itself fetches the release from GitHub once; you can also clone the repository yourself and point the agent at the local copy.
 
-**Why not just use [existing wiki tool]?**
+## Where did the 30-day training period go?
 
-Most LLM wiki implementations focus on ingestion and retrieval. This system adds a training period that adapts the structure to your specific needs, templates battle-tested over months of daily use, an Obsidian-ready vault with graph visualization, and a lint system that keeps things healthy over time. It also works with any LLM, not locked to one provider.
+It was replaced in v2. The agent now writes a convention into `config.md` the moment you settle one, asks at most one organizing question per session, and proposes folders only when material keeps not fitting. No day counter, no footer, no greeting ritual.
 
----
+## How do I sync a private journal across devices?
 
-**How do I sync my journal (`3-Journal/`) across devices?**
+See [Journal Sync and Privacy](journal-sync.md): plaintext in a private repo, git-crypt, or a folder synced outside git.
 
-By default, `3-Journal/*` is gitignored, so journal entries live only on the machine where you wrote them. That's safe for single-device users but breaks if you write on a laptop and read on a desktop. Three options with different privacy trade-offs are documented in [journal-sync.md](journal-sync.md) — the simplest is to remove the gitignore rule if your repo is private, and there are two more secure options if you'd rather not bet on repo privacy staying intact.
+## One wiki for everything, or one per domain?
 
----
+Start with one. The links between domains are where much of the value is: a decision references a how-to, which links to a project. Split later if it gets unwieldy.
 
-**Should I use one vault for everything or split by domain?**
+## Why not just use another LLM-wiki template?
 
-Start with one. The cross-domain connections are where the most value emerges. A decision about tooling might reference a knowledge article about deployment which links to a project initiative. Splitting loses these connections. If it gets unwieldy, the training period will help you find the right boundaries.
-
----
-
-**Which Claude model should I use with this?**
-
-Claude Sonnet 4.6 or Opus 4.6. Both support 1M token context windows natively. Avoid using the deprecated `context-1m-2025-08-07` beta header with older Sonnet models — it stops working April 30, 2026, and requests exceeding 200k tokens will error. If you're on an older model, upgrade to Sonnet 4.6.
-
----
-
-**Can I load more context at session start with MCP?**
-
-Yes. Claude Code's MCP integration now supports tool results up to 500,000 characters (set via `_meta["anthropic/maxResultSizeChars"]`). If you're building an MCP server to feed wiki content to Claude Code, you can advertise this limit to inject significantly more context at session start than was previously possible.
+Most assume a fresh folder, one agent, and a structure you adopt up front. llm-context-base installs into the folder you already have, adopts its conventions, works across agents through `AGENTS.md` and Agent Skills, and ships two agents for upkeep and critique. If you want to design everything yourself, start from [Karpathy's gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
