@@ -30,6 +30,7 @@ The repository is the source of what setup installs. Setup copies only these pat
 |---|---|
 | `AGENTS.md`, between the `llm-context-base:start` and `:end` markers | The block in the user's `AGENTS.md` |
 | `.agents/skills/wiki-*` | Replaced whole on every update |
+| `.agents/wiki/practices.md` | Replaced on every update |
 | `.agents/wiki/templates/*` | Overwritten by file name; user templates with other names are kept |
 | `.agents/wiki/config.md` | Copied only if the user has none; never overwritten |
 | `.claude/agents/warren.md`, `marlowe.md` | Replaced above the `llm-context-base:local` line |

@@ -37,7 +37,7 @@ SRC=$(mktemp -d) && git clone --quiet --depth 1 --branch "$TAG" "$REPO" "$SRC"
 
 Without git, download `$REPO/archive/refs/tags/$TAG.tar.gz` and unpack it instead. If the user names a source (a local clone, a branch, a fork), use that as `$SRC` and say so. In **update** mode, compare `$TAG` with the version in the target's `<!-- llm-context-base:start vX.Y.Z -->` line; if they match, say it's up to date and offer only the agent re-tuning in step 7. Otherwise show the release notes (`$REPO/releases/tag/$TAG`) before continuing.
 
-Read `$SRC/AGENTS.md`, `$SRC/.agents/wiki/config.md` and the four skills before going on: they are the defaults you are about to fit to this folder.
+Read `$SRC/AGENTS.md`, `$SRC/.agents/wiki/practices.md`, `$SRC/.agents/wiki/config.md` and the four skills before going on: they are the practices and defaults you are about to fit to this folder.
 
 ## 3. Learn the house rules
 
@@ -73,7 +73,9 @@ Decide each row this way:
 - **The house has nothing:** bring ours.
 - **A house rule blocks something llm-context-base needs:** say which rule and ask. Never edit the folder's own instruction files, hooks or tooling to get around it. If the house has a mechanism for proposing changes (for example, writing a proposed `AGENTS.md` next to the real one), use it, and say what that means: agents only read the real `AGENTS.md`, so llm-context-base stays switched off until someone accepts the proposal. Let the user choose between that and approving the edit now.
 
-In an existing folder, show the user the result as a short table (topic, house rule, what llm-context-base will do here) and wait for a yes before installing. That table becomes the House rules section of `config.md`. In a fresh start, skip the table: say in a sentence that llm-context-base's defaults apply within the rules the user's tools already set, name any default the user is likely to care about (for example wikilinks, which suit Obsidian, or markdown links, which suit GitHub), and record the defaults in the House rules section.
+Then go through the practices in `practices.md` the same way. For each one, decide whether the folder already does it (**in place**: say how), will take llm-context-base's default (**adopted**), needs fitting to the house rules (**adapted**: say how), or can't take it without breaking something the house relies on (**declined**: say why). This is what the user gains from installing, so make it concrete: name the pages, folders or rules each practice touches here.
+
+In an existing folder, show the user both results and wait for a yes before installing: a short table of house rules (topic, house rule, what llm-context-base will do here), then the practices grouped as already in place, being added, adapted, and declined. They become the House rules and Practices sections of `config.md`. In a fresh start, skip the table: say in a sentence that llm-context-base's defaults apply within the rules the user's tools already set, name any default the user is likely to care about (for example wikilinks, which suit Obsidian, or markdown links, which suit GitHub), and record the defaults in the House rules section.
 
 ## 5. Install
 
@@ -82,6 +84,7 @@ List the files you will add or replace and wait for a yes. In a fresh start, des
 - **`AGENTS.md`:** copy the block from `<!-- llm-context-base:start` through `<!-- llm-context-base:end -->`. If the target has an `AGENTS.md`, replace its existing block or, if it has none, put the block at the top; keep everything else in the file as it is. If the target has no `AGENTS.md`, create one with just the block. If a house rule forbids editing `AGENTS.md`, follow step 4's last rule.
 - **`CLAUDE.md`:** must contain the line `@AGENTS.md`. Create the file if missing; otherwise add the line at the top if it isn't there. A `.claude/CLAUDE.md` gets the same treatment if it exists instead of a root one.
 - **`.agents/skills/wiki-*`:** replace each `wiki-*` directory whole. Leave other skills alone.
+- **`.agents/wiki/practices.md`:** copy it, replacing any older version.
 - **`.agents/wiki/templates/`:** copy each shipped template, overwriting files of the same name. Skip this if the house has its own templates and the user chose them in step 4.
 - **`.agents/wiki/config.md`:** copy only if it doesn't exist. Never overwrite it.
 - **`.claude/agents/warren.md` and `marlowe.md`:** if a file of that name exists without the `llm-context-base:agent` comment, it is the user's own: ask before touching it. Otherwise replace everything above the `<!-- llm-context-base:local -->` line and keep the local section below it.
@@ -95,6 +98,7 @@ Fill in `.agents/wiki/config.md` from steps 3 and 4:
 
 - **Frontmatter keys:** `inbox`, `link_style`, `naming`, `frontmatter` (`llm-context-base`, `host` when another tool writes it, or `none`), `private`, and `setup:` set to today.
 - **House rules:** the table from step 4, one row per topic, plus any other house rule an agent writing here must know.
+- **Practices:** one row per practice with its status here and, for in place, adapted and declined, a few words on how or why.
 - **Structure:** the top-level folders and what each holds, in a sentence each.
 - **Lint:** how the `wiki-lint` checks apply here. Turn off checks the house makes meaningless (for example the metadata check when `frontmatter` is `host`), change thresholds that don't fit, and add checks for house rules worth enforcing (for example "wikilinks that match several pages are refused by the publisher"). Give each a one-line reason.
 - **Conventions:** anything the user decided during setup, dated.
@@ -139,6 +143,6 @@ Only if `pi` is on the PATH (`command -v pi`); otherwise don't mention pi.
 2. **Reload.** The agent session that ran setup loaded its instructions before the block existed. Tell the user to start a new session (or `/rebrief` in pi) so every rule applies.
 3. **Show what changed for them.** Don't report survey statistics or run a lint. In a short message:
    - **What you can do now that you couldn't before:** three to five things, each with a phrase to try that uses this folder's real content (a real project name, a real topic). For example "Capture this: …" landing in their intake folder, "What do we know about <topic they have notes on>?" answered with citations, "File my inbox", "Should we <a decision their notes touch on>?" surfacing past decisions.
-   - **How it fits their house rules:** one or two sentences on the most important adaptations (what you adopted, what you brought).
+   - **How it fits their house rules:** one or two sentences on the most important adaptations, and which practices the wiki gained that it didn't have before.
    - **One concrete improvement to start with:** pick a single specific thing you noticed during the survey that you can fix now, and offer to do it ("Four pages are still placeholders, starting with *What we build*. Want me to draft it from what the wiki already says?"). One offer, not a list.
 4. **Obsidian:** if there's an `.obsidian/` folder, mention the Web Clipper template (`https://github.com/asakin/llm-context-base/blob/main/assets/clipper-template.json`, imported with its folder set to the inbox) and kepano/obsidian-skills for Obsidian syntax.

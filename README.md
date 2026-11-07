@@ -42,6 +42,20 @@ To update later, say "update llm-context-base". If you use Obsidian, see [Using 
 
 Cloning this repository gets you the framework's source, set up for contributors, not a wiki; see [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## What it brings to your wiki
+
+Every wiki is ahead on some things and behind on others. llm-context-base brings a common set of practices and fits them to what you already have, without breaking it:
+
+- **Capture first, file later**, and fold new material into existing pages before creating new ones
+- **Answers become pages**, cited and dated, with gaps admitted instead of filled
+- **Decisions carry their outcomes**, so past choices come up when a similar one does
+- **Nothing retires without a trail**, drafts get finished, every page can be found
+- **Conventions are written down** the moment they're decided
+- **Health checks end in fixes**, and a second agent audits what the first one wrote
+- **Instructions stay small**, and every agent follows the same procedures
+
+Setup checks each practice against your folder and tells you which you already have, which it adds, and which it adapts to your own rules. The full list is in [`.agents/wiki/practices.md`](.agents/wiki/practices.md).
+
 ## What you can say
 
 | Say | What happens |
@@ -69,6 +83,7 @@ During setup you tell them what the wiki is for, what Warren may do without aski
 AGENTS.md                  the rules, in a marked block; anything else in the file stays yours
 CLAUDE.md                  @AGENTS.md, so Claude Code loads the same rules
 .agents/wiki/config.md     your settings and the conventions learned so far
+.agents/wiki/practices.md  the practices, and how an agent applies each
 .agents/wiki/templates/    decision, initiative, knowledge, meeting, journal, capture
 .agents/skills/            wiki-setup, wiki-capture, wiki-query, wiki-lint (Agent Skills)
 .claude/agents/            warren.md, marlowe.md

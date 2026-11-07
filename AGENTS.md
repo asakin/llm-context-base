@@ -12,6 +12,17 @@ This folder is a markdown wiki that you, the agent, maintain for the user, follo
 
 There is no greeting ritual and no status banner. Mention the inbox only when it holds items older than 7 days and the user is doing wiki work.
 
+## Set yourself up
+
+Any agent working here should be able to use the wiki skills, whatever tool it runs in. Before your first wiki task, check that you can:
+
+- **The skills are in `.agents/skills/` but your tool doesn't load them:** read `.agents/skills/<name>/SKILL.md` yourself when a task matches the table below. If your tool loads skills from another folder, offer to link the `wiki-*` skills there so they load automatically next time, and tell the user what you linked.
+- **`.agents/skills/` is missing or has no `wiki-*` skills** (they were installed somewhere this checkout doesn't have, or the folder was copied without hidden files): get them from the llm-context-base release named in the first line of this block (`https://github.com/asakin/llm-context-base`, tag `vX.Y.Z`), follow them from there for this session, and offer to run `wiki-setup` to install them in the folder.
+
+## What llm-context-base adds
+
+A shared set of wiki practices, listed in `.agents/wiki/practices.md`: capture first, fold before you create, answers become pages, cite and date, decisions carry their outcomes, nothing retires without a trail, drafts get finished, every page can be found, conventions are written down, health checks end in fixes, a second pair of eyes, small instructions, the same procedures in every agent, private stays private. The Practices section of `config.md` says how each one applies in this folder; read `practices.md` when a task touches one you're unsure of.
+
 ## The folder's own rules come first
 
 Many folders had conventions before llm-context-base arrived: instruction files, a sync to another tool, link or naming rules, a frontmatter format, an intake folder. Setup recorded them, and how llm-context-base adapted to each, in the House rules section of `config.md`.

@@ -38,6 +38,14 @@ How this folder worked before llm-context-base arrived, and how llm-context-base
 |---|---|---|
 | (none recorded yet) | | |
 
+## Practices
+
+How each llm-context-base practice (see `.agents/wiki/practices.md`) applies here: **in place** (the house already does it, and how), **adopted** (llm-context-base's default), **adapted** (how it was fitted to the house rules), or **declined** (and why).
+
+| Practice | Here |
+|---|---|
+| (none recorded yet) | |
+
 ## Structure
 
 Where things go. wiki-setup writes what it finds in the folder; the AI adds folders as you approve them.
