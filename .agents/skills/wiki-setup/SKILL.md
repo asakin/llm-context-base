@@ -69,7 +69,7 @@ Decide each row this way:
 - **The house has an equivalent and the difference doesn't matter:** adopt the house's. The user's established practice wins over ours.
 - **The house has an equivalent and ours is meaningfully better:** propose ours, say concretely what the user gains, and let them choose. Improving their practice is the point, but it's their call.
 - **The house has nothing:** bring ours.
-- **A house rule blocks something llm-context-base needs:** say which rule and ask. Never edit the folder's own instruction files, hooks or tooling to get around it. If the house has a mechanism for proposing changes (for example, writing a proposed `AGENTS.md` next to the real one), use it.
+- **A house rule blocks something llm-context-base needs:** say which rule and ask. Never edit the folder's own instruction files, hooks or tooling to get around it. If the house has a mechanism for proposing changes (for example, writing a proposed `AGENTS.md` next to the real one), use it, and say what that means: agents only read the real `AGENTS.md`, so llm-context-base stays switched off until someone accepts the proposal. Let the user choose between that and approving the edit now.
 
 Show the user the result as a short table (topic, house rule, what llm-context-base will do here) and wait for a yes before installing. That table becomes the House rules section of `config.md`.
 
