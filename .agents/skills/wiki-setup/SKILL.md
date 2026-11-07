@@ -109,6 +109,7 @@ The shipped skills describe the defaults. Each installed copy must describe this
 - In `wiki-lint`, delete the checks turned off for this folder, change thresholds, and write the house checks out in full as numbered checks of their own.
 - In `wiki-capture`, replace the filing steps that don't apply with the house's intake workflow, and point to the house's templates if those were chosen.
 - In `wiki-query`, say which dates and fields can be trusted here.
+- Keep the skills agent-neutral: any agent may follow them, so don't name Warren, Marlowe or any other agent in a skill. Personas belong in the agent files.
 - Keep the frontmatter `name` and `description`. Don't shorten a skill for its own sake; the goal is a skill that is right for this folder, not a smaller one.
 
 Put one line under each skill's frontmatter: `<!-- Adapted to this folder by wiki-setup on YYYY-MM-DD from llm-context-base vX.Y.Z. The record of what was adapted is the House rules, Practices and Lint sections of .agents/wiki/config.md. -->`. In **update** mode the fresh copies are adapted again from those sections of `config.md`, so keep them complete. In a **fresh start** the skills need no adaptation beyond the inbox path, if it changed.
