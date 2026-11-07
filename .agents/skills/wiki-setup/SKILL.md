@@ -160,10 +160,11 @@ Only if `pi` is on the PATH (`command -v pi`); otherwise don't mention pi.
 
 ## 10. Finish
 
-1. **Commit.** If it's a git repository: make sure `AGENTS.md`, `CLAUDE.md` and `.agents/` aren't ignored; offer to add `private` folders to `.gitignore` if the house rules allow; commit with `chore: set up llm-context-base vX.Y.Z` (or `update to`).
-2. **Reload.** The agent session that ran setup loaded its instructions before the block existed. Tell the user to start a new session (or `/rebrief` in pi) so every rule applies.
-3. **Show what changed for them.** Don't report survey statistics or run a lint. In a short message:
+1. **Check against the house's own tooling.** Run the folder's linters, formatters and hooks (whatever step 3 found: a markdownlint config, a style checker, a pre-commit hook, a docs build) on every file you added or changed, and fix what fails before committing. An install that breaks the user's CI isn't finished.
+2. **Commit.** If it's a git repository: make sure `AGENTS.md`, `CLAUDE.md` and `.agents/` aren't ignored; offer to add `private` folders to `.gitignore` if the house rules allow; commit with `chore: set up llm-context-base vX.Y.Z` (or `update to`).
+3. **Reload.** The agent session that ran setup loaded its instructions before the block existed. Tell the user to start a new session (or `/rebrief` in pi) so every rule applies.
+4. **Show what changed for them.** Don't report survey statistics or run a lint. In a short message:
    - **What you can do now that you couldn't before:** three to five things, each with a phrase to try that uses this folder's real content (a real project name, a real topic). For example "Capture this: …" landing in their intake folder, "What do we know about <topic they have notes on>?" answered with citations, "File my inbox", "Should we <a decision their notes touch on>?" surfacing past decisions.
    - **How it fits their house rules:** one or two sentences on the most important adaptations, and which practices the wiki gained that it didn't have before.
    - **One concrete improvement to start with:** pick a single specific thing you noticed during the survey that you can fix now, and offer to do it ("Four pages are still placeholders, starting with *What we build*. Want me to draft it from what the wiki already says?"). One offer, not a list.
-4. **Obsidian:** if there's an `.obsidian/` folder, mention the Web Clipper template (`https://github.com/asakin/llm-context-base/blob/main/assets/clipper-template.json`, imported with its folder set to the inbox) and kepano/obsidian-skills for Obsidian syntax.
+5. **Obsidian:** if there's an `.obsidian/` folder, mention the Web Clipper template (`https://github.com/asakin/llm-context-base/blob/main/assets/clipper-template.json`, imported with its folder set to the inbox) and kepano/obsidian-skills for Obsidian syntax.
