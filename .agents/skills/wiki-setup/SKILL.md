@@ -27,15 +27,15 @@ If the user's words and the folder disagree (they asked for a fresh wiki but the
 
 ## 2. Get the framework files
 
-Fetch the latest release into a temporary directory, never into the target:
+Fetch the framework into a temporary directory, never into the target. Use the same version as this skill: if you read it from a URL, take the git ref from that URL (`main` in the README's link, a branch or tag otherwise); if the user gave a local path or named a fork, branch or tag, use that; when an installed copy runs an update, use `main`, which always holds the latest release.
 
 ```bash
 REPO=https://github.com/asakin/llm-context-base
-TAG=$(git ls-remote --tags --refs --sort=-v:refname "$REPO" 'v*' | head -1 | sed 's|.*refs/tags/||')
-SRC=$(mktemp -d) && git clone --quiet --depth 1 --branch "$TAG" "$REPO" "$SRC"
+REF=main   # or the ref the skill came from
+SRC=$(mktemp -d) && git clone --quiet --depth 1 --branch "$REF" "$REPO" "$SRC"
 ```
 
-Without git, download `$REPO/archive/refs/tags/$TAG.tar.gz` and unpack it instead. If the user names a source (a local clone, a branch, a fork), use that as `$SRC` and say so. In **update** mode, compare `$TAG` with the version in the target's `<!-- llm-context-base:start vX.Y.Z -->` line; if they match, say it's up to date and offer only the agent re-tuning in step 8. Otherwise show the release notes (`$REPO/releases/tag/$TAG`) before continuing.
+Without git, download `$REPO/archive/refs/heads/$REF.tar.gz` (or `refs/tags/` for a tag) and unpack it instead. Tell the user which version you're installing: the `vX.Y.Z` in the first line of `$SRC/AGENTS.md`. In **update** mode, compare it with the version in the target's `<!-- llm-context-base:start vX.Y.Z -->` line; if they match, say it's up to date and offer only the agent re-tuning in step 8. Otherwise show the release notes (`$REPO/releases/tag/vX.Y.Z`) before continuing.
 
 Read `$SRC/AGENTS.md`, `$SRC/.agents/wiki/config.md`, `$SRC/.agents/wiki/practices.md` and the six `wiki-*` skills before going on: they are the practices and defaults you are about to fit to this folder.
 
