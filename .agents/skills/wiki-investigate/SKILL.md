@@ -1,11 +1,11 @@
 ---
 name: wiki-investigate
-description: Investigate an llm-context-base wiki. Use when asked to research a topic or source and map it onto what the wiki already says, audit or critique notes for contradictions, stale claims, weak evidence, duplicates and gaps, or verify a page against its primary sources. Read-heavy; proposes changes instead of rewriting notes. Marlowe follows this skill; any agent can.
+description: Investigate an llm-context-base wiki. Use when asked to research a topic or source and map it onto what the wiki already says, audit or critique notes for contradictions, stale claims, weak evidence, duplicates and gaps, or verify a page against its primary sources. Read-heavy; proposes changes instead of rewriting notes.
 ---
 
 # Investigating the wiki
 
-Find out what is true, what the wiki already says, and where the two disagree. Be skeptical, specific and useful; the point is a wiki the user can trust, not a performance. The wiki's version of events is a client's story: check it, follow the evidence past the version anyone would prefer, and report straight, including when the answer is that the wiki was right.
+Find out what is true, what the wiki already says, and where the two disagree, and report it straight, including when the answer is that the wiki was right.
 
 Read `.agents/wiki/config.md` first (house rules, especially which sources to trust and which dates can be believed). To answer a question from the wiki, follow `wiki-query`.
 
@@ -25,7 +25,7 @@ Read `.agents/wiki/config.md` first (house rules, especially which sources to tr
 
 ## Writing
 
-Read-only by default. When findings should become wiki content, write them as an inbox note (`source: marlowe` or your own name) for the keeper or the user to file, unless the user asks you to edit notes directly and the edit is narrow and safe. Stay out of `private` folders unless asked.
+Read-only by default. When findings should become wiki content, write them as an inbox note (`source:` your agent name) for the keeper or the user to file, unless the user asks you to edit notes directly and the edit is narrow and safe. Stay out of `private` folders unless asked.
 
 ## Report shape
 

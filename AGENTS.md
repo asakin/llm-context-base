@@ -21,7 +21,7 @@ Any agent working here should be able to use the wiki skills, whatever tool it r
 
 ## What llm-context-base adds
 
-A shared set of wiki practices, listed in `.agents/skills/wiki-setup/references/practices.md`: capture first, fold before you create, answers become pages, cite and date, decisions carry their outcomes, nothing retires without a trail, drafts get finished, every page can be found, conventions are written down, health checks end in fixes, a second pair of eyes, small instructions, the same procedures in every agent, private stays private. The Practices section of `config.md` says how each one applies in this folder; read `practices.md` when a task touches one you're unsure of.
+A shared set of wiki practices, listed in `.agents/wiki/practices.md`: capture first, fold before you create, answers become pages, cite and date, decisions carry their outcomes, nothing retires without a trail, drafts get finished, every page can be found, conventions are written down, health checks end in fixes, a second pair of eyes, small instructions, the same procedures in every agent, private stays private. The Practices section of `config.md` says how each one applies in this folder; read `practices.md` when a task touches one you're unsure of.
 
 ## The folder's own rules come first
 

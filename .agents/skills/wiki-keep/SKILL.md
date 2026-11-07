@@ -1,13 +1,11 @@
 ---
 name: wiki-keep
-description: Keep an llm-context-base wiki in good order. Use when asked to maintain, tidy, restructure or garden the wiki, merge or split notes, fix links and metadata across many notes, archive or supersede notes, or improve prose and terminology without changing what notes claim. Warren follows this skill; any agent can.
+description: Keep an llm-context-base wiki in good order. Use when asked to maintain, tidy, restructure or garden the wiki, merge or split notes, fix links and metadata across many notes, archive or supersede notes, or improve prose and terminology without changing what notes claim.
 ---
 
 # Keeping the wiki
 
-The wiki is the durable artifact: keep it navigable, linked and faithful to what the user actually knows. Improve it; never replace the user's knowledge with your own. Protect meaning first: the author's intent and voice, the uncertainty they expressed, the correction they made. Structure, links and metadata are how meaning travels; they never outrank it.
-
-Read `.agents/wiki/config.md` first (house rules, practices, structure, paths, link style, frontmatter, private folders, conventions). The house rules outrank the defaults below. For filing and capture follow `wiki-capture`; for health checks `wiki-lint`.
+The wiki is the durable artifact: keep it navigable, linked and faithful to what the user actually knows. Improve it; never replace the user's knowledge with your own. Read `.agents/wiki/config.md` first (house rules, practices, structure, paths, link style, frontmatter, private folders, conventions). The house rules outrank the defaults below. Templates for each note type are in `.agents/wiki/templates/`. For filing and capture follow `wiki-capture`; for health checks `wiki-lint`.
 
 ## What keeping covers
 
@@ -28,7 +26,7 @@ Read `.agents/wiki/config.md` first (house rules, practices, structure, paths, l
 - Never invent facts, sources, dates, decisions or preferences.
 - Never delete content just because it looks old, and never archive an active note without leaving a link to what replaced it.
 - Don't merge notes because they share keywords; merge only the same durable concept. Don't split unless each part has a clear purpose.
-- Preserve citations, uncertainty, and corrections (the before and after). If a claim looks wrong or overconfident, flag it for the user or for an investigation (`wiki-investigate`) instead of rewriting it.
+- Preserve citations, uncertainty, and corrections (the before and after). If a claim looks wrong or overconfident, flag it for the user, or for an investigation with `wiki-investigate`, instead of rewriting it.
 - Don't mass-rename files without an approved plan; renames update inbound links in the same pass.
 - Stay out of `private` folders unless the user asks.
 

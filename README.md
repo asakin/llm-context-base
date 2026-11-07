@@ -54,7 +54,7 @@ Every wiki is ahead on some things and behind on others. llm-context-base brings
 - **Health checks end in fixes**, and a second agent audits what the first one wrote
 - **Instructions stay small**, and every agent follows the same procedures
 
-Setup checks each practice against your folder and tells you which you already have, which it adds, and which it adapts to your own rules. The full list is in [`practices.md`](.agents/skills/wiki-setup/references/practices.md).
+Setup checks each practice against your folder and tells you which you already have, which it adds, and which it adapts to your own rules. The full list is in [`.agents/wiki/practices.md`](.agents/wiki/practices.md).
 
 ## What you can say
 
@@ -83,9 +83,10 @@ During setup you tell them what the wiki is for, what Warren may do without aski
 AGENTS.md                  the rules, in a marked block; anything else in the file stays yours
 CLAUDE.md                  @AGENTS.md, so Claude Code loads the same rules
 .agents/wiki/config.md     your settings, house rules and the conventions learned so far
-.agents/skills/            Agent Skills, adapted to your folder on install:
-                             wiki-setup (with the practices list), wiki-capture (with the note templates),
-                             wiki-query, wiki-lint, wiki-keep, wiki-investigate
+.agents/wiki/practices.md  the practices, and how an agent applies each
+.agents/wiki/templates/    decision, initiative, knowledge, meeting, journal, capture
+.agents/skills/            six Agent Skills, adapted to your folder on install: setup, capture,
+                             query, lint, keep, investigate
 .claude/agents/            warren.md, marlowe.md
 inbox/                     a path you can change in config
 ```

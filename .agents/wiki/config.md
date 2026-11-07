@@ -40,7 +40,7 @@ How this folder worked before llm-context-base arrived, and how llm-context-base
 
 ## Practices
 
-How each llm-context-base practice (see `.agents/skills/wiki-setup/references/practices.md`) applies here: **in place** (the house already does it, and how), **adopted** (llm-context-base's default), **adapted** (how it was fitted to the house rules), or **declined** (and why).
+How each llm-context-base practice (see `.agents/wiki/practices.md`) applies here: **in place** (the house already does it, and how), **adopted** (llm-context-base's default), **adapted** (how it was fitted to the house rules), or **declined** (and why).
 
 | Practice | Here |
 |---|---|

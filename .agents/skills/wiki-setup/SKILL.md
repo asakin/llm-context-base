@@ -37,7 +37,7 @@ SRC=$(mktemp -d) && git clone --quiet --depth 1 --branch "$TAG" "$REPO" "$SRC"
 
 Without git, download `$REPO/archive/refs/tags/$TAG.tar.gz` and unpack it instead. If the user names a source (a local clone, a branch, a fork), use that as `$SRC` and say so. In **update** mode, compare `$TAG` with the version in the target's `<!-- llm-context-base:start vX.Y.Z -->` line; if they match, say it's up to date and offer only the agent re-tuning in step 8. Otherwise show the release notes (`$REPO/releases/tag/$TAG`) before continuing.
 
-Read `$SRC/AGENTS.md`, `$SRC/.agents/wiki/config.md`, the six `wiki-*` skills and `wiki-setup/references/practices.md` before going on: they are the practices and defaults you are about to fit to this folder.
+Read `$SRC/AGENTS.md`, `$SRC/.agents/wiki/config.md`, `$SRC/.agents/wiki/practices.md` and the six `wiki-*` skills before going on: they are the practices and defaults you are about to fit to this folder.
 
 ## 3. Learn the house rules
 
@@ -83,7 +83,9 @@ List the files you will add or replace and wait for a yes. In a fresh start, des
 
 - **`AGENTS.md`:** copy the block from `<!-- llm-context-base:start` through `<!-- llm-context-base:end -->`. If the target has an `AGENTS.md`, replace its existing block or, if it has none, put the block at the top; keep everything else in the file as it is. If the target has no `AGENTS.md`, create one with just the block. If a house rule forbids editing `AGENTS.md`, follow step 4's last rule.
 - **`CLAUDE.md`:** must contain the line `@AGENTS.md`. Create the file if missing; otherwise add the line at the top if it isn't there. A `.claude/CLAUDE.md` gets the same treatment if it exists instead of a root one.
-- **`.agents/skills/wiki-*`:** replace each `wiki-*` directory whole (the practices list and the note templates travel inside `wiki-setup/references/` and `wiki-capture/assets/`). Leave other skills alone. A template the user added or changed under `wiki-capture/assets/templates/` with a name the framework doesn't ship is kept.
+- **`.agents/skills/wiki-*`:** replace each `wiki-*` directory whole. Leave other skills alone.
+- **`.agents/wiki/practices.md`:** copy it, replacing any older version.
+- **`.agents/wiki/templates/`:** copy each shipped template, overwriting files of the same name. The user's own templates in that folder stay. Skip this if the house has its own templates and the user chose them in step 4.
 - **`.agents/wiki/config.md`:** copy only if it doesn't exist. Never overwrite it.
 - **`.claude/agents/warren.md` and `marlowe.md`:** if a file of that name exists without the `llm-context-base:agent` comment, it is the user's own: ask before touching it. Otherwise replace everything above the `<!-- llm-context-base:local -->` line and keep the local section below it.
 - **Claude Code skills:** Claude Code reads only `.claude/skills/`. If it doesn't exist, link it: `ln -s ../.agents/skills .claude/skills`. If it exists as a folder, link each wiki skill inside it: `ln -s ../../.agents/skills/wiki-capture .claude/skills/wiki-capture` (and so on). If symlinks fail, copy the directories and say an update will refresh them.
@@ -120,7 +122,7 @@ Do not add frontmatter to notes during setup.
 **Migrate from v1:** after the install, showing each change first:
 
 1. **Config:** copy About You, Conversation Tone, Training Log and Your Conventions from `_config/config.md`, plus everything in `_config/context.md`, into the matching sections of `config.md` (training-log entries become dated Conventions lines). Copy tool entries from `_config/tools.md` into Tools. Set `inbox: _inbox/`, `private: [3-Journal/, 4-Private/]`, `preserve_sources` from the old setting with `sources: _sources/`, `link_style: markdown` unless the notes say otherwise, `naming: as-found`. Keep `1-Projects/` to `4-Private/` and describe them in Structure.
-2. **Templates:** copy any template in `_meta/templates/` that the user changed or added into `.agents/skills/wiki-capture/assets/templates/` under a name the framework doesn't ship.
+2. **Templates:** copy any template in `_meta/templates/` that the user changed or added into `.agents/wiki/templates/` under a name the framework doesn't ship.
 3. **Old framework files:** remove, after confirming the list: `.cursorrules`, `.cursor/rules/bootstrap.mdc`, `.windsurfrules`, `.github/copilot-instructions.md`, `.claude/CLAUDE.md`, `_config/`, `_meta/instructions/`, `_meta/templates/`. The v1 `AGENTS.md` and `CLAUDE.md` were shims too (they start with "STEP 0: Framework mode check"): remove that text and keep only the new block plus anything the user added. Offer to remove the v1 template's own files if still there: `PHILOSOPHY.md`, `docs/`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `migrate-to-yaml-frontmatter.py`, `WIKI-LOG.md`, and the framework half of `README.md` (everything from `<!-- llm-context-base:framework-readme -->` down).
 4. **Metadata:** v1.0 notes use `**Type:** …` lines and some v1.1 notes use `- **Type:** …` bullets. Run `python3 .agents/skills/wiki-setup/scripts/migrate-frontmatter.py . --dry-run`, show the list, and run it without `--dry-run` only on a yes.
 
